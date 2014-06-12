@@ -1,0 +1,12 @@
+[stage-two]
+round-of-16 = [ "Spania", "Nederland", "England", "Italia", "Frankrike", "Argentina", "Tyskland", "Portugal",]
+quarter-final = [ "Spania", "Italia", "Tyskland", "Portugal",]
+semi-final = [ "Spania", "Italia",]
+[stage-one]
+winners = [ [ "Brasil", "Kamerun",], [ "Nederland", "Spania",], [ "Japan", "Elfenbenskysten",], [ "Italia", "England",], [ "Frankrike", "Ecuador",], [ "Argentina", "Bosnia",], [ "Tyskland", "Portugal",], [ "Russland", "Algerie",],]
+results = [ [ "H", "B", "H", "H", "B", "H",], [ "B", "B", "H", "B", "B", "H",], [ "U", "B", "U", "H", "H", "U",], [ "B", "B", "B", "H", "H", "B",], [ "B", "H", "B", "B", "U", "B",], [ "H", "U", "H", "U", "B", "H",], [ "H", "B", "H", "B", "b", "h",], [ "b", "h", "b", "u", "u", "u",],]
+[info]
+user = "MFjeldstad"
+[finals]
+bronse-final = "Tyskland"
+final = "Spania"

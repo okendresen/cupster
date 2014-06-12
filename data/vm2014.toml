@@ -1,0 +1,11 @@
+name = "VM 2014 Brasil"
+groups = [
+	["Brasil",		"Kroatia", 		"Mexico", 			"Kamerun"],
+	["Spania",		"Nederland", 	"Chile", 			"Australia"],
+	["Colombia",	"Hellas", 		"Elfenbenskysten", 	"Japan"],
+	["Uruguay",		"Costa Rica",	"England", 			"Italia"],
+	["Sveits",		"Ecuador", 		"Frankrike",		"Honduras"],
+	["Argentina",	"Bosnia", 		"Iran", 			"Nigeria"],
+	["Tyskland",	"Portugal", 	"Ghana", 			"USA"],
+	["Belgia",		"Algerie", 		"Russland",			"Soer-Korea"],
+]

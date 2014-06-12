@@ -1,0 +1,12 @@
+[stage-two]
+round-of-16 = [ "Brasil", "Spania", "Hellas", "Italia", "Frankrike", "Argentina", "Portugal", "Tyskland",]
+quarter-final = [ "Brasil", "Italia", "Frankrike", "Tyskland",]
+semi-final = [ "Brasil", "Italia",]
+[finals]
+bronse-final = "Frankrike"
+final = "Brasil"
+[info]
+user = "AGiailoglou"
+[stage-one]
+results = [ [ "h", "h", "h", "u", "b", "b",], [ "h", "u", "h", "b", "b", "h",], [ "b", "b", "h", "u", "h", "h",], [ "h", "b", "u", "h", "h", "b",], [ "h", "h", "b", "u", "u", "b",], [ "h", "b", "h", "u", "b", "u",], [ "b", "b", "h", "b", "u", "h",], [ "h", "h", "u", "b", "b", "b",],]
+winners = [ [ "Brasil", "Mexico",], [ "Spania", "Nederland",], [ "Hellas", "Japan",], [ "Italia", "Uruguay",], [ "Frankrike", "Sveits",], [ "Argentina", "Nigeria",], [ "Portugal", "Tyskland",], [ "Belgia", "Russland",],]

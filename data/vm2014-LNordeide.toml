@@ -1,0 +1,12 @@
+[stage-one]
+results = [ [ "h", "b", "h", "h", "b", "u",], [ "u", "h", "h", "b", "b", "h",], [ "u", "u", "h", "b", "b", "h",], [ "b", "u", "b", "h", "h", "b",], [ "u", "h", "b", "u", "b", "b",], [ "h", "b", "h", "h", "b", "h",], [ "h", "u", "h", "b", "b", "h",], [ "h", "h", "u", "b", "b", "b",],]
+winners = [ [ "Brasil", "Kamerun",], [ "Spania", "Nederland",], [ "Colombia", "Hellas",], [ "Italia", "England",], [ "Frankrike", "Sveits",], [ "Argentina", "Nigeria",], [ "Tyskland", "Portugal",], [ "Russland", "Belgia",],]
+[stage-two]
+round-of-16 = [ "Brasil", "Spania", "England", "Italia", "Nigeria", "Argentina", "Tyskland", "Portugal",]
+semi-final = [ "Tyskland", "Argentina",]
+quarter-final = [ "Brasil", "Spania", "Tyskland", "Argentina",]
+[info]
+user = "LNordeide"
+[finals]
+bronse-final = "Brasil"
+final = "Tyskland"
