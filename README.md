@@ -6,7 +6,7 @@ Simple betting and score management system.
 Just started development. Proof-of-concept for WC 2014.
 
 TODO
-- [x] Betting program to collate and store bets
+- [x] Betting program to collect and store bets
 - [x] Create project and initial Nancy setup for webserver
 - [ ] Parse submitted data files. Select TOML parser
 - [ ] Printable score card for each submitted bet
