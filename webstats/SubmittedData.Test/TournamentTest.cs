@@ -83,6 +83,16 @@ groups = [
 			t.Read(@"data\vm2014.toml");
 			var groups = t.GetGroups();
 			groups.Length.ShouldBe(8);
+
+			string smallerwc2014 = @"name = ""VM 2014 Brasil""
+groups = [
+	[""Brasil"",		""Kroatia"", 		""Mexico"", 			""Kamerun""],
+	[""Spania"",		""Nederland"", 	""Chile"", 			""Australia""],
+]";
+			t = CreateTournament(@"data\vm2014.toml", smallerwc2014);
+			t.Read(@"data\vm2014.toml");
+			groups = t.GetGroups();
+			groups.Length.ShouldBe(2);
 		}
 		
 	}

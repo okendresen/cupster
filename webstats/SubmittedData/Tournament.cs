@@ -18,7 +18,6 @@ namespace SubmittedData
 	/// </summary>
 	public class Tournament
 	{
-		string _file;
 		readonly IFileSystem _fileSystem;
 		dynamic _config;
 		
@@ -36,8 +35,6 @@ namespace SubmittedData
 		public void Read(string file)
 		{
 			string text = _fileSystem.File.ReadAllText(file);
-			_file = file;
-			
 			_config = text.ParseAsToml();
 		}
 		
