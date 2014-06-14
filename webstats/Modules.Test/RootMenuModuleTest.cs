@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Nancy;
 using Nancy.Testing;
 using NUnit.Framework;
+using Shouldly;
 
 namespace Modules.Test
 {
@@ -23,17 +24,14 @@ namespace Modules.Test
 		[Test]
 		public void Should_return_status_ok_when_route_exists()
 		{
-		    // Given
-		    var bootstrapper = new DefaultNancyBootstrapper();
+		    var bootstrapper = new Bootstrapper();
 		    var browser = new Browser(bootstrapper);
 			
-		    // When
 		    var result = browser.Get("/", with => {
 		        with.HttpRequest();
 		    });
 		
-		    // Then
-		    Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+		    result.StatusCode.ShouldBe(HttpStatusCode.OK);
 		}
 		
 	}	

@@ -7,18 +7,43 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Text;
 using Nancy;
+using SubmittedData;
 
-namespace webstats
+namespace Modules
 {
 	/// <summary>
 	/// Description of WebService.
 	/// </summary>
-	public class WebService : NancyModule
+	public class RootMenuModule : NancyModule
 	{
-		public WebService()
+		private ITournament _tournament;
+		public RootMenuModule(ITournament tournament)
 		{
-			Get["/"] = _ => "Welcome screen and menu selection.";
+			_tournament = tournament;
+			tournament.Read(@"..\..\..\..\data\vm2014.toml");
+
+			Get["/"] = _ => PrintGroups();
+		}
+
+		private string PrintGroups()
+		{
+			StringBuilder s = new StringBuilder();
+			s.AppendFormat("Welcome to {0} betting scores\n", _tournament.GetName());
+			
+			char gn = 'A';
+			foreach (object[] group in _tournament.GetGroups())
+			{
+				s.AppendLine("Group " + gn);
+				foreach (var team in group) 
+				{
+					s.AppendLine(team.ToString());
+				}
+				gn++;
+			}
+			
+			return s.ToString();
 		}
 	}
 }
