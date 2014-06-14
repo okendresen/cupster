@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISubmittedBets.cs" />
+    <Compile Include="ITournament.cs" />
     <Compile Include="SubmittedBets.cs" />
     <Compile Include="Tournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,7 +16,7 @@ namespace SubmittedData
 	/// <summary>
 	/// Description of SubmittedBets.
 	/// </summary>
-	public class SubmittedBets
+	public class SubmittedBets : ISubmittedBets
 	{
 		public string Tournament { get; set; }
 
@@ -64,7 +64,7 @@ namespace SubmittedData
 		public List<string> GetBetters()
 		{
 			List<string> betters = new List<string>();
-			foreach (var bet in _submitted) 
+			foreach (var bet in _submitted)
 			{
 				betters.Add(bet.info.user);
 			}
