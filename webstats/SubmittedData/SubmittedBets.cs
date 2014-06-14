@@ -18,6 +18,8 @@ namespace SubmittedData
 	/// </summary>
 	public class SubmittedBets
 	{
+		public string Tournament { get; set; }
+
 		readonly IFileSystem _fileSystem;
 		List<string> _fileNames;
 		List<dynamic> _submitted = new List<dynamic>();
@@ -40,8 +42,11 @@ namespace SubmittedData
 				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder));
 				foreach(var file in _fileNames)
 				{
-					string text = _fileSystem.File.ReadAllText(file);
-					_submitted.Add(text.ParseAsToml());
+					if (Tournament == null || (!file.Contains(Tournament)))
+					{
+						var text = _fileSystem.File.ReadAllText(file);
+						_submitted.Add(text.ParseAsToml());
+					}
 				}
 				return true;
 			}
@@ -53,7 +58,7 @@ namespace SubmittedData
 
 		public int Count
 		{
-			get { return _fileNames.Count; }
+			get { return _submitted.Count; }
 		}
 
 		public List<string> GetBetters()
