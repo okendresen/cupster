@@ -8,7 +8,7 @@ Just started development. Proof-of-concept for WC 2014.
 ###TODO
 - [x] Betting program to collect and store bets
 - [x] Create project and initial Nancy setup for webserver
-- [ ] Parse submitted data files. Select TOML parser
+- [x] Parse submitted data files. Select TOML parser
 - [ ] Printable score card for each submitted bet
 - [ ] Fetch results 
     - [ ] Simple daily input, or
