@@ -9,6 +9,7 @@
 using System;
 using System.IO.Abstractions;
 using System.Collections.Generic;
+using Toml;
 
 namespace SubmittedData
 {
@@ -19,7 +20,8 @@ namespace SubmittedData
 	{
 		string _file;
 		readonly IFileSystem _fileSystem;
-
+		dynamic _config;
+		
 		public Tournament(IFileSystem fileSystem)
 		{
 			_fileSystem = fileSystem;
@@ -31,12 +33,22 @@ namespace SubmittedData
 		{
 		}
 			
-		public string Read(string file)
+		public void Read(string file)
 		{
 			string text = _fileSystem.File.ReadAllText(file);
 			_file = file;
-			return text;
+			
+			_config = text.ParseAsToml();
 		}
 		
+		public string GetName()
+		{
+			return _config.name;
+		}
+
+		public object[] GetGroups()
+		{
+			return _config.groups;
+		}
 	}
 }
