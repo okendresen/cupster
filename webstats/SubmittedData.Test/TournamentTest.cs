@@ -32,7 +32,7 @@ namespace SubmittedData.Test
 		}
 
 		[Test]
-		public void TestRead_ShouldReadFileIfExists()
+		public void TestRead_ShouldReadFile_IfExists()
 		{
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(@"data\vm2014.toml", wc2014);
@@ -40,7 +40,7 @@ namespace SubmittedData.Test
 		}
 		
 		[Test]
-		public void TestRead_ShouldFailIfFileDoesNotExists()
+		public void TestRead_ShouldFail_IfFileDoesNotExists()
 		{
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(@"data\vm2014.toml", wc2014);
@@ -48,7 +48,7 @@ namespace SubmittedData.Test
 		}
 		
 		[Test]
-		public void TestGetName_ShouldReturn_TournamentName()
+		public void TestGetName_ShouldReturnTournamentName()
 		{
 			string file = @"data\vm2014.toml";
 
