@@ -18,15 +18,25 @@ namespace Modules
 	/// </summary>
 	public class RootMenuModule : NancyModule
 	{
-		private ITournament _tournament;
 		public RootMenuModule(ITournament tournament)
 		{
-			_tournament = tournament;
-
-			var groups = new Groups() { Tournament = _tournament.GetName() };
 			Get["/"] = _ => {
-				return View["groups.sshtml", groups];
+				return View["groups.sshtml", new GroupsViewModel(tournament)];
 			};
+		}
+	}
+	
+	public class GroupsViewModel
+	{
+		public string Tournament 
+		{
+			get { return _tournament.GetName(); }
+		}
+
+		ITournament _tournament;
+		public GroupsViewModel(ITournament t)
+		{
+			_tournament = t;
 		}
 
 		private string PrintGroups()
@@ -47,10 +57,5 @@ namespace Modules
 			
 			return s.ToString();
 		}
-	}
-	
-	class Groups
-	{
-		public string Tournament { get; set; }
 	}
 }
