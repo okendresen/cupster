@@ -22,17 +22,16 @@ namespace Modules.Test
 	public class RootMenuModelsTest
 	{
 		[Test]
-		public void Should_return_status_ok_when_route_exists()
+		public void Test_ShouldReturnStatusOk_WhenRouteExists()
 		{
-		    var bootstrapper = new Bootstrapper();
-		    var browser = new Browser(bootstrapper);
+			var bootstrapper = new Bootstrapper();
+			var browser = new Browser(bootstrapper);
 			
-		    var result = browser.Get("/", with => {
-		        with.HttpRequest();
-		    });
+			var result = browser.Get("/", with => {
+				with.HttpRequest();
+			});
 		
-		    result.StatusCode.ShouldBe(HttpStatusCode.OK);
+			result.StatusCode.ShouldBe(HttpStatusCode.OK);
 		}
-		
-	}	
+	}
 }

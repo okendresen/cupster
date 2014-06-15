@@ -26,36 +26,5 @@ namespace Modules
 		}
 	}
 	
-	public class GroupsViewModel
-	{
-		public string Tournament 
-		{
-			get { return _tournament.GetName(); }
-		}
-
-		ITournament _tournament;
-		public GroupsViewModel(ITournament t)
-		{
-			_tournament = t;
-		}
-
-		private string PrintGroups()
-		{
-			StringBuilder s = new StringBuilder();
-			s.AppendFormat("Welcome to {0} betting scores\n", _tournament.GetName());
-			
-			char gn = 'A';
-			foreach (object[] group in _tournament.GetGroups())
-			{
-				s.AppendLine("Group " + gn);
-				foreach (var team in group) 
-				{
-					s.AppendLine(team.ToString());
-				}
-				gn++;
-			}
-			
-			return s.ToString();
-		}
-	}
+	
 }
