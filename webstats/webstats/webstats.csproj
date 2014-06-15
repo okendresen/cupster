@@ -67,10 +67,6 @@
       <Project>{FC4B0919-3C7B-4B58-A4F3-673D82FFE615}</Project>
       <Name>Modules</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SubmittedData\SubmittedData.csproj">
-      <Project>{58958547-F01E-4A06-A219-683323269196}</Project>
-      <Name>SubmittedData</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

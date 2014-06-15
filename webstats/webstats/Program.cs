@@ -8,7 +8,6 @@
  */
 using System;
 using Nancy.Hosting.Self;
-using SubmittedData;
 
 namespace webstats
 {
