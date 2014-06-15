@@ -23,7 +23,10 @@ namespace Modules
 		{
 			_tournament = tournament;
 
-			Get["/"] = _ => PrintGroups();
+			var groups = new Groups() { Tournament = _tournament.GetName() };
+			Get["/"] = _ => {
+				return View["groups.sshtml", groups];
+			};
 		}
 
 		private string PrintGroups()
@@ -44,5 +47,10 @@ namespace Modules
 			
 			return s.ToString();
 		}
+	}
+	
+	class Groups
+	{
+		public string Tournament { get; set; }
 	}
 }

@@ -1,0 +1,6 @@
+@Master['MasterPage']
+
+@Section['Content']
+    <h3>Groups</h3>
+    <p>This is content from the group page<p>
+@EndSection
