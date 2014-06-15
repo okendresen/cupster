@@ -16,7 +16,7 @@ namespace SubmittedData
 	/// <summary>
 	/// Description of MyClass.
 	/// </summary>
-	public class Tournament
+	public class Tournament : ITournament
 	{
 		readonly IFileSystem _fileSystem;
 		dynamic _config;

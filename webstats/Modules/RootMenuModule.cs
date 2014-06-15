@@ -7,18 +7,24 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Text;
 using Nancy;
+using SubmittedData;
 
-namespace webstats
+namespace Modules
 {
 	/// <summary>
 	/// Description of WebService.
 	/// </summary>
-	public class WebService : NancyModule
+	public class RootMenuModule : NancyModule
 	{
-		public WebService()
+		public RootMenuModule(ITournament tournament)
 		{
-			Get["/"] = _ => "Welcome screen and menu selection.";
+			Get["/"] = _ => {
+				return View["groups.sshtml", new GroupsViewModel(tournament)];
+			};
 		}
 	}
+	
+	
 }

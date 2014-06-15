@@ -104,7 +104,7 @@ namespace SubmittedData.Test
 			                                    	{ @"data\vm2014-person5.toml", new MockFileData("foo=\"foo\"") }
 			                                    });
 			var bets = new SubmittedBets(fileSystem);
-			bets.Tournament = @"data\vm2014.toml";
+			bets.TournamentFile = @"data\vm2014.toml";
 			bets.LoadAll("data");
 			bets.Count.ShouldBe(4);
 		}
