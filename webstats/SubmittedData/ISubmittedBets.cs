@@ -17,7 +17,7 @@ namespace SubmittedData
 	public interface ISubmittedBets
 	{
 		int Count { get; }
-		string Tournament { get; set; }
+		string TournamentFile { get; set; }
 		bool LoadAll(string folder);
 		List<string> GetBetters();
 	}

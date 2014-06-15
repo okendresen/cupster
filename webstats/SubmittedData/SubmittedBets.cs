@@ -18,7 +18,7 @@ namespace SubmittedData
 	/// </summary>
 	public class SubmittedBets : ISubmittedBets
 	{
-		public string Tournament { get; set; }
+		public string TournamentFile { get; set; }
 
 		readonly IFileSystem _fileSystem;
 		List<string> _fileNames;
@@ -42,7 +42,7 @@ namespace SubmittedData
 				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder));
 				foreach(var file in _fileNames)
 				{
-					if (Tournament == null || (!file.Contains(Tournament)))
+					if (TournamentFile == null || (!file.Contains(TournamentFile)))
 					{
 						var text = _fileSystem.File.ReadAllText(file);
 						_submitted.Add(text.ParseAsToml());
