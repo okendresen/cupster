@@ -22,7 +22,6 @@ namespace Modules
 		public RootMenuModule(ITournament tournament)
 		{
 			_tournament = tournament;
-			tournament.Read(@"..\..\..\..\data\vm2014.toml");
 
 			Get["/"] = _ => PrintGroups();
 		}

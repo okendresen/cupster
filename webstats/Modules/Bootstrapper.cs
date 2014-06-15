@@ -20,8 +20,15 @@ namespace Modules
 	{
 		protected override void ConfigureApplicationContainer(TinyIoCContainer container)
 		{
-			// Register our app dependency as a normal singleton
-			container.Register<ITournament, Tournament>().AsSingleton();
+			// Register our app dependency as a normal singletons
+			var tournament = new Tournament();
+			tournament.Read(@"..\..\..\..\data\vm2014.toml");
+			container.Register<ITournament, Tournament>(tournament);
+			
+			var bets = new SubmittedBets();
+			bets.TournamentFile = "vm2014.toml";
+			bets.LoadAll(@"..\..\..\..\data");
+			container.Register<ISubmittedBets, SubmittedBets>(bets);
 		}
 	}
 }
