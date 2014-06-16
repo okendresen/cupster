@@ -53,6 +53,9 @@
     <Compile Include="RootMenuModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Views\groups.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -69,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models" />
+    <Folder Include="Content" />
     <Folder Include="Views" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
