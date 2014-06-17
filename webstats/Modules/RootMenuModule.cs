@@ -18,10 +18,10 @@ namespace Modules
 	/// </summary>
 	public class RootMenuModule : NancyModule
 	{
-		public RootMenuModule(ITournament tournament)
+		public RootMenuModule(ITournament tournament, ISubmittedBets bets)
 		{
 			Get["/"] = _ => {
-				return View["groups.sshtml", new GroupsViewModel(tournament)];
+				return View["frontpage.sshtml", new RootMenuViewModel(tournament, bets)];
 			};
 		}
 	}

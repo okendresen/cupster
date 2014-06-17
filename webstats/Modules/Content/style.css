@@ -5,3 +5,12 @@
     padding-right: 1em;
     border: 1px solid;
 }
+
+.betters table,th,tr,td {
+    border: 1px solid;
+    border-collapse:collapse;
+}
+.betters td, th {
+    padding-left: .2em;    
+    padding-right: .5em;
+}

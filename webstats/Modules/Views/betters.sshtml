@@ -1,0 +1,14 @@
+<div class="betters">
+<table>
+<tr>
+    <th>Name</th>
+    <th>Score</th>
+</tr>
+@Each
+<tr>
+    <td>@Current</td>
+    <td></td>
+</tr>
+@EndEach
+</table>
+</div>

@@ -13,7 +13,7 @@ using Nancy;
 using SubmittedData;
 namespace Modules
 {
-	public class GroupsViewModel
+	public class RootMenuViewModel
 	{
 		ITournament _tournament;
 		
@@ -28,11 +28,19 @@ namespace Modules
 			get { return _groups; }
 			private set { _groups = value; }
 		}
+
+        List<string> _betters = new List<string>();
+        public List<string> Betters 
+        {
+            get { return _betters; }
+            private set { _betters = value; }
+        }
 		
-		public GroupsViewModel(ITournament t)
+		public RootMenuViewModel(ITournament t, ISubmittedBets sb)
 		{
 			_tournament = t;
 			CreateGroups();
+            _betters = sb.GetBetters();
 		}
 
 		private void CreateGroups()

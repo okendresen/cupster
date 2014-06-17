@@ -16,19 +16,21 @@ using SubmittedData;
 namespace Modules.Test
 {
 	/// <summary>
-	/// Description of GroupsViewModelTests.
+    /// Description of RootMenuViewModelTests.
 	/// </summary>
 	[TestFixture]
-	public class GroupsViewModelTests
+	public class RootMenuViewModelTests
 	{
 		[Test]
 		public void TestTournament_ShouldReturnTournamentName()
 		{
-			var mock = new Mock<ITournament>();
-			mock.Setup(t=> t.GetName())
+			var tmock = new Mock<ITournament>();
+			tmock.Setup(t=> t.GetName())
 				.Returns("VM 2014 Brasil");
 			
-			var groups = new GroupsViewModel(mock.Object);
+            var bmock = new Mock<ISubmittedBets>();
+
+			var groups = new RootMenuViewModel(tmock.Object, bmock.Object);
 			groups.Tournament.ShouldBe("VM 2014 Brasil");
 		}
 	}
