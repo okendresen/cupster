@@ -9,4 +9,4 @@ bronse-final = "Brasil"
 results = [ [ "h", "u", "u", "b", "b", "u",], [ "u", "h", "h", "b", "b", "h",], [ "u", "h", "b", "h", "u", "b",], [ "h", "u", "b", "h", "u", "b",], [ "u", "h", "u", "h", "b", "b",], [ "h", "b", "h", "h", "b", "u",], [ "h", "u", "h", "b", "u", "h",], [ "u", "h", "u", "b", "b", "b",],]
 winners = [ [ "Brasil", "Mexico",], [ "Spania", "Nederland",], [ "Elfenbenskysten", "Japan",], [ "England", "Italia",], [ "Frankrike", "Sveits",], [ "Argentina", "Nigeria",], [ "Tyskland", "Portugal",], [ "Russland", "Belgia",],]
 [info]
-user = "LNordeide"
+user = "BAnfinsen"
