@@ -1,0 +1,6 @@
+@Master['MasterPage']
+
+@Section['Content']
+<h3>Groups</h3>
+@Partial['groups.sshtml', Model.Groups]
+@EndSection
