@@ -1,12 +1,6 @@
-@Master['MasterPage']
-
-@Section['Content']
-<h3>Groups</h3>
-<p>Tournament groups<p>
-@Each.Groups
+@Each
     <div class="groups">
         <h4>@Current.Name</h4>
         @Current.TeamsAsHtml
     </div>
 @EndEach
-@EndSection

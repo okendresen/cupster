@@ -1,0 +1,12 @@
+@Master['MasterPage']
+
+@Section['Content']
+<div class="warning">
+<p>The look of this site sucks... and it is intentional. As long as this is under development is will look like 
+<img src="Content/poop.png"> </p>
+</div>
+<h3>Groups</h3>
+@Partial['groups.sshtml', Model.Groups]
+<h3>Betters</h3>
+@Partial['betters.sshtml', Model.Betters]
+@EndSection
