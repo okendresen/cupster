@@ -14,7 +14,7 @@ namespace Modules
         {
             Get["/{better}"] = _ =>
             {
-                return "Hello " + _.better;
+                return View["betterpage.sshtml", new BetterViewModel(tournament, bets)];
             };
         }
     }
