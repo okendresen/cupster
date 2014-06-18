@@ -14,3 +14,14 @@
     padding-left: .2em;    
     padding-right: .5em;
 }
+
+.warning {
+    display: inline-block;
+    font-family: "Comic Sans MS";
+    font-size: 16;
+    background-color: #FFFC7C;
+    border: 1px solid;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: middle;
+}
