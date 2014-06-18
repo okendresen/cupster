@@ -20,7 +20,8 @@ namespace Modules
 	{
 		public RootMenuModule(ITournament tournament, ISubmittedBets bets)
 		{
-			Get["/"] = _ => {
+			Get["/"] = _ => 
+            {
 				return View["frontpage.sshtml", new RootMenuViewModel(tournament, bets)];
 			};
 		}

@@ -6,7 +6,7 @@
 </tr>
 @Each
 <tr>
-    <td>@Current</td>
+    <td><a href="@Current">@Current</a></td>
     <td></td>
 </tr>
 @EndEach

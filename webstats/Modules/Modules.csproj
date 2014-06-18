@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterModule.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\RootMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
