@@ -5,8 +5,6 @@
     <title>@Model.Tournament - cupster</title>
 </head>
 <body>
-<h1>@Model.Tournament</h1>
-<p>Welcome to @Model.Tournament betting scores</p>
 @Section['Content']
 </body>
 </html>

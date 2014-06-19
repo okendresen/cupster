@@ -1,8 +1,5 @@
 @Master['MasterPage']
 
 @Section['Content']
-<h3>Groups</h3>
-@Partial['groups.sshtml', Model.Groups]
-<h3>Betters</h3>
-@Partial['betters.sshtml', Model.Betters]
+<h1>Submitted bet from @Model.Better</h1>
 @EndSection

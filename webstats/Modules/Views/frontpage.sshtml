@@ -1,6 +1,8 @@
 @Master['MasterPage']
 
 @Section['Content']
+<h1>@Model.Tournament</h1>
+<p>Welcome to @Model.Tournament betting scores</p>
 <div class="warning">
 <p>The look of this site sucks... and it is intentional. As long as this is under development is will look like 
 <img src="Content/poop.png"> </p>
