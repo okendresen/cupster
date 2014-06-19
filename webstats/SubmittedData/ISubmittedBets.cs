@@ -20,5 +20,6 @@ namespace SubmittedData
 		string TournamentFile { get; set; }
 		bool LoadAll(string folder);
 		List<string> GetBetters();
+		dynamic GetSingleBet(string user);
 	}
 }

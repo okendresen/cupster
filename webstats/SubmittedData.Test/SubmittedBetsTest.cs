@@ -47,7 +47,7 @@ namespace SubmittedData.Test
 		{
 			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
 			                                    {
-			                                    	{ @"data\vm2014-person1.toml", new MockFileData("foo=\"foo\"") },
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo\"") },
 			                                    });
 			var bets = new SubmittedBets(fileSystem);
 			bool success = bets.LoadAll("data");
@@ -71,11 +71,11 @@ namespace SubmittedData.Test
 		{
 			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
 			                                    {
-			                                    	{ @"data\vm2014-person1.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person2.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person3.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person4.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person5.toml", new MockFileData("foo=\"foo\"") }
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo1\"") },
+			                                    	{ @"data\vm2014-person2.toml", new MockFileData("[info]\nuser=\"foo2\"") },
+			                                    	{ @"data\vm2014-person3.toml", new MockFileData("[info]\nuser=\"foo3\"") },
+			                                    	{ @"data\vm2014-person4.toml", new MockFileData("[info]\nuser=\"foo4\"") },
+			                                    	{ @"data\vm2014-person5.toml", new MockFileData("[info]\nuser=\"foo5\"") }
 			                                    });
 			var bets = new SubmittedBets(fileSystem);
 			bets.LoadAll("data");
@@ -83,9 +83,9 @@ namespace SubmittedData.Test
 
 			fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
 			                                    {
-			                                    	{ @"data\vm2014-person1.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person4.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person5.toml", new MockFileData("foo=\"foo\"") }
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo1\"") },
+			                                    	{ @"data\vm2014-person4.toml", new MockFileData("[info]\nuser=\"foo4\"") },
+			                                    	{ @"data\vm2014-person5.toml", new MockFileData("[info]\nuser=\"foo5\"") }
 			                                    });
 			bets = new SubmittedBets(fileSystem);
 			bets.LoadAll("data");
@@ -97,11 +97,11 @@ namespace SubmittedData.Test
 		{
 			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
 			                                    {
-			                                    	{ @"data\vm2014-person1.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person2.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person3.toml", new MockFileData("foo=\"foo\"") },
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo1\"") },
+			                                    	{ @"data\vm2014-person2.toml", new MockFileData("[info]\nuser=\"foo2\"") },
+			                                    	{ @"data\vm2014-person3.toml", new MockFileData("[info]\nuser=\"foo3\"") },
 			                                    	{ @"data\vm2014.toml", new MockFileData("foo=\"foo\"") },
-			                                    	{ @"data\vm2014-person5.toml", new MockFileData("foo=\"foo\"") }
+			                                    	{ @"data\vm2014-person5.toml", new MockFileData("[info]\nuser=\"foo5\"") }
 			                                    });
 			var bets = new SubmittedBets(fileSystem);
 			bets.TournamentFile = @"data\vm2014.toml";
@@ -152,6 +152,23 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hella
 			var betters = bets.GetBetters();
 			betters.Count.ShouldBe(1);
 			betters.ShouldContain("AGiailoglou");
+		}
+		
+		[Test]
+		public void TestGetSingleBet_ShouldReturnBet_WhenGivenUserExists()
+		{
+			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
+			                                    {
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo1\"") },
+			                                    	{ @"data\vm2014-person2.toml", new MockFileData("[info]\nuser=\"foo2\"") },
+			                                    	{ @"data\vm2014-person3.toml", new MockFileData("[info]\nuser=\"foo3\"") },
+			                                    	{ @"data\vm2014-person4.toml", new MockFileData("[info]\nuser=\"foo4\"") },
+			                                    	{ @"data\vm2014-person5.toml", new MockFileData("[info]\nuser=\"foo5\"") }
+			                                    });
+			var bets = new SubmittedBets(fileSystem);
+			bets.LoadAll("data");
+			var bet = bets.GetSingleBet("foo2");
+			Assert.That(bet.info.user, Is.EqualTo("foo2"));
 		}
 	}
 }

@@ -72,5 +72,10 @@ namespace SubmittedData
 			
 			return betters;
 		}
+
+		public dynamic GetSingleBet(string user)
+		{
+			return _submitted[user];
+		}
 	}
 }
