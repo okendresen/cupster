@@ -14,7 +14,7 @@ namespace Modules
         {
             Get["/{better}"] = _ =>
             {
-                return View["betterpage.sshtml", new BetterViewModel(tournament, bets)];
+            	return View["betterpage.sshtml", new BetterViewModel(tournament, bets.GetSingleBet(_.better))];
             };
         }
     }

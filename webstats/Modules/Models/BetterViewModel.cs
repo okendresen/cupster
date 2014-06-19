@@ -8,9 +8,16 @@ namespace Modules
 {
     public class BetterViewModel
     {
-        public BetterViewModel(ITournament t, ISubmittedBets sb)
-        {
+		dynamic _bet;
 
+        public BetterViewModel(ITournament t, dynamic bet)
+        {
+        	_bet = bet;
         }
+
+		public object Better
+		{
+			get { return _bet.info.user; }
+		}
     }
 }
