@@ -29,5 +29,15 @@ namespace Modules.Test
 			var better = new BetterViewModel(tmock.Object, bet);
 			better.Better.ShouldBe("foo1");
 		}
+		
+		[Test]
+		public void TestPageTitle_ShouldReturBettersName()
+		{
+			var tmock = new Mock<ITournament>();
+			dynamic bet = "[info]\nuser=\"foo1\"".ParseAsToml();
+			var better = new BetterViewModel(tmock.Object, bet);
+			better.PageTitle.ShouldBe("foo1");
+		}
+
 	}
 }

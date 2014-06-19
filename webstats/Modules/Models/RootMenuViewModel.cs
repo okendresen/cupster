@@ -17,11 +17,15 @@ namespace Modules
 	{
 		ITournament _tournament;
 		
-		public string Tournament
+		public string PageTitle
 		{
 			get { return _tournament.GetName(); }
 		}
 
+		public object Tournament
+		{
+			get { return _tournament.GetName(); }
+		}
 		List<Group> _groups = new List<Group>();
 		public List<Group> Groups
 		{

@@ -22,6 +22,19 @@ namespace Modules.Test
 	public class RootMenuViewModelTests
 	{
 		[Test]
+		public void TestPageTitle_ShouldReturnTournamentName()
+		{
+			var tmock = new Mock<ITournament>();
+			tmock.Setup(t=> t.GetName())
+				.Returns("VM 2014 Brasil");
+			
+            var bmock = new Mock<ISubmittedBets>();
+
+			var groups = new RootMenuViewModel(tmock.Object, bmock.Object);
+			groups.PageTitle.ShouldBe("VM 2014 Brasil");
+		}
+
+		[Test]
 		public void TestTournament_ShouldReturnTournamentName()
 		{
 			var tmock = new Mock<ITournament>();

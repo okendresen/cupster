@@ -19,5 +19,10 @@ namespace Modules
 		{
 			get { return _bet.info.user; }
 		}
+
+		public object PageTitle
+		{
+			get { return _bet.info.user; }
+		}
     }
 }
