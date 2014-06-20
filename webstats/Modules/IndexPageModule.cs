@@ -16,13 +16,13 @@ namespace Modules
 	/// <summary>
 	/// Description of WebService.
 	/// </summary>
-	public class RootMenuModule : NancyModule
+	public class IndexPageModule : NancyModule
 	{
-		public RootMenuModule(ITournament tournament, ISubmittedBets bets)
+		public IndexPageModule(ITournament tournament, ISubmittedBets bets)
 		{
 			Get["/"] = _ => 
             {
-				return View["frontpage.sshtml", new RootMenuViewModel(tournament, bets)];
+				return View["frontpage.sshtml", new IndexPageViewModel(tournament, bets)];
 			};
 		}
 	}

@@ -47,17 +47,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BetterModule.cs" />
+    <Compile Include="BetterPageModule.cs" />
+    <Compile Include="Models\BetterPageViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Models\RootMenuViewModel.cs" />
+    <Compile Include="Models\IndexPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RootMenuModule.cs" />
+    <Compile Include="IndexPageModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Views\betterpage.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\betters.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -16,11 +16,24 @@ using SubmittedData;
 namespace Modules.Test
 {
 	/// <summary>
-    /// Description of RootMenuViewModelTests.
+    /// Description of IndexPageViewModelTests.
 	/// </summary>
 	[TestFixture]
-	public class RootMenuViewModelTests
+	public class IndexPageViewModelTests
 	{
+		[Test]
+		public void TestPageTitle_ShouldReturnTournamentName()
+		{
+			var tmock = new Mock<ITournament>();
+			tmock.Setup(t=> t.GetName())
+				.Returns("VM 2014 Brasil");
+			
+            var bmock = new Mock<ISubmittedBets>();
+
+			var groups = new IndexPageViewModel(tmock.Object, bmock.Object);
+			groups.PageTitle.ShouldBe("VM 2014 Brasil");
+		}
+
 		[Test]
 		public void TestTournament_ShouldReturnTournamentName()
 		{
@@ -30,7 +43,7 @@ namespace Modules.Test
 			
             var bmock = new Mock<ISubmittedBets>();
 
-			var groups = new RootMenuViewModel(tmock.Object, bmock.Object);
+			var groups = new IndexPageViewModel(tmock.Object, bmock.Object);
 			groups.Tournament.ShouldBe("VM 2014 Brasil");
 		}
 	}

@@ -23,5 +23,20 @@
     border: 1px solid;
     padding-left: 1em;
     padding-right: 1em;
-    vertical-align: middle;
+}
+
+.matches {
+    display: inline-block;
+    margin: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.matches table,th,tr,td {
+    border: 1px solid;
+    border-collapse:collapse;
+}
+.matches td, th {
+    padding-left: .2em;    
+    padding-right: .5em;
 }

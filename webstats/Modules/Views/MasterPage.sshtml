@@ -2,11 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" type="text/css" href="Content/style.css">
 <head>
-    <title>@Model.Tournament - cupster</title>
+    <title>@Model.PageTitle - cupster</title>
 </head>
 <body>
-<h1>@Model.Tournament</h1>
-<p>Welcome to @Model.Tournament betting scores</p>
 @Section['Content']
 </body>
 </html>

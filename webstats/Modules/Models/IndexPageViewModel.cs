@@ -13,15 +13,19 @@ using Nancy;
 using SubmittedData;
 namespace Modules
 {
-	public class RootMenuViewModel
+	public class IndexPageViewModel
 	{
 		ITournament _tournament;
 		
-		public string Tournament
+		public string PageTitle
 		{
 			get { return _tournament.GetName(); }
 		}
 
+		public object Tournament
+		{
+			get { return _tournament.GetName(); }
+		}
 		List<Group> _groups = new List<Group>();
 		public List<Group> Groups
 		{
@@ -36,7 +40,7 @@ namespace Modules
             private set { _betters = value; }
         }
 		
-		public RootMenuViewModel(ITournament t, ISubmittedBets sb)
+		public IndexPageViewModel(ITournament t, ISubmittedBets sb)
 		{
 			_tournament = t;
 			CreateGroups();

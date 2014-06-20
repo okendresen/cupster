@@ -52,6 +52,9 @@
     <Reference Include="Shouldly">
       <HintPath>..\packages\Shouldly.2.1.1\lib\net40\Shouldly.dll</HintPath>
     </Reference>
+    <Reference Include="Sprache">
+      <HintPath>..\packages\Sprache.1.10.0.35\lib\net40\Sprache.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -60,11 +63,15 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="toml-net">
+      <HintPath>..\packages\toml-net.0.1.1.35632\lib\net40\toml-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterPageViewModelTest.cs" />
     <Compile Include="RootMenuModuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RootMenuViewModelTests.cs" />
+    <Compile Include="IndexPageViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

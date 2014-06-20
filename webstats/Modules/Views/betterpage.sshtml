@@ -1,0 +1,13 @@
+@Master['MasterPage']
+
+@Section['Content']
+<h1>Submitted bet from @Model.Better</h1>
+
+<h2>Stage one matches</h2>
+@Each.Groups
+<div class="matches">
+    <h4>@Current.Name</h4>
+    @Current.MatchesAsHtml
+</div>
+@EndEach
+@EndSection

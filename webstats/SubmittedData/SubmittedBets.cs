@@ -22,7 +22,7 @@ namespace SubmittedData
 
 		readonly IFileSystem _fileSystem;
 		List<string> _fileNames;
-		List<dynamic> _submitted = new List<dynamic>();
+        Dictionary<string, dynamic> _submitted = new Dictionary<string, dynamic>();
 
 		public SubmittedBets(IFileSystem fileSystem)
 		{
@@ -45,7 +45,8 @@ namespace SubmittedData
 					if (TournamentFile == null || (!file.Contains(TournamentFile)))
 					{
 						var text = _fileSystem.File.ReadAllText(file);
-						_submitted.Add(text.ParseAsToml());
+                        var bet = text.ParseAsToml();
+                        _submitted[bet.info.user] = bet;
 					}
 				}
 				return true;
@@ -64,12 +65,17 @@ namespace SubmittedData
 		public List<string> GetBetters()
 		{
 			List<string> betters = new List<string>();
-			foreach (var bet in _submitted)
+			foreach (var better in _submitted.Keys)
 			{
-				betters.Add(bet.info.user);
+				betters.Add(better);
 			}
 			
 			return betters;
+		}
+
+		public dynamic GetSingleBet(string user)
+		{
+			return _submitted[user];
 		}
 	}
 }
