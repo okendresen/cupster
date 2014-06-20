@@ -71,5 +71,22 @@ namespace Modules.Test
 			var match2 = new Tuple<string, string, string>("toto", "fofo", "u");
 			gm.GetResults(match2).ShouldBe("Draw");
 		}
+
+		[Test]
+		public void TestGroupMatches_GetResult_ShouldBeCaseInsensitve()
+		{
+			var gm = new BetterPageViewModel.GroupMatches();
+			var match = new Tuple<string, string, string>("team1", "team2", "h");
+			var match2 = new Tuple<string, string, string>("team1", "team2", "H");
+			gm.GetResults(match).ShouldBe(gm.GetResults(match2));
+
+			match = new Tuple<string, string, string>("team1", "team2", "b");
+			match2 = new Tuple<string, string, string>("team1", "team2", "B");
+			gm.GetResults(match).ShouldBe(gm.GetResults(match2));
+
+			match = new Tuple<string, string, string>("team1", "team2", "u");
+			match2 = new Tuple<string, string, string>("team1", "team2", "U");
+			gm.GetResults(match).ShouldBe(gm.GetResults(match2));
+		}
 	}
 }

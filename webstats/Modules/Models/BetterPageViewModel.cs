@@ -94,9 +94,9 @@ namespace Modules
 
 			public string GetResults(Tuple<string, string, string> match)
 			{
-				if (match.Item3.Equals("h"))
+				if (match.Item3.ToLower().Equals("h"))
 					return match.Item1;
-				else if (match.Item3.Equals("b"))
+				else if (match.Item3.ToLower().Equals("b"))
 					return match.Item2;
 				else
 					return "Draw";
