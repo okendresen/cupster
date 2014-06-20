@@ -22,7 +22,7 @@ namespace Modules
 		{
 			// Register our app dependency as a normal singletons
 			var tournament = new Tournament();
-			tournament.Read(@"..\..\..\..\data\vm2014.toml");
+			tournament.Load(@"..\..\..\..\data\vm2014.toml");
 			container.Register<ITournament, Tournament>(tournament);
 			
 			var bets = new SubmittedBets();
@@ -30,6 +30,10 @@ namespace Modules
 			bets.ActualResultsFile = "vm2014-actual.toml";
 			bets.LoadAll(@"..\..\..\..\data");
 			container.Register<ISubmittedBets, SubmittedBets>(bets);
+
+			var results = new ActualResults();
+			results.Load(@"..\..\..\..\data\vm2014-actual.toml");
+			container.Register<IResults, ActualResults>(results);
 		}
 	}
 }
