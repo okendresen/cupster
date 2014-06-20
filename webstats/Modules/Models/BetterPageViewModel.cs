@@ -66,7 +66,7 @@ namespace Modules
 					StringBuilder s = new StringBuilder();
 					s.Append("<table>");
 					s.AppendLine();
-					s.Append("<tr>\n<th>Match</th>\n<th>Selected</th>\n<th>Result</th>\n</tr>");
+					s.Append("<tr>\n<th>Match</th>\n<th>Selected</th>\n<th>Actual</th>\n</tr>");
 					s.AppendLine();
 					foreach (var match in _matches)
 					{
