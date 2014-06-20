@@ -10,11 +10,13 @@ namespace Modules
 {
     public class BetterPageModule : NancyModule
     {
-        public BetterPageModule(ITournament tournament, ISubmittedBets bets)
+        public BetterPageModule(ITournament tournament, ISubmittedBets bets, IResults actual)
         {
             Get["/{better}"] = _ =>
             {
-            	return View["betterpage.sshtml", new BetterPageViewModel(tournament, bets.GetSingleBet(_.better))];
+            	return View["betterpage.sshtml", new BetterPageViewModel(tournament, 
+            	                                                         bets.GetSingleBet(_.better),
+            	                                                         actual)];
             };
         }
     }

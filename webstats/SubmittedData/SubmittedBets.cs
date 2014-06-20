@@ -20,6 +20,8 @@ namespace SubmittedData
 	{
 		public string TournamentFile { get; set; }
 
+		public string ActualResultsFile { get; set;	}
+		
 		readonly IFileSystem _fileSystem;
 		List<string> _fileNames;
         Dictionary<string, dynamic> _submitted = new Dictionary<string, dynamic>();
@@ -42,7 +44,8 @@ namespace SubmittedData
 				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder));
 				foreach(var file in _fileNames)
 				{
-					if (TournamentFile == null || (!file.Contains(TournamentFile)))
+					if ((TournamentFile == null || (!file.Contains(TournamentFile))) &&
+					    (ActualResultsFile == null || (!file.Contains(ActualResultsFile))))
 					{
 						var text = _fileSystem.File.ReadAllText(file);
                         var bet = text.ParseAsToml();

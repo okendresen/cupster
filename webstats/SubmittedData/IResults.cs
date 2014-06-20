@@ -11,12 +11,12 @@ using System;
 namespace SubmittedData
 {
 	/// <summary>
-	/// Description of ITournament.
+	/// Description of IResults.
 	/// </summary>
-	public interface ITournament
+	public interface IResults
 	{
 		void Load(string file);
-		string GetName();
-		object[] GetGroups();		
+
+		dynamic GetStageOne();
 	}
 }

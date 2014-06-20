@@ -1,51 +1,48 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Lars Magnus
- * Date: 12.06.2014
- * Time: 23:46
+ * Date: 20.06.2014
+ * Time: 22:25
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.IO.Abstractions;
 using System.Collections.Generic;
+using System.IO.Abstractions;
 using Toml;
 
 namespace SubmittedData
 {
 	/// <summary>
-	/// Description of MyClass.
+	/// Description of ActualResults.
 	/// </summary>
-	public class Tournament : ITournament
+	public class ActualResults : IResults
 	{
 		readonly IFileSystem _fileSystem;
-		dynamic _config;
-		
-		public Tournament(IFileSystem fileSystem)
+		public ActualResults(IFileSystem fileSystem)
 		{
 			_fileSystem = fileSystem;
 		}
-		
-		public Tournament() : this(
+		public ActualResults() : this(
 			fileSystem: new FileSystem()
 		)
 		{
 		}
-			
+
+		dynamic _config;
+
+		#region IResults implementation
 		public void Load(string file)
 		{
 			string text = _fileSystem.File.ReadAllText(file);
 			_config = text.ParseAsToml();
 		}
-		
-		public string GetName()
-		{
-			return _config.name;
-		}
 
-		public object[] GetGroups()
+		public dynamic GetStageOne()
 		{
-			return _config.groups;
+			return ((IDictionary<String, Object>)_config)["stage-one"];
 		}
+		#endregion
+
 	}
 }

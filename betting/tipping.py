@@ -115,7 +115,7 @@ class Tournament(object):
     def get_user_input(self, prompt, default):
         while True:
             result = input(prompt)
-            if (not result and not default) or (result.lower() not in 'hub'):
+            if (not result and not default) or (result.lower() not in 'hub-'):
                 print('Please enter one of H U B')
             else:
                 break
@@ -316,13 +316,19 @@ def main():
                         action='store_true')
     parser.add_argument('-m', '--print_matches', help='print out stage one matches in tournament',
                         action='store_true')
+    parser.add_argument('-r', '--results', help='enter results from tournament',
+                        action='store_true')
     parser.add_argument('-s', '--skip_group_stage', help='Go directly to stage two finals',
                         action='store_true')
     args = parser.parse_args()
 
     # Create output name
     root, ext = os.path.splitext(args.tournament_file)
-    user = getpass.getuser()
+    if args.results:
+        print("===== ENTERING RESULTS =====")
+        user = "actual"
+    else:
+        user = getpass.getuser()
     outfile = '{0}-{1}.toml'.format(root, user)
 
     # Load results if they exists

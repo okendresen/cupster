@@ -32,19 +32,19 @@ namespace SubmittedData.Test
 		}
 
 		[Test]
-		public void TestRead_ShouldReadFile_IfExists()
+		public void TestLoad_ShouldReadFile_IfExists()
 		{
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(@"data\vm2014.toml", wc2014);
-			Should.NotThrow(() => t.Read(@"data\vm2014.toml"));
+			Should.NotThrow(() => t.Load(@"data\vm2014.toml"));
 		}
 		
 		[Test]
-		public void TestRead_ShouldFail_IfFileDoesNotExists()
+		public void TestLoad_ShouldFail_IfFileDoesNotExists()
 		{
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(@"data\vm2014.toml", wc2014);
-			Should.Throw<FileNotFoundException>(() => t.Read(@"configs\vm2014.toml"));
+			Should.Throw<FileNotFoundException>(() => t.Load(@"configs\vm2014.toml"));
 		}
 		
 		[Test]
@@ -54,13 +54,13 @@ namespace SubmittedData.Test
 
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(file, wc2014);
-			t.Read(file);
+			t.Load(file);
 			string name = t.GetName();
 			name.ShouldBe("VM 2014 Brasil");
 
 			string notwc2014 = @"name = ""Another cup that is not VM 2014 Brasil""";
 			t = CreateTournament(file, notwc2014);
-			t.Read(file);
+			t.Load(file);
 			name = t.GetName();
 			name.ShouldBe("Another cup that is not VM 2014 Brasil");
 		}
@@ -80,7 +80,7 @@ groups = [
 	[""Belgia"",		""Algerie"", 		""Russland"",			""Soer-Korea""],
 ]";
 			var t = CreateTournament(@"data\vm2014.toml", wc2014);
-			t.Read(@"data\vm2014.toml");
+			t.Load(@"data\vm2014.toml");
 			var groups = t.GetGroups();
 			groups.Length.ShouldBe(8);
 
@@ -90,7 +90,7 @@ groups = [
 	[""Spania"",		""Nederland"", 	""Chile"", 			""Australia""],
 ]";
 			t = CreateTournament(@"data\vm2014.toml", smallerwc2014);
-			t.Read(@"data\vm2014.toml");
+			t.Load(@"data\vm2014.toml");
 			groups = t.GetGroups();
 			groups.Length.ShouldBe(2);
 		}
