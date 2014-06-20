@@ -27,6 +27,7 @@ namespace Modules
 			
 			var bets = new SubmittedBets();
 			bets.TournamentFile = "vm2014.toml";
+			bets.ActualResultsFile = "vm2014-actual.toml";
 			bets.LoadAll(@"..\..\..\..\data");
 			container.Register<ISubmittedBets, SubmittedBets>(bets);
 		}

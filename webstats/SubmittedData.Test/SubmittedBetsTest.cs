@@ -110,6 +110,23 @@ namespace SubmittedData.Test
 		}
 		
 		[Test]
+		public void TestLoadAll_ShouldSkipActualResultsConfigFile()
+		{
+			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
+			                                    {
+			                                    	{ @"data\vm2014-person1.toml", new MockFileData("[info]\nuser=\"foo1\"") },
+			                                    	{ @"data\vm2014-person2.toml", new MockFileData("[info]\nuser=\"foo2\"") },
+			                                    	{ @"data\vm2014-person3.toml", new MockFileData("[info]\nuser=\"foo3\"") },
+			                                    	{ @"data\vm2014-actual.toml", new MockFileData("[info]\nuser=\"actual\"") },
+			                                    	{ @"data\vm2014-person5.toml", new MockFileData("[info]\nuser=\"foo5\"") }
+			                                    });
+			var bets = new SubmittedBets(fileSystem);
+			bets.ActualResultsFile = @"data\vm2014-actual.toml";
+			bets.LoadAll("data");
+			bets.Count.ShouldBe(4);
+		}
+		
+		[Test]
 		public void TestGetBetters_ShouldReturnNamesOfAllBetters()
 		{
 			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
@@ -170,5 +187,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hella
 			var bet = bets.GetSingleBet("foo2");
 			Assert.That(bet.info.user, Is.EqualTo("foo2"));
 		}
+		
+		
 	}
 }
