@@ -6,17 +6,17 @@ using System.Text;
 
 namespace Modules
 {
-    public class BetterViewModel
-    {
+	public class BetterViewModel
+	{
 		dynamic _bet;
 		ITournament _tournament;
 		
-        public BetterViewModel(ITournament t, dynamic bet)
-        {
-        	_tournament = t;
-        	_bet = bet;
-        	CreateMatches();
-        }
+		public BetterViewModel(ITournament t, dynamic bet)
+		{
+			_tournament = t;
+			_bet = bet;
+			CreateGroupMatches();
+		}
 
 		public object Better
 		{
@@ -28,37 +28,35 @@ namespace Modules
 			get { return _bet.info.user; }
 		}
 
-		List<Group> _groups = new List<Group>();
-		public List<Group> Groups
+		List<GroupMatches> _groups = new List<GroupMatches>();
+		public List<GroupMatches> Groups
 		{
 			get { return _groups; }
 			private set { _groups = value; }
 		}
 
-		private void CreateMatches()
+		private void CreateGroupMatches()
 		{
 			char gn = 'A';
+			int i = 0;
 			foreach (object[] group in _tournament.GetGroups())
 			{
-				var g = new Group() { Name = "Group " + gn };
-				g.Matches.Add(new Tuple<string, string>(group[0].ToString(), group[1].ToString()));
-				g.Matches.Add(new Tuple<string, string>(group[2].ToString(), group[3].ToString()));
-				g.Matches.Add(new Tuple<string, string>(group[0].ToString(), group[2].ToString()));
-				g.Matches.Add(new Tuple<string, string>(group[3].ToString(), group[1].ToString()));
-				g.Matches.Add(new Tuple<string, string>(group[3].ToString(), group[0].ToString()));
-				g.Matches.Add(new Tuple<string, string>(group[1].ToString(), group[2].ToString()));
+				dynamic stageOne = ((IDictionary<String, Object>)_bet)["stage-one"];
+				var g = new GroupMatches() { Name = "Group " + gn };
+				g.CreateMatches(group, stageOne.results[i]);
 				_groups.Add(g);
 				gn++;
+				i++;
 			}
 		}
 		
 		
-		public class Group
+		public class GroupMatches
 		{
 			public string Name { get; set; }
 			
-			List<Tuple<string, string>> _matches = new List<Tuple<string, string>>();
-			public List<Tuple<string, string>> Matches
+			List<Tuple<string, string, string>> _matches = new List<Tuple<string, string, string>>();
+			public List<Tuple<string, string, string>> Matches
 			{
 				get { return _matches; }
 				private set { _matches = value; }
@@ -77,7 +75,7 @@ namespace Modules
 						s.AppendLine();
 						s.AppendFormat("	<td>{0} vs. {1}</td>", match.Item1, match.Item2);
 						s.AppendLine();
-						s.AppendFormat("	<td></td>");
+						s.AppendFormat("	<td>{0}</td>", GetResults(match));
 						s.AppendLine();
 						s.AppendFormat("	<td></td>");
 						s.AppendLine();
@@ -88,6 +86,27 @@ namespace Modules
 					return s.ToString();
 				}
 			}
+			
+			public void CreateMatches(object[] group, object[] results)
+			{
+				Matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[1].ToString(), results[0].ToString()));
+				Matches.Add(new Tuple<string, string, string>(group[2].ToString(), group[3].ToString(), results[1].ToString()));
+				Matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[2].ToString(), results[2].ToString()));
+				Matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[1].ToString(), results[3].ToString()));
+				Matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[0].ToString(), results[4].ToString()));
+				Matches.Add(new Tuple<string, string, string>(group[1].ToString(), group[2].ToString(), results[5].ToString()));
+			}
+
+			public string GetResults(Tuple<string, string, string> match)
+			{
+				if (match.Item3.Equals("h"))
+					return match.Item1;
+				else if (match.Item3.Equals("b"))
+					return match.Item2;
+				else
+					return "Draw";
+			}
 		}
-    }
+
+	}
 }
