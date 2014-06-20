@@ -40,3 +40,7 @@
     padding-left: .2em;    
     padding-right: .5em;
 }
+
+.correct {
+    background-color: #88CC88;
+}

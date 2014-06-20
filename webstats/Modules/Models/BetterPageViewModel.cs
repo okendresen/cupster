@@ -66,16 +66,26 @@ namespace Modules
 					StringBuilder s = new StringBuilder();
 					s.Append("<table>");
 					s.AppendLine();
-					s.Append("<tr>\n<th>Match</th>\n<th>Selected</th><th>Result</th>");
+					s.Append("<tr>\n<th>Match</th>\n<th>Selected</th>\n<th>Result</th>\n</tr>");
+					s.AppendLine();
 					foreach (var match in _matches)
 					{
-						s.Append("<tr>");
+						string selected = GetResults(match, match.Item3);
+						string actual = GetResults(match, match.Item4);
+						if (selected.Equals(actual))
+						{
+							s.Append("<tr class=\"correct\">");
+						}
+						else
+						{
+							s.Append("<tr>");
+						}
 						s.AppendLine();
 						s.AppendFormat("	<td>{0} vs. {1}</td>", match.Item1, match.Item2);
 						s.AppendLine();
-						s.AppendFormat("	<td>{0}</td>", GetResults(match));
+						s.AppendFormat("	<td>{0}</td>", selected);
 						s.AppendLine();
-						s.AppendFormat("	<td>{0}</td>", GetResults(match, match.Item4));
+						s.AppendFormat("	<td>{0}</td>", actual);
 						s.AppendLine();
 						s.Append("</tr>");
 						s.AppendLine();
@@ -108,13 +118,21 @@ namespace Modules
 			public string GetResults(Tuple<string, string, string, string> match, string result)
 			{
 				if (result.ToLower().Equals("h"))
+				{
 					return match.Item1;
+				}
 				else if (result.ToLower().Equals("b"))
+				{
 					return match.Item2;
+				}
 				else if (result.ToLower().Equals("u"))
+				{
 					return "Draw";
+				}
 				else
+				{
 					return "";
+				}
 			}
 		}
 
