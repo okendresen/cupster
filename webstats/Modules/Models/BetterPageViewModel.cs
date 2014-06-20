@@ -111,8 +111,10 @@ namespace Modules
 					return match.Item1;
 				else if (result.ToLower().Equals("b"))
 					return match.Item2;
-				else
+				else if (result.ToLower().Equals("u"))
 					return "Draw";
+				else
+					return "";
 			}
 		}
 

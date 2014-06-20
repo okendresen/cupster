@@ -90,5 +90,13 @@ namespace Modules.Test
 			match2 = new Tuple<string, string, string, string>("team1", "team2", "U", "U");
 			gm.GetResults(match).ShouldBe(gm.GetResults(match2));
 		}
+		
+		[Test]
+		public void TestGrouMatches_GetResults_ShouldReturnEmpty_WhenNoResults()
+		{
+			var gm = new BetterPageViewModel.GroupMatches();
+			var match = new Tuple<string, string, string, string>("team1", "team2", "h", "-");
+			gm.GetResults(match, "-").ShouldBe("");
+		}
 	}
 }
