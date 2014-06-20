@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Modules
 {
-	public class BetterViewModel
+	public class BetterPageViewModel
 	{
 		dynamic _bet;
 		ITournament _tournament;
 		
-		public BetterViewModel(ITournament t, dynamic bet)
+		public BetterPageViewModel(ITournament t, dynamic bet)
 		{
 			_tournament = t;
 			_bet = bet;
@@ -56,11 +56,6 @@ namespace Modules
 			public string Name { get; set; }
 			
 			List<Tuple<string, string, string>> _matches = new List<Tuple<string, string, string>>();
-			public List<Tuple<string, string, string>> Matches
-			{
-				get { return _matches; }
-				private set { _matches = value; }
-			}
 			
 			public string MatchesAsHtml
 			{
@@ -69,7 +64,7 @@ namespace Modules
 					s.Append("<table>");
 					s.AppendLine();
 					s.Append("<tr>\n<th>Match</th>\n<th>Selected</th><th>Result</th>");
-					foreach (var match in Matches)
+					foreach (var match in _matches)
 					{
 						s.Append("<tr>");
 						s.AppendLine();
@@ -89,12 +84,12 @@ namespace Modules
 			
 			public void CreateMatches(object[] group, object[] results)
 			{
-				Matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[1].ToString(), results[0].ToString()));
-				Matches.Add(new Tuple<string, string, string>(group[2].ToString(), group[3].ToString(), results[1].ToString()));
-				Matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[2].ToString(), results[2].ToString()));
-				Matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[1].ToString(), results[3].ToString()));
-				Matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[0].ToString(), results[4].ToString()));
-				Matches.Add(new Tuple<string, string, string>(group[1].ToString(), group[2].ToString(), results[5].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[1].ToString(), results[0].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[2].ToString(), group[3].ToString(), results[1].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[0].ToString(), group[2].ToString(), results[2].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[1].ToString(), results[3].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[3].ToString(), group[0].ToString(), results[4].ToString()));
+				_matches.Add(new Tuple<string, string, string>(group[1].ToString(), group[2].ToString(), results[5].ToString()));
 			}
 
 			public string GetResults(Tuple<string, string, string> match)

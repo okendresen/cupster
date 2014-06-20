@@ -13,7 +13,7 @@ using Nancy;
 using SubmittedData;
 namespace Modules
 {
-	public class RootMenuViewModel
+	public class IndexPageViewModel
 	{
 		ITournament _tournament;
 		
@@ -40,7 +40,7 @@ namespace Modules
             private set { _betters = value; }
         }
 		
-		public RootMenuViewModel(ITournament t, ISubmittedBets sb)
+		public IndexPageViewModel(ITournament t, ISubmittedBets sb)
 		{
 			_tournament = t;
 			CreateGroups();

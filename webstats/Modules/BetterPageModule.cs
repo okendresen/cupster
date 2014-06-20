@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Modules
 {
-    public class BetterModule : NancyModule
+    public class BetterPageModule : NancyModule
     {
-        public BetterModule(ITournament tournament, ISubmittedBets bets)
+        public BetterPageModule(ITournament tournament, ISubmittedBets bets)
         {
             Get["/{better}"] = _ =>
             {
-            	return View["betterpage.sshtml", new BetterViewModel(tournament, bets.GetSingleBet(_.better))];
+            	return View["betterpage.sshtml", new BetterPageViewModel(tournament, bets.GetSingleBet(_.better))];
             };
         }
     }
