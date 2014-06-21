@@ -4,7 +4,7 @@
     <th>Name</th>
     <th>Score</th>
 </tr>
-@Each.Betters
+@Each.SortedBetters
 <tr>
     <td><a href="@Current.Name">@Current.Name</a></td>
     <td>@Current.Score</td>

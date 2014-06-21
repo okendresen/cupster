@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Nancy;
 using SubmittedData;
@@ -45,6 +46,11 @@ namespace Modules
         {
             get { return _betters; }
             private set { _betters = value; }
+        }
+
+        public List<Better> SortedBetters
+        {
+            get { return _betters.OrderByDescending(b => b.Score).ToList(); }
         }
 
 		void CreateBetterlist(List<string> betters, ISubmittedBets sb, IResults actual)
