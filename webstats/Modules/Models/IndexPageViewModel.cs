@@ -17,6 +17,13 @@ namespace Modules
 	{
 		ITournament _tournament;
 		
+		public IndexPageViewModel(ITournament t, ISubmittedBets sb, IResults actual)
+		{
+			_tournament = t;
+			CreateGroups();
+			CreateBetterlist(sb.GetBetters(), sb, actual);
+		}
+
 		public string PageTitle
 		{
 			get { return _tournament.GetName(); }
@@ -33,20 +40,22 @@ namespace Modules
 			private set { _groups = value; }
 		}
 
-        List<string> _betters = new List<string>();
-        public List<string> Betters 
+        List<Better> _betters = new List<Better>();
+        public List<Better> Betters 
         {
             get { return _betters; }
             private set { _betters = value; }
         }
-		
-		public IndexPageViewModel(ITournament t, ISubmittedBets sb)
-		{
-			_tournament = t;
-			CreateGroups();
-            _betters = sb.GetBetters();
-		}
 
+		void CreateBetterlist(List<string> betters, ISubmittedBets sb, IResults actual)
+		{
+		    foreach (var better in betters)
+		    {
+		        var s = new ScoringSystem(sb.GetSingleBet(better), actual);
+		        var b = new Better() { Name = better, Score = s.GetStageOneMatchScore() };
+		        Betters.Add(b);
+		    }
+		}
 		private void CreateGroups()
 		{
 			char gn = 'A';
@@ -88,6 +97,12 @@ namespace Modules
 					return s.ToString();
 				}
 			}
+		}
+		
+		public class Better
+		{
+		    public string Name { get; set; }
+		    public int Score { get; set; }
 		}
 	}
 }
