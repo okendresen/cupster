@@ -11,13 +11,15 @@ namespace Modules
 		IResults _bet;
 		ITournament _tournament;
 		IResults _results;
-		
+		ScoringSystem _score;
+
 		public BetterPageViewModel(ITournament t, IResults bet, IResults actual)
 		{
 			_tournament = t;
 			_bet = bet;
 			_results = actual;
 			CreateGroupMatches();
+			_score = new ScoringSystem(bet, actual);
 		}
 
 		public object Better
@@ -35,6 +37,11 @@ namespace Modules
 		{
 			get { return _groups; }
 			private set { _groups = value; }
+		}
+		
+		public int Score 
+		{
+		    get { return _score.GetStageOneMatchScore(); }
 		}
 
 		private void CreateGroupMatches()

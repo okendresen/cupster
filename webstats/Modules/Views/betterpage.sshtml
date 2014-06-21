@@ -2,7 +2,9 @@
 
 @Section['Content']
 <h1>Submitted bet from @Model.Better</h1>
-
+<div class="score">
+    <p>Score @Model.Score</p>
+</div>
 <h2>Stage one matches</h2>
 @Each.Groups
 <div class="matches">
