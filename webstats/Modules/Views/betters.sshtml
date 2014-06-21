@@ -4,10 +4,10 @@
     <th>Name</th>
     <th>Score</th>
 </tr>
-@Each
+@Each.SortedBetters
 <tr>
-    <td><a href="@Current">@Current</a></td>
-    <td></td>
+    <td><a href="@Current.Name">@Current.Name</a></td>
+    <td>@Current.Score</td>
 </tr>
 @EndEach
 </table>

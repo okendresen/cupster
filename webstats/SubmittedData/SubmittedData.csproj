@@ -57,6 +57,7 @@
     <Compile Include="IResults.cs" />
     <Compile Include="ISubmittedBets.cs" />
     <Compile Include="ITournament.cs" />
+    <Compile Include="ScoringSystem.cs" />
     <Compile Include="SubmittedBets.cs" />
     <Compile Include="Tournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

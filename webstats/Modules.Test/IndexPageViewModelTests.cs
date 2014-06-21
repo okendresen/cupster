@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
@@ -29,8 +30,10 @@ namespace Modules.Test
 				.Returns("VM 2014 Brasil");
 			
             var bmock = new Mock<ISubmittedBets>();
+            bmock.Setup(f => f.GetBetters()).Returns(new List<string>());
+			var amock = new Mock<IResults>();
 
-			var groups = new IndexPageViewModel(tmock.Object, bmock.Object);
+			var groups = new IndexPageViewModel(tmock.Object, bmock.Object, amock.Object);
 			groups.PageTitle.ShouldBe("VM 2014 Brasil");
 		}
 
@@ -42,8 +45,10 @@ namespace Modules.Test
 				.Returns("VM 2014 Brasil");
 			
             var bmock = new Mock<ISubmittedBets>();
+            bmock.Setup(f => f.GetBetters()).Returns(new List<string>());
+			var amock = new Mock<IResults>();
 
-			var groups = new IndexPageViewModel(tmock.Object, bmock.Object);
+			var groups = new IndexPageViewModel(tmock.Object, bmock.Object, amock.Object);
 			groups.Tournament.ShouldBe("VM 2014 Brasil");
 		}
 	}

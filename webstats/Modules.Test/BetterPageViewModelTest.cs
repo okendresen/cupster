@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Dynamic;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
@@ -25,9 +26,9 @@ namespace Modules.Test
 		public void TestBetter_ShouldReturnBettersName()
 		{
 			var tmock = new Mock<ITournament>();
+			var ur = new SubmittedBets.UserResults("[info]\nuser=\"foo1\"".ParseAsToml());
 			var amock = new Mock<IResults>();
-			dynamic bet = "[info]\nuser=\"foo1\"".ParseAsToml();
-			var better = new BetterPageViewModel(tmock.Object, bet, amock.Object);
+			var better = new BetterPageViewModel(tmock.Object, ur, amock.Object);
 			better.Better.ShouldBe("foo1");
 		}
 		
@@ -36,8 +37,8 @@ namespace Modules.Test
 		{
 			var tmock = new Mock<ITournament>();
 			var amock = new Mock<IResults>();
-			dynamic bet = "[info]\nuser=\"foo1\"".ParseAsToml();
-			var better = new BetterPageViewModel(tmock.Object, bet, amock.Object);
+			var ur = new SubmittedBets.UserResults("[info]\nuser=\"foo1\"".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, ur, amock.Object);
 			better.PageTitle.ShouldBe("foo1");
 		}
 		

@@ -32,6 +32,7 @@ namespace SubmittedData
 		dynamic _config;
 
 		#region IResults implementation
+
 		public void Load(string file)
 		{
 			string text = _fileSystem.File.ReadAllText(file);
@@ -42,6 +43,12 @@ namespace SubmittedData
 		{
 			return ((IDictionary<String, Object>)_config)["stage-one"];
 		}
+
+		public dynamic GetInfo()
+		{
+			return _config.info;
+		}
+
 		#endregion
 
 	}

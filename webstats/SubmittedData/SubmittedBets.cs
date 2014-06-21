@@ -20,20 +20,21 @@ namespace SubmittedData
 	{
 		public string TournamentFile { get; set; }
 
-		public string ActualResultsFile { get; set;	}
+		public string ActualResultsFile { get; set; }
 		
 		readonly IFileSystem _fileSystem;
 		List<string> _fileNames;
-        Dictionary<string, dynamic> _submitted = new Dictionary<string, dynamic>();
+		Dictionary<string, dynamic> _submitted = new Dictionary<string, dynamic>();
 
 		public SubmittedBets(IFileSystem fileSystem)
 		{
 			_fileSystem = fileSystem;
 		}
 
-		public SubmittedBets() : this (
-			fileSystem: new FileSystem()
-		)
+		public SubmittedBets()
+			: this(
+				fileSystem: new FileSystem()
+			)
 		{
 		}
 
@@ -42,19 +43,18 @@ namespace SubmittedData
 			if (_fileSystem.Directory.Exists(folder))
 			{
 				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder));
-				foreach(var file in _fileNames)
+				foreach (var file in _fileNames)
 				{
 					if ((TournamentFile == null || (!file.Contains(TournamentFile))) &&
 					    (ActualResultsFile == null || (!file.Contains(ActualResultsFile))))
 					{
 						var text = _fileSystem.File.ReadAllText(file);
-                        var bet = text.ParseAsToml();
-                        _submitted[bet.info.user] = bet;
+						var bet = text.ParseAsToml();
+						_submitted[bet.info.user] = bet;
 					}
 				}
 				return true;
-			}
-			else
+			} else
 			{
 				return false;
 			}
@@ -76,9 +76,39 @@ namespace SubmittedData
 			return betters;
 		}
 
-		public dynamic GetSingleBet(string user)
+		public IResults GetSingleBet(string user)
 		{
-			return _submitted[user];
+			return new UserResults(_submitted[user]);
+		}
+		
+		
+		public class UserResults : IResults
+		{
+			public UserResults(dynamic results)
+			{
+				_results = results;
+			}
+
+			dynamic _results;
+			
+			#region IResults implementation
+
+			public void Load(string file)
+			{
+				throw new NotImplementedException();
+			}
+
+			public dynamic GetInfo()
+			{
+				return _results.info;
+			}
+			
+			public dynamic GetStageOne()
+			{
+				return ((IDictionary<String, Object>)_results)["stage-one"];
+			}
+
+			#endregion
 		}
 	}
 }

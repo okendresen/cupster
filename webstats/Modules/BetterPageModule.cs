@@ -14,6 +14,7 @@ namespace Modules
         {
             Get["/{better}"] = _ =>
             {
+            	// disable once ConvertToLambdaExpression
             	return View["betterpage.sshtml", new BetterPageViewModel(tournament, 
             	                                                         bets.GetSingleBet(_.better),
             	                                                         actual)];
