@@ -16,4 +16,5 @@ Just started development. Proof-of-concept for WC 2014.
 - [ ] Get files and paths from app config
 - [x] Calculate individual scores
 - [x] Present sorted score list
+- [ ] Make it look nice
 - [ ] Fun stats from submitted bets
