@@ -8,11 +8,11 @@ namespace Modules
 {
 	public class BetterPageViewModel
 	{
-		dynamic _bet;
+		IResults _bet;
 		ITournament _tournament;
 		IResults _results;
 		
-		public BetterPageViewModel(ITournament t, dynamic bet, IResults actual)
+		public BetterPageViewModel(ITournament t, IResults bet, IResults actual)
 		{
 			_tournament = t;
 			_bet = bet;
@@ -22,12 +22,12 @@ namespace Modules
 
 		public object Better
 		{
-			get { return _bet.info.user; }
+		    get { return _bet.GetInfo().user; }
 		}
 
 		public object PageTitle
 		{
-			get { return _bet.info.user; }
+		    get { return _bet.GetInfo().user; }
 		}
 
 		List<GroupMatches> _groups = new List<GroupMatches>();
@@ -43,7 +43,7 @@ namespace Modules
 			int i = 0;
 			foreach (object[] group in _tournament.GetGroups())
 			{
-				dynamic stageOne = ((IDictionary<String, Object>)_bet)["stage-one"];
+			    dynamic stageOne = _bet.GetStageOne();
 				dynamic stageOneActual = _results.GetStageOne();
 				var g = new GroupMatches() { Name = "Group " + gn };
 				g.CreateMatches(group, stageOne.results[i], stageOneActual.results[i]);

@@ -29,6 +29,29 @@ namespace SubmittedData.Test
 				
 			return new SubmittedBets(fileSystem);
 		}
+
+		private SubmittedBets CreateCompleteBet()
+		{
+			string full = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Spania"", ""Hellas"", ""Italia"", ""Frankrike"", ""Argentina"", ""Portugal"", ""Tyskland"",]
+quarter-final = [ ""Brasil"", ""Italia"", ""Frankrike"", ""Tyskland"",]
+semi-final = [ ""Brasil"", ""Italia"",]
+[finals]
+bronse-final = ""Frankrike""
+final = ""Brasil""
+[info]
+user = ""AGiailoglou""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""h"",], [ ""b"", ""b"", ""h"", ""u"", ""h"", ""h"",], [ ""h"", ""b"", ""u"", ""h"", ""h"", ""b"",], [ ""h"", ""h"", ""b"", ""u"", ""u"", ""b"",], [ ""h"", ""b"", ""h"", ""u"", ""b"", ""u"",], [ ""b"", ""b"", ""h"", ""b"", ""u"", ""h"",], [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hellas"", ""Japan"",], [ ""Italia"", ""Uruguay"",], [ ""Frankrike"", ""Sveits"",], [ ""Argentina"", ""Nigeria"",], [ ""Portugal"", ""Tyskland"",], [ ""Belgia"", ""Russland"",],]
+";
+			var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData> { {
+					@"data\vm2014-person1.toml",
+					new MockFileData(full)
+				},
+			});
+			return new SubmittedBets(fileSystem);
+		}
 		
 		[Test]
 		public void TestLoadAll_ShouldFail_IfFolderDoesNotExist()
@@ -147,24 +170,7 @@ namespace SubmittedData.Test
 		[Test]
 		public void TestLoadAll_LoadsCompleteFile()
 		{
-			string full = @"[stage-two]
-round-of-16 = [ ""Brasil"", ""Spania"", ""Hellas"", ""Italia"", ""Frankrike"", ""Argentina"", ""Portugal"", ""Tyskland"",]
-quarter-final = [ ""Brasil"", ""Italia"", ""Frankrike"", ""Tyskland"",]
-semi-final = [ ""Brasil"", ""Italia"",]
-[finals]
-bronse-final = ""Frankrike""
-final = ""Brasil""
-[info]
-user = ""AGiailoglou""
-[stage-one]
-results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""h"",], [ ""b"", ""b"", ""h"", ""u"", ""h"", ""h"",], [ ""h"", ""b"", ""u"", ""h"", ""h"", ""b"",], [ ""h"", ""h"", ""b"", ""u"", ""u"", ""b"",], [ ""h"", ""b"", ""h"", ""u"", ""b"", ""u"",], [ ""b"", ""b"", ""h"", ""b"", ""u"", ""h"",], [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",],]
-winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hellas"", ""Japan"",], [ ""Italia"", ""Uruguay"",], [ ""Frankrike"", ""Sveits"",], [ ""Argentina"", ""Nigeria"",], [ ""Portugal"", ""Tyskland"",], [ ""Belgia"", ""Russland"",],]
-";
-			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
-			                                    {
-			                                    	{ @"data\vm2014-person1.toml", new MockFileData(full) },
-			                                    });
-			var bets = new SubmittedBets(fileSystem);
+			var bets = CreateCompleteBet();
 			bets.LoadAll("data");
 			var betters = bets.GetBetters();
 			betters.Count.ShouldBe(1);
@@ -185,9 +191,16 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hella
 			var bets = new SubmittedBets(fileSystem);
 			bets.LoadAll("data");
 			var bet = bets.GetSingleBet("foo2");
-			Assert.That(bet.info.user, Is.EqualTo("foo2"));
+			Assert.That(bet.GetInfo().user, Is.EqualTo("foo2"));
 		}
 		
-		
+		[Test]
+		public void TestGetSingleBet_ShouldReturnTypeFullStageOne()
+		{
+			var bets = CreateCompleteBet();
+			bets.LoadAll("data");
+			IResults bet = bets.GetSingleBet("AGiailoglou");
+			Assert.That(bet.GetStageOne().results.Length, Is.EqualTo(8));
+		}
 	}
 }
