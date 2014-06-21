@@ -14,6 +14,6 @@ Just started development. Proof-of-concept for WC 2014.
     - [x] Simple daily input, or
     - [ ] Fetch updates from web service
 - [ ] Get files and paths from app config
-- [ ] Calculate individual scores
+- [x] Calculate individual scores
 - [ ] Present sorted score list
 - [ ] Fun stats from submitted bets
