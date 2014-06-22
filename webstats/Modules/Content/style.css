@@ -1,3 +1,152 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/*
+  ========================================
+  Custom
+  ========================================
+*/
+body {
+  color: #888;
+  font: 300 16px/22px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #293f50;
+}
+
+/*
+  ========================================
+  Grid
+  ========================================
+*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 85%;
+}
+
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+
+h1, h2, h3, h4, h5, p {
+  margin-top: 18px;
+}
+
+h1, h2, h3, h4 {
+  color: #648880;
+}
+h1 {
+  font-size: 36px;
+  line-height: 44px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 44px;
+}
+h3 {
+  font-size: 21px;
+}
+h4 {
+  font-size: 18px;
+}
+
+/*
+  ========================================
+  Links
+  ========================================
+*/
+
+a {
+  color: #377F6F;
+  text-decoration: none;
+}
+a:hover {
+  color: #a9b2b9;
+}
+
+
+/*
+  ========================================
+  Rows
+  ========================================
+*/
+header, h1 {
+    color: #fff;
+}
+
+.row {
+    background: #f0f0f0;
+    padding: 15px 0 15px 0;
+}
+
+.row-alt {
+    background: #fff;
+    padding: 15px 0 15px 0;
+}
+
+/*
+  ========================================
+  Custom
+  ========================================
+*/
+
 .groups {
     display: inline-block;
     margin: .5em;
@@ -6,17 +155,20 @@
     border: 1px solid;
 }
 
-.betters table,th,tr,td {
+table,th,tr,td {
     border: 1px solid;
     border-collapse:collapse;
 }
-.betters td, th {
+td, th {
     padding-left: .2em;    
     padding-right: .5em;
 }
+th {
+    font-weight: bold;
+}
 
 .warning {
-    display: inline-block;
+    display: none;
     font-family: "Comic Sans MS";
     font-size: 20px;
     background-color: #FFFC7C;
@@ -27,26 +179,22 @@
 
 .matches {
     display: inline-block;
-    margin: .5em;
+   /* margin: .5em;
     padding-left: 1em;
-    padding-right: 1em;
+    padding-right: 1em; */
+    width: 30%;
 }
 
-.matches table,th,tr,td {
-    border: 1px solid;
-    border-collapse:collapse;
-}
-.matches td, th {
-    padding-left: .2em;    
-    padding-right: .5em;
-}
 
 .correct {
     background-color: #88CC88;
+    color: black;
 }
 
 .score {
     background: #67b11c;
+    background: -webkit-linear-gradient(#72c41f, #5c9e19);
+    background: -moz-linear-gradient(#72c41f, #5c9e19);
     background: linear-gradient(#72c41f, #5c9e19);
     border: 2px solid #467813;
     border-radius: 5px;
