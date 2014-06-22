@@ -1,15 +1,21 @@
 @Master['MasterPage']
 
 @Section['Content']
-<h1>Submitted bet from @Model.Better</h1>
-<div class="score">
-    <p>Score @Model.Score</p>
+<header  class="container">
+    <h1>Submitted bet from @Model.Better</h1>
+    <div class="score">
+        <p>Score @Model.Score</p>
+    </div>
+</header>
+<section class="row-alt">
+<div class="container">
+    <h2>Stage one matches</h2>
+    @Each.Groups
+    <div class="matches">
+        <h4>@Current.Name</h4>
+        @Current.MatchesAsHtml
+    </div>
+    @EndEach
 </div>
-<h2>Stage one matches</h2>
-@Each.Groups
-<div class="matches">
-    <h4>@Current.Name</h4>
-    @Current.MatchesAsHtml
-</div>
-@EndEach
+</section>
 @EndSection

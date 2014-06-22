@@ -270,3 +270,5 @@ $RECYCLE.BIN/
 betting/vm2014-Lars Magnus.toml
 betting/vm2014.toml
 betting/vm2014-actual.toml
+*.sublime-project
+*.sublime-workspace
