@@ -11,7 +11,8 @@ namespace Modules
 		IResults _bet;
 		ITournament _tournament;
 		IResults _results;
-		ScoringSystem _score;
+		ScoringSystem _userScore;
+		ScoringSystem _totalScore;
 
 		public BetterPageViewModel(ITournament t, IResults bet, IResults actual)
 		{
@@ -19,7 +20,8 @@ namespace Modules
 			_bet = bet;
 			_results = actual;
 			CreateGroupMatches();
-			_score = new ScoringSystem(bet, actual);
+			_userScore = new ScoringSystem(bet, actual);
+			_totalScore = new ScoringSystem(actual, actual);
 		}
 
 		public object Better
@@ -41,9 +43,13 @@ namespace Modules
 		
 		public int Score 
 		{
-		    get { return _score.GetStageOneMatchScore(); }
+		    get { return _userScore.GetStageOneMatchScore(); }
 		}
 
+		public int Total 
+		{
+		    get { return _totalScore.GetStageOneMatchScore(); }
+		}
 		private void CreateGroupMatches()
 		{
 			char gn = 'A';

@@ -93,11 +93,35 @@ namespace Modules.Test
 		}
 		
 		[Test]
-		public void TestGrouMatches_GetResults_ShouldReturnEmpty_WhenNoResults()
+		public void TestGroupMatches_GetResults_ShouldReturnEmpty_WhenNoResults()
 		{
 			var gm = new BetterPageViewModel.GroupMatches();
 			var match = new Tuple<string, string, string, string>("team1", "team2", "h", "-");
 			gm.GetResults(match, "-").ShouldBe("");
+		}
+		
+		[Test]
+		public void TestTotal_ShouldReturnTotalPossiblePoints()
+		{
+			var tmock = new Mock<ITournament>();
+			var umock = new Mock<IResults>();
+			var ar = new SubmittedBets.UserResults(@"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
+			better.Total.ShouldBe(5+4);
+		    
+			ar = new SubmittedBets.UserResults(@"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""h"", ""u"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
+			better.Total.ShouldBe(2*6);
 		}
 	}
 }

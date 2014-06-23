@@ -4,7 +4,7 @@
 <header  class="container">
     <h1>Submitted bet from @Model.Better</h1>
     <div class="score">
-        <p>Score @Model.Score</p>
+        <p>Score @Model.Score of @Model.Total</p>
     </div>
 </header>
 <section class="row-alt">
