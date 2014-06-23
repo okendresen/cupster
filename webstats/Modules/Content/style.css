@@ -192,6 +192,10 @@ th {
     color: black;
 }
 
+.close {
+    background-color: #FBFF98;
+}
+
 .score {
     background: #67b11c;
     background: -webkit-linear-gradient(#72c41f, #5c9e19);

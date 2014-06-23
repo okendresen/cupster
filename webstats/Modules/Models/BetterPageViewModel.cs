@@ -84,13 +84,7 @@ namespace Modules
                     {
                         string selected = GetResults(match, match.Item3);
                         string actual = GetResults(match, match.Item4);
-                        if (selected.Equals(actual))
-                        {
-                            s.Append("<tr class=\"correct\">");
-                        } else
-                        {
-                            s.Append("<tr>");
-                        }
+                        s.Append(GetTr(selected, actual));
                         s.AppendLine();
                         s.AppendFormat("	<td>{0} vs. {1}</td>", match.Item1, match.Item2);
                         s.AppendLine();
@@ -107,7 +101,7 @@ namespace Modules
                     s.AppendLine();
                     s.Append(" <td></td>\n<td></td>\n<td></td>");
                     s.AppendLine();
-                    s.Append("<tr>");
+                    s.Append(GetTr(_betQualifiers[0], _actualQualifiers[0], _actualQualifiers));
                     s.AppendLine();
                     s.Append(" <td><b>Winner</b></td>");
                     s.AppendLine();
@@ -117,7 +111,7 @@ namespace Modules
                     s.AppendLine();
                     s.Append("</tr>");
                     s.AppendLine();
-                    s.Append("<tr>");
+                    s.Append(GetTr(_betQualifiers[1], _actualQualifiers[1], _actualQualifiers));
                     s.AppendLine();
                     s.Append(" <td><b>Runner-up</b></td>");
                     s.AppendLine();
@@ -130,6 +124,16 @@ namespace Modules
                     s.Append("</table>");
                     return s.ToString();
                 }
+            }
+
+            string GetTr(string selected, string actual, List<string> qual = null)
+            {
+                if (selected.Equals(actual))
+                    return "<tr class=\"correct\">";
+                else if (qual != null && qual.Contains(selected))
+                    return "<tr class=\"close\">";
+                else
+                    return "<tr>";
             }
 			
             public void CreateMatches(object[] group, object[] results, object[] actuals)
