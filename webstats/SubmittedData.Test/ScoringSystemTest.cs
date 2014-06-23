@@ -55,5 +55,21 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var s = new ScoringSystem(user, actual);
 		    s.GetStageOneMatchScore().ShouldBe(0);
 		}
+
+		[Test]
+		public void TestGetStageOneMatchScore_ShoulNotCountScore_WhenResultIsDash()
+		{
+		    string full = @"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+";
+		    var user = new SubmittedBets.UserResults(full.ParseAsToml());
+		    var actual = new SubmittedBets.UserResults(full.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetStageOneMatchScore().ShouldBe(5+4);
+		}
+
 	}
 }

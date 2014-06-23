@@ -32,7 +32,8 @@ namespace SubmittedData
             {
                 for (int j = 0; j< _user.GetStageOne().results[i].Length; j++)
                 {
-                    if (_user.GetStageOne().results[i][j].ToLower() == _actual.GetStageOne().results[i][j].ToLower())
+                    var actual = _actual.GetStageOne().results[i][j].ToLower();
+                    if (actual != "-" && _user.GetStageOne().results[i][j].ToLower() == actual)
                         score++;
                 }
             }
