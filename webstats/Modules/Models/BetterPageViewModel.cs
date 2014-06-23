@@ -55,7 +55,7 @@ namespace Modules
                 dynamic stageOneActual = _results.GetStageOne();
                 var g = new GroupMatches() { Name = "Group " + gn };
                 g.CreateMatches(group, stageOne.results[i], stageOneActual.results[i]);
-                g.AddQualifiers(stageOne.winners[i], stageOneActual.winners[i]);
+                g.AddQualifiers(stageOne.winners[i], stageOneActual.winners[i], stageOneActual.results[i]);
                 _groups.Add(g);
                 gn++;
                 i++;
@@ -72,7 +72,7 @@ namespace Modules
             List<string> _betQualifiers = new List<string>();
 
             List<string> _actualQualifiers = new List<string>();
-
+            
             public string MatchesAsHtml {
                 get {
                     StringBuilder s = new StringBuilder();
@@ -148,15 +148,19 @@ namespace Modules
                     results[5].ToString(), actuals[5].ToString()));
             }
 
-            public void AddQualifiers(object[] bet, object[] actual)
+            public void AddQualifiers(object[] bet, object[] actual, object[] results)
             {
                 foreach (var team in bet)
                 {
                     _betQualifiers.Add(team.ToString());
                 }
+                int index = Array.FindIndex(results, r => r.ToString() == "-");
                 foreach (var team in actual)
                 {
-                    _actualQualifiers.Add(team.ToString());
+                    if (index == -1)
+                        _actualQualifiers.Add(team.ToString());
+                    else
+                        _actualQualifiers.Add("");
                 }
             }
             public string GetResults(Tuple<string, string, string, string> match)
