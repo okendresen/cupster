@@ -1,5 +1,5 @@
-[stage-one]
-winners = [ [ "Brasil", "Mexico",], [ "Nederland", "Chile",], [ "Colombia", "Elfenbenskysten",], [ "Costa Rica", "Italia",], [ "Frankrike", "Sveits",], [ "Argentina", "Nigeria",], [ "Tyskland", "USA",], [ "Belgia", "Algerie",],]
-results = [ [ "h", "h", "u", "b", "-", "-",], [ "b", "h", "b", "b", "-", "-",], [ "h", "h", "h", "u", "-", "-",], [ "b", "b", "h", "b", "-", "-",], [ "h", "h", "b", "b", "-", "-",], [ "h", "u", "h", "h", "-", "-",], [ "h", "b", "u", "u", "-", "-",], [ "h", "u", "h", "b", "-", "-",],]
 [info]
 user = "actual"
+[stage-one]
+winners = [ [ "Brasil", "Mexico",], [ "Nederland", "Chile",], [ "-", "-",], [ "-", "-",], [ "-", "-",], [ "-", "-",], [ "-", "-",], [ "-", "-",],]
+results = [ [ "h", "h", "u", "b", "b", "b",], [ "b", "h", "b", "b", "b", "h",], [ "h", "h", "h", "u", "-", "-",], [ "b", "b", "h", "b", "-", "-",], [ "h", "h", "b", "b", "-", "-",], [ "h", "u", "h", "h", "-", "-",], [ "h", "b", "u", "u", "-", "-",], [ "h", "u", "h", "b", "-", "-",],]

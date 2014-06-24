@@ -112,7 +112,7 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			var better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
-			better.Total.ShouldBe(5+4);
+			better.Total.ShouldBe(5+4+4+4+4+4);
 		    
 			ar = new SubmittedBets.UserResults(@"[info]
 user = ""user1""
@@ -121,7 +121,7 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
-			better.Total.ShouldBe(2*6);
+			better.Total.ShouldBe(2*6+4+4+4+4);
 		}
 	}
 }

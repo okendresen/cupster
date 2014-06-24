@@ -91,20 +91,29 @@ class Tournament(object):
             winners = []
             results = []
             mn = 0
+            complete = True
             for match in matches:
                 if self.results.loaded:
                     default = self.results.get_stage_results(gn, mn)
                 else:
                     default = ''
                 result = self.get_user_input(self.format_match_text(match[0], match[1], default), default)
+                if result == '-':
+                    complete = False
                 results.append(result)
                 winners.extend(self.match_winner(match, result))
                 mn += 1
             self.stageOne.append(winners)
             winner, runnerUp = self.tally_group_results(winners)
-            realWinner = self.resolve_winner(winner)
+            if complete:
+                realWinner = self.resolve_winner(winner)
+            else:
+                realWinner = '-'
             print('Group winner: {}'.format(realWinner))
-            realRunnerUp = self.resolve_runner_up(realWinner, runnerUp)
+            if complete:
+                realRunnerUp = self.resolve_runner_up(realWinner, runnerUp)
+            else:
+                realRunnerUp = '-'
             print('Runner-up: {}'.format(realRunnerUp))
             self.tally.append([realWinner, realRunnerUp])
             self.results.append_results(results)
