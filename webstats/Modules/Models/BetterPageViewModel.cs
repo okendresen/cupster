@@ -39,11 +39,11 @@ namespace Modules
         }
 		
         public int Score {
-            get { return _userScore.GetStageOneMatchScore(); }
+            get { return _userScore.GetTotal(); }
         }
 
         public int Total {
-            get { return _totalScore.GetStageOneMatchScore(); }
+            get { return _totalScore.GetTotal(); }
         }
         private void CreateGroupMatches()
         {

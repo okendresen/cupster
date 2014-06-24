@@ -58,7 +58,7 @@ namespace Modules
 		    foreach (var better in betters)
 		    {
 		        var s = new ScoringSystem(sb.GetSingleBet(better), actual);
-		        var b = new Better() { Name = better, Score = s.GetStageOneMatchScore() };
+		        var b = new Better() { Name = better, Score = s.GetTotal() };
 		        Betters.Add(b);
 		    }
 		}

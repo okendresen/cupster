@@ -71,5 +71,92 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    s.GetStageOneMatchScore().ShouldBe(5+4);
 		}
 
+		[Test]
+		public void TestGetQualifierScore_ShouldReturnTwoPointsPerCorrectQualifier()
+		{
+		    string oneCorrect = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Somethingelse"", ""Brasil"",], ]
+";
+		    string actualbet = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Brasil"", ""Mexico"",], ]
+";
+		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
+		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetQualifierScore().ShouldBe(2);
+
+		    string twoCorrect = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Mexico"", ""Brasil"",], ]
+";
+		    user = new SubmittedBets.UserResults(twoCorrect.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetQualifierScore().ShouldBe(4);		    
+		}
+		
+		[Test]
+		public void TestGetQualifierScore_ShouldReturnFourPointsPerCorrectPlacement()
+		{
+		    string oneCorrect = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Brasil"", ""Whatever"",], ]
+";
+		    string actualbet = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Brasil"", ""Mexico"",], ]
+";
+		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
+		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetQualifierScore().ShouldBe(4);
+
+		    string twoCorrect = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Brasil"", ""Mexico"",], ]
+";
+		    user = new SubmittedBets.UserResults(twoCorrect.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetQualifierScore().ShouldBe(8);
+		}
+
+		[Test]
+		public void TestGetQualifierScore_ShoulNotdReturnPoints_WhenGroupIsIncomplete()
+		{
+		    string oneCorrect = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""Brasil"", ""Whatever"",], ]
+";
+		    string actualbet = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""-"", ""-"",], ]
+";
+		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
+		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetQualifierScore().ShouldBe(0);
+		}
+
+		[Test]
+		public void TestGetQualifierScore_ShoulNotdReturnPoints_WhenActualResultsIsDash()
+		{
+		    string actualbet = @"[info]
+user = ""user1""
+[stage-one]
+winners = [ [ ""-"", ""-"",], ]
+";
+		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var s = new ScoringSystem(actual, actual);
+		    s.GetQualifierScore().ShouldBe(0);
+		}
 	}
 }

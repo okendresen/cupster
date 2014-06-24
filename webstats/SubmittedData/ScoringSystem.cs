@@ -24,6 +24,14 @@ namespace SubmittedData
             _user = user;
             _actual = actual;
         }
+        
+        public int GetTotal()
+        {
+            int score = 0;
+            score += GetStageOneMatchScore();
+            score += GetQualifierScore();
+            return score;
+        }
 
         public int GetStageOneMatchScore()
         {
@@ -39,5 +47,26 @@ namespace SubmittedData
             }
             return score;
         }
+
+		public int GetQualifierScore()
+		{
+		    int score = 0;
+		    for (int i = 0; i < _user.GetStageOne().winners.Length; i++)
+		    {
+		        for (int j = 0; j < _user.GetStageOne().winners[i].Length; j++)
+		        {
+		            var team = _user.GetStageOne().winners[i][j];
+		            if (_actual.GetStageOne().winners[i][j] == "-")
+		                continue;
+		            if (Array.IndexOf(_actual.GetStageOne().winners[i], team) != -1)
+		                score += 2;
+		            
+		            if (team.Equals(_actual.GetStageOne().winners[i][j]))
+		                score += 2;
+		        }
+		        
+		    }
+		    return score;
+		}
     }
 }
