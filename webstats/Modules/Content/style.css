@@ -196,6 +196,10 @@ th {
     background-color: #FBFF98;
 }
 
+.not-played {
+    background-color: #f0f0f0;
+}
+
 .score {
     background: #67b11c;
     background: -webkit-linear-gradient(#72c41f, #5c9e19);

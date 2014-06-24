@@ -132,6 +132,8 @@ namespace Modules
                     return "<tr class=\"correct\">";
                 else if (qual != null && qual.Contains(selected))
                     return "<tr class=\"close\">";
+                else if (actual.Length == 0)
+                    return "<tr class=\"not-played\">";
                 else
                     return "<tr>";
             }
