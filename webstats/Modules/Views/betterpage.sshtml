@@ -7,15 +7,32 @@
         <p>Score @Model.Score of @Model.Total</p>
     </div>
 </header>
+
+<section class="row">
+<div class="container">
+    <h2>Stage one</h2>
+</div>
+</section>
 <section class="row-alt">
 <div class="container">
-    <h2>Stage one matches</h2>
     @Each.Groups
     <div class="matches">
         <h4>@Current.Name</h4>
         @Current.MatchesAsHtml
     </div>
     @EndEach
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Stage two</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    <h3>Round of 16</h3>
+    @Partial['final.sshtml', Model.Round16]
 </div>
 </section>
 @EndSection

@@ -1,0 +1,15 @@
+@Each
+<div class="matches">
+    <table>
+    <tr>
+    <td><b>Selected</b></td>
+    <td>@Current.SelectedMatch</tr>
+    <td>@Current.SelectedWinner</tr>
+    </tr>
+    <tr>
+    <td><b>Actual</b></td>
+    <td>@Current.ActualMatch</tr>
+    <td>@Current.ActualWinner</tr>
+    </tr>
+</div>
+@EndEach
