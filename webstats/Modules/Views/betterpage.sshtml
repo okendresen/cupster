@@ -29,10 +29,20 @@
     <h2>Round of 16</h2>
 </div>
 </section>
-
 <section class="row-alt">
 <div class="container">
     @Partial['final.sshtml', Model.Round16]
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Quarter finals</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.QuarterFinals]
 </div>
 </section>
 @EndSection

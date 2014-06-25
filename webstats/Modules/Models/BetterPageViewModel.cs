@@ -21,6 +21,7 @@ namespace Modules
             _results = actual;
             CreateGroupMatches();
             CreateRound16Matches();
+            CreateQuarterFinalMatches();
             _userScore = new ScoringSystem(bet, actual);
             _totalScore = new ScoringSystem(actual, actual);
         }
@@ -68,7 +69,6 @@ namespace Modules
 		
         void CreateRound16Matches()
         {
-		    
             for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2)
             {
                 _round16.Add(Add16Match(i, i + 1));
@@ -87,7 +87,34 @@ namespace Modules
                 k.SelectedWinner = _results.GetRound16()[i1].ToString();
             return k;
         }
-		
+
+        void CreateQuarterFinalMatches()
+        {
+            for (int i = 0; i < _bet.GetRound16().Length; i += 4)
+            {
+                _quarterFinals.Add(AddQuarterFinalMatch(i, i+2));
+                _quarterFinals.Add(AddQuarterFinalMatch(i+1, i+3));
+            }
+        }
+
+		KnockoutMatch AddQuarterFinalMatch(int i1, int i2)
+		{
+			var k = new KnockoutMatch();
+			int qw = (i1 >= 4) ? i1 - 2: i1;
+			k.SelectedMatch = _bet.GetRound16()[i1] + " vs. " + _bet.GetRound16()[i2];
+			if (_bet.HasQuarterFinals())
+			{
+				k.SelectedWinner = _bet.GetQuarterFinalWinners()[qw].ToString();
+			}
+			if (_results.HasRound16())
+			{
+				k.ActualMatch = _results.GetRound16()[i1] + " vs. " + _results.GetRound16()[i2];
+				if (_results.HasQuarterFinals())
+					k.SelectedWinner = _results.GetQuarterFinalWinners()[qw].ToString();
+			}
+			return k;
+		}
+
         void CreateGroupMatches()
         {
             char gn = 'A';

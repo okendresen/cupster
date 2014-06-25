@@ -56,11 +56,31 @@ namespace SubmittedData
 		}
         public dynamic GetRound16()
         {
-			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-				return ((IDictionary<String, Object>)st)["round-of-16"];
+		    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+			return ((IDictionary<String, Object>)st)["round-of-16"];
         }
 
-        #endregion
+		public bool HasQuarterFinals()
+		{
+		    if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
+		    {
+			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+			    return ((IDictionary<String, Object>)st).ContainsKey("quarter-final");
+		        
+		    }
+		    else
+		    {
+		        return false;
+		    }
+		}
+
+		public dynamic GetQuarterFinalWinners()
+		{
+		    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+			return ((IDictionary<String, Object>)st)["quarter-final"];
+		}
+
+		#endregion
 
     }
 }
