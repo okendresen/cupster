@@ -64,24 +64,23 @@ namespace Modules
 		    
             for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2)
             {
-                var k = new KnockoutMatch();
-                k.SelectedMatch = _bet.GetStageOne().winners[i][0] + " vs. " + _bet.GetStageOne().winners[i + 1][1];
-                k.SelectedWinner = _bet.GetRound16()[i].ToString();
-                k.ActualMatch = _results.GetStageOne().winners[i][0] + " vs. " + _results.GetStageOne().winners[i + 1][1];
-                if (_results.HasRound16())
-                    k.SelectedWinner = _results.GetRound16()[i].ToString();
-                _round16.Add(k);
-                k = new KnockoutMatch();
-                k.SelectedMatch = _bet.GetStageOne().winners[i + 1][0] + " vs. " + _bet.GetStageOne().winners[i][1];
-                k.SelectedWinner = _bet.GetRound16()[i + 1].ToString();
-                k.ActualMatch = _results.GetStageOne().winners[i + 1][0] + " vs. " + _results.GetStageOne().winners[i][1];
-                if (_results.HasRound16())
-                    k.ActualWinner = _results.GetRound16()[i + 1].ToString();
-                _round16.Add(k);
+                _round16.Add(Add16Match(i, i+1));
+                _round16.Add(Add16Match(i+1, i));
             }
         }
+
+		KnockoutMatch Add16Match(int i1, int i2)
+		{
+			var k = new KnockoutMatch();
+			k.SelectedMatch = _bet.GetStageOne().winners[i1][0] + " vs. " + _bet.GetStageOne().winners[i2][1];
+			k.SelectedWinner = _bet.GetRound16()[i1].ToString();
+			k.ActualMatch = _results.GetStageOne().winners[i1][0] + " vs. " + _results.GetStageOne().winners[i2][1];
+			if (_results.HasRound16())
+				k.SelectedWinner = _results.GetRound16()[i1].ToString();
+			return k;
+		}
 		
-        private void CreateGroupMatches()
+        void CreateGroupMatches()
         {
             char gn = 'A';
             int i = 0;
