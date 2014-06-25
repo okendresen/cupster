@@ -81,16 +81,16 @@ namespace Modules
             var k = new KnockoutMatch();
             k.SelectedMatch = _bet.GetStageOne().winners[i1][0] + " vs. " + _bet.GetStageOne().winners[i2][1];
             if (_bet.HasRound16())
-                k.SelectedWinner = _bet.GetRound16()[i1].ToString();
+                k.SelectedWinner = _bet.GetRound16Winners()[i1].ToString();
             k.ActualMatch = _results.GetStageOne().winners[i1][0] + " vs. " + _results.GetStageOne().winners[i2][1];
             if (_results.HasRound16())
-                k.SelectedWinner = _results.GetRound16()[i1].ToString();
+                k.SelectedWinner = _results.GetRound16Winners()[i1].ToString();
             return k;
         }
 
         void CreateQuarterFinalMatches()
         {
-            for (int i = 0; i < _bet.GetRound16().Length; i += 4)
+            for (int i = 0; i < _bet.GetRound16Winners().Length; i += 4)
             {
                 _quarterFinals.Add(AddQuarterFinalMatch(i, i+2));
                 _quarterFinals.Add(AddQuarterFinalMatch(i+1, i+3));
@@ -101,14 +101,14 @@ namespace Modules
 		{
 			var k = new KnockoutMatch();
 			int qw = (i1 >= 4) ? i1 - 2: i1;
-			k.SelectedMatch = _bet.GetRound16()[i1] + " vs. " + _bet.GetRound16()[i2];
+			k.SelectedMatch = _bet.GetRound16Winners()[i1] + " vs. " + _bet.GetRound16Winners()[i2];
 			if (_bet.HasQuarterFinals())
 			{
 				k.SelectedWinner = _bet.GetQuarterFinalWinners()[qw].ToString();
 			}
 			if (_results.HasRound16())
 			{
-				k.ActualMatch = _results.GetRound16()[i1] + " vs. " + _results.GetRound16()[i2];
+				k.ActualMatch = _results.GetRound16Winners()[i1] + " vs. " + _results.GetRound16Winners()[i2];
 				if (_results.HasQuarterFinals())
 					k.SelectedWinner = _results.GetQuarterFinalWinners()[qw].ToString();
 			}

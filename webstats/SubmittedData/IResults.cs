@@ -20,7 +20,7 @@ namespace SubmittedData
 		dynamic GetStageOne();
 		dynamic GetInfo();
 		bool HasRound16();
-		dynamic GetRound16();
+		dynamic GetRound16Winners();
 		bool HasQuarterFinals();
 		dynamic GetQuarterFinalWinners();
 	}

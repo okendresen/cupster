@@ -112,7 +112,7 @@ namespace SubmittedData
     		{
     		    return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
     		}
-			public dynamic GetRound16()
+			public dynamic GetRound16Winners()
 			{
 			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
 				return ((IDictionary<String, Object>)st)["round-of-16"];
