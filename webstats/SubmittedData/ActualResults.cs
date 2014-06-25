@@ -13,49 +13,54 @@ using Toml;
 
 namespace SubmittedData
 {
-	/// <summary>
-	/// Description of ActualResults.
-	/// </summary>
-	public class ActualResults : IResults
-	{
-		readonly IFileSystem _fileSystem;
-		public ActualResults(IFileSystem fileSystem)
+    /// <summary>
+    /// Description of ActualResults.
+    /// </summary>
+    public class ActualResults : IResults
+    {
+        readonly IFileSystem _fileSystem;
+        public ActualResults(IFileSystem fileSystem)
+        {
+            _fileSystem = fileSystem;
+        }
+        public ActualResults()
+            : this(
+                fileSystem: new FileSystem()
+            )
+        {
+        }
+
+        dynamic _results;
+
+        #region IResults implementation
+
+        public void Load(string file)
+        {
+            string text = _fileSystem.File.ReadAllText(file);
+            _results = text.ParseAsToml();
+        }
+
+        public dynamic GetStageOne()
+        {
+            return ((IDictionary<String, Object>)_results)["stage-one"];
+        }
+
+        public dynamic GetInfo()
+        {
+            return _results.info;
+        }
+
+		public bool HasRound16()
 		{
-			_fileSystem = fileSystem;
+		    return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
 		}
-		public ActualResults() : this(
-			fileSystem: new FileSystem()
-		)
-		{
-		}
+        public dynamic GetRound16()
+        {
+			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+				return ((IDictionary<String, Object>)st)["round-of-16"];
+        }
 
-		dynamic _config;
+        #endregion
 
-		#region IResults implementation
-
-		public void Load(string file)
-		{
-			string text = _fileSystem.File.ReadAllText(file);
-			_config = text.ParseAsToml();
-		}
-
-		public dynamic GetStageOne()
-		{
-			return ((IDictionary<String, Object>)_config)["stage-one"];
-		}
-
-		public dynamic GetInfo()
-		{
-			return _config.info;
-		}
-
-		public dynamic GetRound16()
-		{
-		    var st = ((IDictionary<String, Object>)_config)["stage-two"]; 
-			return ((IDictionary<String, Object>)st)["round-of-16"];
-		}
-
-		#endregion
-
-	}
+    }
 }

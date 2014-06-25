@@ -25,51 +25,61 @@ namespace Modules
             _totalScore = new ScoringSystem(actual, actual);
         }
 
-        public object Better {
+        public object Better
+        {
             get { return _bet.GetInfo().user; }
         }
 
-        public object PageTitle {
+        public object PageTitle
+        {
             get { return _bet.GetInfo().user; }
         }
 
         List<GroupMatches> _groups = new List<GroupMatches>();
-        public List<GroupMatches> Groups {
+        public List<GroupMatches> Groups
+        {
             get { return _groups; }
             private set { _groups = value; }
         }
 		
-        public int Score {
+        public int Score
+        {
             get { return _userScore.GetTotal(); }
         }
 
-        public int Total {
+        public int Total
+        {
             get { return _totalScore.GetTotal(); }
         }
 
         List<KnockoutMatch> _round16 = new List<KnockoutMatch>();
-		public List<KnockoutMatch> Round16
-		{
-			get { return _round16; }
-			private set { _round16 = value; }
-		}
+        public List<KnockoutMatch> Round16
+        {
+            get { return _round16; }
+            private set { _round16 = value; }
+        }
 
-		void CreateRound16Matches()
-		{
-		    object[] r16 = _bet.GetRound16();
+        void CreateRound16Matches()
+        {
 		    
-		    for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2) 
-		    {
-		        var k = new KnockoutMatch();
-		        k.SelectedMatch = _bet.GetStageOne().winners[i][0] + " vs. " + _bet.GetStageOne().winners[i+1][1];
-		        k.SelectedWinner = r16[i].ToString();
-		        _round16.Add(k);
-		        k = new KnockoutMatch();
-		        k.SelectedMatch = _bet.GetStageOne().winners[i+1][0] + " vs. " + _bet.GetStageOne().winners[i][1];
-		        k.SelectedWinner = r16[i+1].ToString();
-		        _round16.Add(k);
-		    }
-		}
+            for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2)
+            {
+                var k = new KnockoutMatch();
+                k.SelectedMatch = _bet.GetStageOne().winners[i][0] + " vs. " + _bet.GetStageOne().winners[i + 1][1];
+                k.SelectedWinner = _bet.GetRound16()[i].ToString();
+                k.ActualMatch = _results.GetStageOne().winners[i][0] + " vs. " + _results.GetStageOne().winners[i + 1][1];
+                if (_results.HasRound16())
+                    k.SelectedWinner = _results.GetRound16()[i].ToString();
+                _round16.Add(k);
+                k = new KnockoutMatch();
+                k.SelectedMatch = _bet.GetStageOne().winners[i + 1][0] + " vs. " + _bet.GetStageOne().winners[i][1];
+                k.SelectedWinner = _bet.GetRound16()[i + 1].ToString();
+                k.ActualMatch = _results.GetStageOne().winners[i + 1][0] + " vs. " + _results.GetStageOne().winners[i][1];
+                if (_results.HasRound16())
+                    k.ActualWinner = _results.GetRound16()[i + 1].ToString();
+                _round16.Add(k);
+            }
+        }
 		
         private void CreateGroupMatches()
         {
@@ -99,7 +109,8 @@ namespace Modules
 
             List<string> _actualQualifiers = new List<string>();
             
-            public string MatchesAsHtml {
+            public string MatchesAsHtml
+            {
                 get {
                     StringBuilder s = new StringBuilder();
                     s.Append("<table>");
@@ -219,10 +230,10 @@ namespace Modules
         
         public class KnockoutMatch
         {
-			public string SelectedMatch { get; set; }
-			public string SelectedWinner { get; set; }
-			public string ActualMatch { get; set; }
-			public string ActualWinner { get; set; }            
+            public string SelectedMatch { get; set; }
+            public string SelectedWinner { get; set; }
+            public string ActualMatch { get; set; }
+            public string ActualWinner { get; set; }
         }
 
     }

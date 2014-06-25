@@ -108,6 +108,10 @@ namespace SubmittedData
 				return ((IDictionary<String, Object>)_results)["stage-one"];
 			}
 
+    		public bool HasRound16()
+    		{
+    		    return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
+    		}
 			public dynamic GetRound16()
 			{
 			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
