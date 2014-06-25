@@ -20,6 +20,7 @@ namespace Modules
             _bet = bet;
             _results = actual;
             CreateGroupMatches();
+            CreateRound16Matches();
             _userScore = new ScoringSystem(bet, actual);
             _totalScore = new ScoringSystem(actual, actual);
         }
@@ -45,6 +46,31 @@ namespace Modules
         public int Total {
             get { return _totalScore.GetTotal(); }
         }
+
+        List<KnockoutMatch> _round16 = new List<KnockoutMatch>();
+		public List<KnockoutMatch> Round16
+		{
+			get { return _round16; }
+			private set { _round16 = value; }
+		}
+
+		void CreateRound16Matches()
+		{
+		    object[] r16 = _bet.GetRound16();
+		    
+		    for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2) 
+		    {
+		        var k = new KnockoutMatch();
+		        k.SelectedMatch = _bet.GetStageOne().winners[i][0] + " vs. " + _bet.GetStageOne().winners[i+1][1];
+		        k.SelectedWinner = r16[i].ToString();
+		        _round16.Add(k);
+		        k = new KnockoutMatch();
+		        k.SelectedMatch = _bet.GetStageOne().winners[i+1][0] + " vs. " + _bet.GetStageOne().winners[i][1];
+		        k.SelectedWinner = r16[i+1].ToString();
+		        _round16.Add(k);
+		    }
+		}
+		
         private void CreateGroupMatches()
         {
             char gn = 'A';
@@ -189,6 +215,14 @@ namespace Modules
                     return "";
                 }
             }
+        }
+        
+        public class KnockoutMatch
+        {
+			public string SelectedMatch { get; set; }
+			public string SelectedWinner { get; set; }
+			public string ActualMatch { get; set; }
+			public string ActualWinner { get; set; }            
         }
 
     }

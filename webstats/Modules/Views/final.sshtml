@@ -3,13 +3,14 @@
     <table>
     <tr>
     <td><b>Selected</b></td>
-    <td>@Current.SelectedMatch</tr>
-    <td>@Current.SelectedWinner</tr>
+    <td>@Current.SelectedMatch</td>
+    <td>@Current.SelectedWinner</td>
     </tr>
     <tr>
     <td><b>Actual</b></td>
-    <td>@Current.ActualMatch</tr>
-    <td>@Current.ActualWinner</tr>
+    <td>@Current.ActualMatch</td>
+    <td>@Current.ActualWinner</td>
     </tr>
+    </table>
 </div>
 @EndEach

@@ -49,6 +49,12 @@ namespace SubmittedData
 			return _config.info;
 		}
 
+		public dynamic GetRound16()
+		{
+		    var st = ((IDictionary<String, Object>)_config)["stage-two"]; 
+			return ((IDictionary<String, Object>)st)["round-of-16"];
+		}
+
 		#endregion
 
 	}

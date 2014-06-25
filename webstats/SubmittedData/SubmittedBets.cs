@@ -108,6 +108,12 @@ namespace SubmittedData
 				return ((IDictionary<String, Object>)_results)["stage-one"];
 			}
 
+			public dynamic GetRound16()
+			{
+			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+				return ((IDictionary<String, Object>)st)["round-of-16"];
+			}
+
 			#endregion
 		}
 	}

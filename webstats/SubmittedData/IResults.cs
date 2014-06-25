@@ -18,6 +18,7 @@ namespace SubmittedData
 		void Load(string file);
 
 		dynamic GetStageOne();
+		dynamic GetRound16();
 		dynamic GetInfo();
 	}
 }

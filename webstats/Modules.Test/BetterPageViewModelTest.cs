@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using Moq;
 using NUnit.Framework;
@@ -123,5 +124,18 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 			better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
 			better.Total.ShouldBe(2*6+4+4+4+4);
 		}
+		
+		[Test]
+		public void TestRound16_ShouldReturnListOfTypeKnockoutMatch()
+		{
+			var tmock = new Mock<ITournament>();
+			var umock = new Mock<IResults>();
+			var amock = new Mock<IResults>();
+			var better = new BetterPageViewModel(tmock.Object, umock.Object, amock.Object);
+			
+			better.Round16.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch> >();
+		}
+		
+		
 	}
 }
