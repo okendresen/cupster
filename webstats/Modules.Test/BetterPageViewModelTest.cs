@@ -27,9 +27,13 @@ namespace Modules.Test
 		public void TestBetter_ShouldReturnBettersName()
 		{
 			var tmock = new Mock<ITournament>();
-			var ur = new SubmittedBets.UserResults("[info]\nuser=\"foo1\"".ParseAsToml());
-			var amock = new Mock<IResults>();
-			var better = new BetterPageViewModel(tmock.Object, ur, amock.Object);
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
 			better.Better.ShouldBe("foo1");
 		}
 		
@@ -37,9 +41,13 @@ namespace Modules.Test
 		public void TestPageTitle_ShouldReturBettersName()
 		{
 			var tmock = new Mock<ITournament>();
-			var amock = new Mock<IResults>();
-			var ur = new SubmittedBets.UserResults("[info]\nuser=\"foo1\"".ParseAsToml());
-			var better = new BetterPageViewModel(tmock.Object, ur, amock.Object);
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
 			better.PageTitle.ShouldBe("foo1");
 		}
 		
@@ -105,14 +113,13 @@ namespace Modules.Test
 		public void TestTotal_ShouldReturnTotalPossiblePoints()
 		{
 			var tmock = new Mock<ITournament>();
-			var umock = new Mock<IResults>();
 			var ar = new SubmittedBets.UserResults(@"[info]
 user = ""user1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
-			var better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
+			var better = new BetterPageViewModel(tmock.Object, ar, ar);
 			better.Total.ShouldBe(5+4+4+4+4+4);
 		    
 			ar = new SubmittedBets.UserResults(@"[info]
@@ -121,7 +128,7 @@ user = ""user1""
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""h"", ""u"",], ]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
-			better = new BetterPageViewModel(tmock.Object, umock.Object, ar);
+			better = new BetterPageViewModel(tmock.Object, ar, ar);
 			better.Total.ShouldBe(2*6+4+4+4+4);
 		}
 		
@@ -129,13 +136,32 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestRound16_ShouldReturnListOfTypeKnockoutMatch()
 		{
 			var tmock = new Mock<ITournament>();
-			var umock = new Mock<IResults>();
-			var amock = new Mock<IResults>();
-			var better = new BetterPageViewModel(tmock.Object, umock.Object, amock.Object);
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
 			
-			better.Round16.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch> >();
+			better.Round16.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
 		}
 		
+		
+		[Test]
+		public void TestQuarterFinals_ShouldReturnListOfTypeKnockoutMatch()
+		{
+			var tmock = new Mock<ITournament>();
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
+			
+			better.QuarterFinals.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
+		}
 		
 	}
 }
