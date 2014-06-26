@@ -24,6 +24,7 @@ namespace Modules
             CreateQuarterFinalMatches();
             CreateSemiFinalMatches();
             CreateBronseFinalMatch();
+            CreateFinalMatch();
             _userScore = new ScoringSystem(bet, actual);
             _totalScore = new ScoringSystem(actual, actual);
         }
@@ -83,6 +84,13 @@ namespace Modules
             private set { _bronseFinal = value; }
         }
 
+        List<KnockoutMatch> _final = new List<KnockoutMatch>();
+		public List<KnockoutMatch> Final
+		{
+			get { return _final; }
+			private set { _final = value; }
+		}
+		
         void CreateRound16Matches()
         {
             for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2)
@@ -175,6 +183,26 @@ namespace Modules
                     k.SelectedWinner = _results.GetBronseFinalWinner();
             }
             _bronseFinal.Add(k);
+		}
+
+		void CreateFinalMatch()
+		{
+		    if (!_bet.HasSemiFinals())
+		        return;
+		    
+            var k = new KnockoutMatch();
+            k.SelectedMatch = _bet.GetSemiFinalWinners()[0] + " vs. " + _bet.GetSemiFinalWinners()[1];
+            if (_bet.HasFinal())
+            {
+                k.SelectedWinner = _bet.GetFinalWinner();
+            }
+            if (_results.HasSemiFinals())
+            {
+                k.ActualMatch = _results.GetSemiFinalWinners()[0] + " vs. " + _results.GetSemiFinalWinners()[1];
+                if (_results.HasFinal())
+                    k.SelectedWinner = _results.GetFinalWinner();
+            }
+            _final.Add(k);
 		}
 		
         void CreateGroupMatches()

@@ -67,4 +67,15 @@
     @Partial['final.sshtml', Model.BronseFinal]
 </div>
 </section>
+
+<section class="row">
+<div class="container">
+    <h2>Final</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.Final]
+</div>
+</section>
 @EndSection

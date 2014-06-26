@@ -17,6 +17,7 @@ namespace SubmittedData
     /// <summary>
     /// Description of ActualResults.
     /// </summary>
+
     public class Results : IResults
     {
         readonly IFileSystem _fileSystem;
@@ -38,7 +39,7 @@ namespace SubmittedData
                 fileSystem: new FileSystem()
             )
         {
-			_results = results;
+            _results = results;
         }
 
 
@@ -140,7 +141,26 @@ namespace SubmittedData
             var st = ((IDictionary<String, Object>)_results)["finals"]; 
             return ((IDictionary<String, Object>)st)["bronse-final"].ToString();
         }
-        #endregion
+        
+        public bool HasFinal()
+        {
+            if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
+            {
+                var st = ((IDictionary<String, Object>)_results)["finals"]; 
+                return ((IDictionary<String, Object>)st).ContainsKey("final");
+		        
+            } else
+            {
+                return false;
+            }
+        }
+        
+        public string GetFinalWinner()
+        {
+            var st = ((IDictionary<String, Object>)_results)["finals"]; 
+            return ((IDictionary<String, Object>)st)["final"].ToString();
+        }
 
+        #endregion
     }
 }

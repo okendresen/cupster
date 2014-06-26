@@ -29,5 +29,7 @@ namespace SubmittedData
 		List<string> GetBronseFinalists();
 		bool HasBronseFinal();
 		string GetBronseFinalWinner();
+		bool HasFinal();
+		string GetFinalWinner();
     }
 }

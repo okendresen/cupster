@@ -191,5 +191,20 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 			
 			better.BronseFinal.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
 		}
+
+		[Test]
+		public void TestFinal_ShouldReturnListOfTypeKnockoutMatch()
+		{
+			var tmock = new Mock<ITournament>();
+			var r = new Results(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
+			
+			better.Final.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
+		}
 	}
 }
