@@ -147,7 +147,6 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 			better.Round16.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
 		}
 		
-		
 		[Test]
 		public void TestQuarterFinals_ShouldReturnListOfTypeKnockoutMatch()
 		{
@@ -163,5 +162,34 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 			better.QuarterFinals.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
 		}
 		
+		[Test]
+		public void TestSemiFinals_ShouldReturnListOfTypeKnockoutMatch()
+		{
+			var tmock = new Mock<ITournament>();
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
+			
+			better.SemiFinals.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
+		}
+
+		[Test]
+		public void TestBronseFinal_ShouldReturnListOfTypeKnockoutMatch()
+		{
+			var tmock = new Mock<ITournament>();
+			var r = new SubmittedBets.UserResults(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			var better = new BetterPageViewModel(tmock.Object, r, r);
+			
+			better.BronseFinal.ShouldBeOfType<List<BetterPageViewModel.KnockoutMatch>>();
+		}
 	}
 }

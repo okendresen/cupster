@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Linq;
 using Toml;
 
 namespace SubmittedData
@@ -50,37 +51,87 @@ namespace SubmittedData
             return _results.info;
         }
 
-		public bool HasRound16()
-		{
-		    return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
-		}
+        public bool HasRound16()
+        {
+            return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
+        }
         public dynamic GetRound16Winners()
         {
-		    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-			return ((IDictionary<String, Object>)st)["round-of-16"];
+            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+            return ((IDictionary<String, Object>)st)["round-of-16"];
         }
 
-		public bool HasQuarterFinals()
-		{
-		    if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
-		    {
-			    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-			    return ((IDictionary<String, Object>)st).ContainsKey("quarter-final");
+        public bool HasQuarterFinals()
+        {
+            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
+            {
+                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+                return ((IDictionary<String, Object>)st).ContainsKey("quarter-final");
 		        
-		    }
-		    else
-		    {
-		        return false;
-		    }
-		}
+            } else
+            {
+                return false;
+            }
+        }
 
-		public dynamic GetQuarterFinalWinners()
-		{
-		    var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-			return ((IDictionary<String, Object>)st)["quarter-final"];
-		}
+        public dynamic GetQuarterFinalWinners()
+        {
+            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+            return ((IDictionary<String, Object>)st)["quarter-final"];
+        }
 
-		#endregion
+
+        public bool HasSemiFinals()
+        {
+            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
+            {
+                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+                return ((IDictionary<String, Object>)st).ContainsKey("semi-final");
+		        
+            } else
+            {
+                return false;
+            }
+        }
+        public dynamic GetSemiFinalWinners()
+        {
+            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+            return ((IDictionary<String, Object>)st)["semi-final"];
+        }
+    	
+        public List<string> GetBronseFinalists()
+        {
+            List<string> bfinalists = new List<string>();
+            foreach (var team in GetQuarterFinalWinners())
+            {
+                object[] sf = GetSemiFinalWinners();
+                if (Array.IndexOf(sf, team) == -1)
+                {
+                    bfinalists.Add(team);
+                }
+            }
+            return bfinalists;
+        }
+
+        public bool HasBronseFinal()
+        {
+            if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
+            {
+                var st = ((IDictionary<String, Object>)_results)["finals"]; 
+                return ((IDictionary<String, Object>)st).ContainsKey("bronse-final");
+		        
+            } else
+            {
+                return false;
+            }
+        }
+
+        public string GetBronseFinalWinner()
+        {
+            var st = ((IDictionary<String, Object>)_results)["finals"]; 
+            return ((IDictionary<String, Object>)st)["bronse-final"].ToString();
+        }
+        #endregion
 
     }
 }
