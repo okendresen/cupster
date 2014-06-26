@@ -19,16 +19,16 @@ namespace SubmittedData.Test
 	/// Description of ActualResults.
 	/// </summary>
 	[TestFixture]
-	public class ActualResultsTest
+	public class ResultsTest
 	{
-		private ActualResults CreateTournament(string file, string content)
+		private Results CreateTournament(string file, string content)
 		{
 			var fileSystem = new MockFileSystem( new Dictionary<string, MockFileData>
 			                                    {
 			                                    	{ file, new MockFileData(content) }
 			                                    });
 				
-			return new ActualResults(fileSystem);
+			return new Results(fileSystem);
 		}
 
 		[Test]

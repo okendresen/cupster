@@ -17,21 +17,30 @@ namespace SubmittedData
     /// <summary>
     /// Description of ActualResults.
     /// </summary>
-    public class ActualResults : IResults
+    public class Results : IResults
     {
         readonly IFileSystem _fileSystem;
-        public ActualResults(IFileSystem fileSystem)
+        public Results(IFileSystem fileSystem)
         {
             _fileSystem = fileSystem;
         }
-        public ActualResults()
+        public Results()
             : this(
                 fileSystem: new FileSystem()
             )
         {
         }
 
+
         dynamic _results;
+        public Results(dynamic results)
+            : this(
+                fileSystem: new FileSystem()
+            )
+        {
+			_results = results;
+        }
+
 
         #region IResults implementation
 

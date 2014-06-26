@@ -29,8 +29,8 @@ user = ""user1""
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""h"",], ]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(full.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(full.ParseAsToml());
+		    var user = new Results(full.ParseAsToml());
+		    var actual = new Results(full.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetStageOneMatchScore().ShouldBe(2*6);
 		}
@@ -50,8 +50,8 @@ user = ""user1""
 results = [ [ ""b"", ""b"", ""b"", ""b"", ""h"", ""h"",], [ ""b"", ""b"", ""b"", ""h"", ""h"", ""b"",], ]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(userbet.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var user = new Results(userbet.ParseAsToml());
+		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetStageOneMatchScore().ShouldBe(0);
 		}
@@ -65,8 +65,8 @@ user = ""user1""
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(full.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(full.ParseAsToml());
+		    var user = new Results(full.ParseAsToml());
+		    var actual = new Results(full.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetStageOneMatchScore().ShouldBe(5+4);
 		}
@@ -84,8 +84,8 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var user = new Results(oneCorrect.ParseAsToml());
+		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetQualifierScore().ShouldBe(2);
 
@@ -94,7 +94,7 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""Mexico"", ""Brasil"",], ]
 ";
-		    user = new SubmittedBets.UserResults(twoCorrect.ParseAsToml());
+		    user = new Results(twoCorrect.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
 		    s.GetQualifierScore().ShouldBe(4);		    
 		}
@@ -112,8 +112,8 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var user = new Results(oneCorrect.ParseAsToml());
+		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetQualifierScore().ShouldBe(4);
 
@@ -122,7 +122,7 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], ]
 ";
-		    user = new SubmittedBets.UserResults(twoCorrect.ParseAsToml());
+		    user = new Results(twoCorrect.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
 		    s.GetQualifierScore().ShouldBe(8);
 		}
@@ -140,8 +140,8 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""-"", ""-"",], ]
 ";
-		    var user = new SubmittedBets.UserResults(oneCorrect.ParseAsToml());
-		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var user = new Results(oneCorrect.ParseAsToml());
+		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
 		    s.GetQualifierScore().ShouldBe(0);
 		}
@@ -154,7 +154,7 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""-"", ""-"",], ]
 ";
-		    var actual = new SubmittedBets.UserResults(actualbet.ParseAsToml());
+		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(actual, actual);
 		    s.GetQualifierScore().ShouldBe(0);
 		}

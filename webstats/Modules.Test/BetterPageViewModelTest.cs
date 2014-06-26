@@ -27,7 +27,7 @@ namespace Modules.Test
 		public void TestBetter_ShouldReturnBettersName()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -41,7 +41,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestPageTitle_ShouldReturBettersName()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -113,7 +113,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestTotal_ShouldReturnTotalPossiblePoints()
 		{
 			var tmock = new Mock<ITournament>();
-			var ar = new SubmittedBets.UserResults(@"[info]
+			var ar = new Results(@"[info]
 user = ""user1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -122,7 +122,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 			var better = new BetterPageViewModel(tmock.Object, ar, ar);
 			better.Total.ShouldBe(5+4+4+4+4+4);
 		    
-			ar = new SubmittedBets.UserResults(@"[info]
+			ar = new Results(@"[info]
 user = ""user1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"", ""b"", ""h"", ""u"",], ]
@@ -136,7 +136,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestRound16_ShouldReturnListOfTypeKnockoutMatch()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -151,7 +151,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestQuarterFinals_ShouldReturnListOfTypeKnockoutMatch()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -166,7 +166,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestSemiFinals_ShouldReturnListOfTypeKnockoutMatch()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
@@ -181,7 +181,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		public void TestBronseFinal_ShouldReturnListOfTypeKnockoutMatch()
 		{
 			var tmock = new Mock<ITournament>();
-			var r = new SubmittedBets.UserResults(@"[info]
+			var r = new Results(@"[info]
 user=""foo1""
 [stage-one]
 results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]

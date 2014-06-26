@@ -159,6 +159,9 @@ namespace Modules
 
 		void CreateBronseFinalMatch()
 		{
+		    if (!_bet.HasSemiFinals())
+		        return;
+		    
             var k = new KnockoutMatch();
             k.SelectedMatch = _bet.GetBronseFinalists()[0] + " vs. " + _bet.GetBronseFinalists()[1];
             if (_bet.HasBronseFinal())
