@@ -19,14 +19,14 @@ namespace Modules
             _tournament = t;
             _bet = bet;
             _results = actual;
+            _userScore = new ScoringSystem(bet, actual);
+            _totalScore = new ScoringSystem(actual, actual);
             CreateGroupMatches();
             CreateRound16Matches();
             CreateQuarterFinalMatches();
             CreateSemiFinalMatches();
             CreateBronseFinalMatch();
             CreateFinalMatch();
-            _userScore = new ScoringSystem(bet, actual);
-            _totalScore = new ScoringSystem(actual, actual);
         }
 
         public object Better

@@ -127,8 +127,7 @@ namespace SubmittedData
         {
             if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
             {
-                var st = ((IDictionary<String, Object>)_results)["finals"]; 
-                return ((IDictionary<String, Object>)st).ContainsKey("bronse-final");
+                return ((IDictionary<String, Object>)_results.finals).ContainsKey("bronse-final");
 		        
             } else
             {
@@ -138,16 +137,14 @@ namespace SubmittedData
 
         public string GetBronseFinalWinner()
         {
-            var st = ((IDictionary<String, Object>)_results)["finals"]; 
-            return ((IDictionary<String, Object>)st)["bronse-final"].ToString();
+            return ((IDictionary<String, Object>)_results.finals)["bronse-final"].ToString();
         }
         
         public bool HasFinal()
         {
             if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
             {
-                var st = ((IDictionary<String, Object>)_results)["finals"]; 
-                return ((IDictionary<String, Object>)st).ContainsKey("final");
+                return ((IDictionary<String, Object>)_results.finals).ContainsKey("final");
 		        
             } else
             {
@@ -157,8 +154,7 @@ namespace SubmittedData
         
         public string GetFinalWinner()
         {
-            var st = ((IDictionary<String, Object>)_results)["finals"]; 
-            return ((IDictionary<String, Object>)st)["final"].ToString();
+            return _results.finals.final.ToString();
         }
 
         #endregion
