@@ -17,4 +17,5 @@ Just started development. Proof-of-concept for WC 2014.
 - [x] Calculate individual scores
 - [x] Present sorted score list
 - [x] Make it look nice
-- [ ] Fun stats from submitted bets
+- [ ] Make it look nicer
+- [ ] Fun stats/achievments from submitted bets
