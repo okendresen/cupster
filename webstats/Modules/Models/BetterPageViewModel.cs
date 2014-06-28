@@ -51,9 +51,29 @@ namespace Modules
             get { return _userScore.GetTotal(); }
         }
 
+        public int GroupScore
+        {
+            get { return _userScore.GetStageOneMatchScore() + _userScore.GetQualifierScore(); }
+        }
+
+        public int Round16Score
+        {
+            get { return _userScore.GetRound16Score(); }
+        }
+
         public int Total
         {
             get { return _totalScore.GetTotal(); }
+        }
+
+        public int TotalGroup
+        {
+            get { return _totalScore.GetStageOneMatchScore() + _totalScore.GetQualifierScore(); }
+        }
+
+        public int TotalRound16
+        {
+            get { return _totalScore.GetRound16Score(); }
         }
 
         List<KnockoutMatch> _round16 = new List<KnockoutMatch>();

@@ -10,7 +10,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Group stage</h2>
+    <h2>Group stage (Score @Model.GroupScore of @Model.TotalGroup)</h2>
 </div>
 </section>
 <section class="row-alt">
@@ -26,7 +26,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Round of 16</h2>
+    <h2>Round of 16 (Score @Model.Round16Score of @Model.TotalRound16)</h2>
 </div>
 </section>
 <section class="row-alt">
