@@ -110,7 +110,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		}
 		
 		[Test]
-		public void TestTotal_ShouldReturnTotalPossiblePoints()
+		public void TestTotalGroup_ShouldReturnTotalPossiblePoints()
 		{
 			var tmock = new Mock<ITournament>();
 			var ar = new Results(@"[info]
@@ -120,7 +120,7 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			var better = new BetterPageViewModel(tmock.Object, ar, ar);
-			better.Total.ShouldBe(5+4+4+4+4+4);
+			better.TotalGroup.ShouldBe(5+4+4+4+4+4);
 		    
 			ar = new Results(@"[info]
 user = ""user1""
@@ -129,7 +129,7 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			better = new BetterPageViewModel(tmock.Object, ar, ar);
-			better.Total.ShouldBe(2*6+4+4+4+4);
+			better.TotalGroup.ShouldBe(2*6+4+4+4+4);
 		}
 		
 		[Test]

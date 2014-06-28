@@ -37,7 +37,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Quarter-finals</h2>
+    <h2>Quarter-finals (Score @Model.QuarterFinalScore of @Model.TotalQuarterFinal)</h2>
 </div>
 </section>
 <section class="row-alt">
@@ -48,7 +48,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Semi-finals</h2>
+    <h2>Semi-finals (Score @Model.SemiFinalScore of @Model.TotalSemiFinal)</h2>
 </div>
 </section>
 <section class="row-alt">
@@ -59,7 +59,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Bronse final</h2>
+    <h2>Bronse final (Score @Model.BronseFinalScore of @Model.TotalBronseFinal)</h2>
 </div>
 </section>
 <section class="row-alt">
@@ -70,7 +70,7 @@
 
 <section class="row">
 <div class="container">
-    <h2>Final</h2>
+    <h2>Final (Score @Model.FinalScore of @Model.TotalFinal)</h2>
 </div>
 </section>
 <section class="row-alt">

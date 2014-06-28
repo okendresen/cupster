@@ -61,6 +61,26 @@ namespace Modules
             get { return _userScore.GetRound16Score(); }
         }
 
+        public int QuarterFinalScore
+        {
+            get { return _userScore.GetQuarterFinalScore(); }
+        }
+
+        public int SemiFinalScore
+        {
+            get { return _userScore.GetSemiFinalScore(); }
+        }
+
+        public int BronseFinalScore
+        {
+            get { return _userScore.GetBronseFinalScore(); }
+        }
+
+        public int FinalScore
+        {
+            get { return _userScore.GetFinalScore(); }
+        }
+
         public int Total
         {
             get { return _totalScore.GetTotal(); }
@@ -74,6 +94,26 @@ namespace Modules
         public int TotalRound16
         {
             get { return _totalScore.GetRound16Score(); }
+        }
+
+        public int TotalQuarterFinal
+        {
+            get { return _totalScore.GetQuarterFinalScore(); }
+        }
+
+        public int TotalSemiFinal
+        {
+            get { return _totalScore.GetSemiFinalScore(); }
+        }
+
+        public int TotalBronseFinal
+        {
+            get { return _totalScore.GetBronseFinalScore(); }
+        }
+
+        public int TotalFinal
+        {
+            get { return _totalScore.GetFinalScore(); }
         }
 
         List<KnockoutMatch> _round16 = new List<KnockoutMatch>();

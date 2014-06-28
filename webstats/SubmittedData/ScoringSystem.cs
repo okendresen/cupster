@@ -31,6 +31,10 @@ namespace SubmittedData
             score += GetStageOneMatchScore();
             score += GetQualifierScore();
             score += GetRound16Score();
+            score += GetQuarterFinalScore();
+            score += GetSemiFinalScore();
+            score += GetBronseFinalScore();
+            score += GetFinalScore();
             return score;
         }
 
@@ -82,6 +86,50 @@ namespace SubmittedData
 		        if (team != "-" && Array.IndexOf(_actual.GetRound16Winners(), team) != -1)
 		            score += 8;
 		    }
+		    return score;
+		}
+
+		// 16 points per correct winner
+		public int GetQuarterFinalScore()
+		{
+		    int score = 0;
+		    foreach (var team in _user.GetQuarterFinalWinners())
+		    {
+		        if (team != "-" && Array.IndexOf(_actual.GetQuarterFinalWinners(), team) != -1)
+		            score += 16;
+		    }
+		    return score;
+		}
+
+		// 32 points per correct winner
+		public int GetSemiFinalScore()
+		{
+		    int score = 0;
+		    foreach (var team in _user.GetSemiFinalWinners())
+		    {
+		        if (team != "-" && Array.IndexOf(_actual.GetSemiFinalWinners(), team) != -1)
+		            score += 32;
+		    }
+		    return score;
+		}
+
+		// 16 points for correct winner
+		public int GetBronseFinalScore()
+		{
+		    int score = 0;
+	        if (_actual.GetBronseFinalWinner() != "-" 
+		        && (_user.GetBronseFinalWinner() == _actual.GetBronseFinalWinner()))
+	            score += 16;
+		    return score;
+		}
+
+		// 32 points for correct winner
+		public int GetFinalScore()
+		{
+		    int score = 0;
+	        if (_actual.GetFinalWinner() != "-" 
+		        && (_user.GetFinalWinner() == _actual.GetFinalWinner()))
+	            score += 32;
 		    return score;
 		}
     }

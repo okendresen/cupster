@@ -214,5 +214,105 @@ round-of-16 = [ ""Tyskland"", ""-"", ]
 		    var s = new ScoringSystem(actual, actual);
 		    s.GetRound16Score().ShouldBe(8);
 		}
+		
+		[Test]
+		public void TestGetQuarterFinalScore_ShouldReturn16PointsPerCorrectWinner()
+		{
+		    string bet = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Spania"", ""Tyskland"", ""Argentina"",]
+";
+		    string res = @"[stage-two]
+quarter-final = [ ""Brasil"",]
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetQuarterFinalScore().ShouldBe(16);
+
+		    res = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Spania"", ]
+";		                  
+		    actual = new Results(res.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetQuarterFinalScore().ShouldBe(16+16);
+
+		    res = @"[stage-two]
+quarter-final = [ ""NotATeam"", ""Spania"", ]
+";		                  
+		    actual = new Results(res.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetQuarterFinalScore().ShouldBe(16);
+		}
+
+		[Test]
+		public void TestGetQuarterFinalScore_ShouldReturnPointsForWinnersInAnyPosition()
+		{
+		    string bet = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Spania"", ""Tyskland"", ""Argentina"",]
+";
+		    string res = @"[stage-two]
+quarter-final = [ ""Tyskland"", ""Brasil"", ]
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetQuarterFinalScore().ShouldBe(16+16);
+		}
+
+		[Test]
+		public void TestGetQuarterFinalScore_ShouldNotReturnPoints_WhenActualIsDash()
+		{
+		    string res = @"[stage-two]
+quarter-final = [ ""Tyskland"", ""-"", ]
+";		                  
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(actual, actual);
+		    s.GetQuarterFinalScore().ShouldBe(16);
+		}
+		
+		[Test]
+		public void TestGetSemiFinalScore_ShouldReturn32PointsPerCorrectWinner()
+		{
+		    string bet = @"[stage-two]
+semi-final = [ ""Tyskland"", ""Argentina"",]
+";
+		    string res = @"[stage-two]
+semi-final = [ ""Argentina"", ""Tyskland"",]
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetSemiFinalScore().ShouldBe(32+32);
+		}
+
+		[Test]
+		public void TestGetBronseFinalScore_ShouldReturn16PointsForCorrectWinner()
+		{
+		    string bet = @"[finals]
+bronse-final = ""Brasil""
+";
+		    string res = @"[finals]
+bronse-final = ""Brasil""
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetBronseFinalScore().ShouldBe(16);
+		}
+
+		[Test]
+		public void TestGetFinalScore_ShouldReturn32PointsForCorrectWinner()
+		{
+		    string bet = @"[finals]
+final = ""Tyskland""
+";
+		    string res = @"[finals]
+final = ""Tyskland""
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetFinalScore().ShouldBe(32);
+		}
 	}
 }
