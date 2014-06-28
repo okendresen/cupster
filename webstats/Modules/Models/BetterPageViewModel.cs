@@ -108,7 +108,7 @@ namespace Modules
                 k.SelectedWinner = _bet.GetRound16Winners()[i1].ToString();
             k.ActualMatch = _results.GetStageOne().winners[i1][0] + " vs. " + _results.GetStageOne().winners[i2][1];
             if (_results.HasRound16())
-                k.SelectedWinner = _results.GetRound16Winners()[i1].ToString();
+                k.ActualWinner = _results.GetRound16Winners()[i1].ToString();
             return k;
         }
 
@@ -134,7 +134,7 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetRound16Winners()[i1] + " vs. " + _results.GetRound16Winners()[i2];
                 if (_results.HasQuarterFinals())
-                    k.SelectedWinner = _results.GetQuarterFinalWinners()[qw].ToString();
+                    k.ActualWinner = _results.GetQuarterFinalWinners()[qw].ToString();
             }
             return k;
         }
@@ -160,7 +160,7 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetQuarterFinalWinners()[i1] + " vs. " + _results.GetQuarterFinalWinners()[i2];
                 if (_results.HasSemiFinals())
-                    k.SelectedWinner = _results.GetSemiFinalWinners()[i1].ToString();
+                    k.ActualWinner = _results.GetSemiFinalWinners()[i1].ToString();
             }
             return k;
         }
@@ -180,7 +180,7 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetBronseFinalists()[0] + " vs. " + _results.GetBronseFinalists()[1];
                 if (_results.HasBronseFinal())
-                    k.SelectedWinner = _results.GetBronseFinalWinner();
+                    k.ActualWinner = _results.GetBronseFinalWinner();
             }
             _bronseFinal.Add(k);
 		}
@@ -200,7 +200,7 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetSemiFinalWinners()[0] + " vs. " + _results.GetSemiFinalWinners()[1];
                 if (_results.HasFinal())
-                    k.SelectedWinner = _results.GetFinalWinner();
+                    k.ActualWinner = _results.GetFinalWinner();
             }
             _final.Add(k);
 		}
