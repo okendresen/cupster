@@ -6,5 +6,11 @@
 </head>
 <body>
 @Section['Content']
+
+<footer>
+<div class="container">
+&copy; 2014 Lars Magnus Nordeide
+</div>
+</footer>
 </body>
 </html>

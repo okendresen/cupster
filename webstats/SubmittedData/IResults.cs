@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 
 namespace SubmittedData
 {
@@ -19,5 +20,16 @@ namespace SubmittedData
 
 		dynamic GetStageOne();
 		dynamic GetInfo();
-	}
+		bool HasRound16();
+		dynamic GetRound16Winners();
+		bool HasQuarterFinals();
+		dynamic GetQuarterFinalWinners();
+		bool HasSemiFinals();
+		dynamic GetSemiFinalWinners();
+		List<string> GetBronseFinalists();
+		bool HasBronseFinal();
+		string GetBronseFinalWinner();
+		bool HasFinal();
+		string GetFinalWinner();
+    }
 }

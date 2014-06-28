@@ -13,13 +13,14 @@ def pairwise(iterable):
 
 class Tournament(object):
 
-    def __init__(self, results):
+    def __init__(self, results, isResults):
         self.groupStage = []
         self.results = results
         self.stageOne = []
         self.stageResults = []
         self.tally = []
         self.stage_two_names = {8: 'round-of-16', 4: 'quarter-final', 2: 'semi-final'}
+        self.isResults = isResults
 
     def load(self, toml_config):
         self.config = toml.loads(toml_config)
@@ -178,9 +179,16 @@ class Tournament(object):
                     break
             except ValueError:
                 # not an integer
-                continue
+                if self.isResults:
+                    ch = 0
+                    break
+                else:
+                    continue
 
-        return teams[ch-1]
+        if ch in [1, 2]:
+            return teams[ch-1]
+        else:
+            return '-'
 
     def resolve_winner(self, winner):
         res = ''
@@ -346,7 +354,7 @@ def main():
         results.load()
 
     # Load tournament config
-    tr = Tournament(results)
+    tr = Tournament(results, args.results)
     with open(args.tournament_file) as f:
         tr.load(f.read())
 

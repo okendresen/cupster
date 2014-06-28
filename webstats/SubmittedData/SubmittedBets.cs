@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Linq;
 using Toml;
 
 namespace SubmittedData
@@ -78,37 +79,8 @@ namespace SubmittedData
 
 		public IResults GetSingleBet(string user)
 		{
-			return new UserResults(_submitted[user]);
+			return new Results(_submitted[user]);
 		}
 		
-		
-		public class UserResults : IResults
-		{
-			public UserResults(dynamic results)
-			{
-				_results = results;
-			}
-
-			dynamic _results;
-			
-			#region IResults implementation
-
-			public void Load(string file)
-			{
-				throw new NotImplementedException();
-			}
-
-			public dynamic GetInfo()
-			{
-				return _results.info;
-			}
-			
-			public dynamic GetStageOne()
-			{
-				return ((IDictionary<String, Object>)_results)["stage-one"];
-			}
-
-			#endregion
-		}
 	}
 }

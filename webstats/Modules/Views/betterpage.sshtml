@@ -7,15 +7,75 @@
         <p>Score @Model.Score of @Model.Total</p>
     </div>
 </header>
+
+<section class="row">
+<div class="container">
+    <h2>Group stage (Score @Model.GroupScore of @Model.TotalGroup)</h2>
+</div>
+</section>
 <section class="row-alt">
 <div class="container">
-    <h2>Stage one matches</h2>
     @Each.Groups
     <div class="matches">
         <h4>@Current.Name</h4>
         @Current.MatchesAsHtml
     </div>
     @EndEach
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Round of 16 (Score @Model.Round16Score of @Model.TotalRound16)</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.Round16]
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Quarter-finals (Score @Model.QuarterFinalScore of @Model.TotalQuarterFinal)</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.QuarterFinals]
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Semi-finals (Score @Model.SemiFinalScore of @Model.TotalSemiFinal)</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.SemiFinals]
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Bronse final (Score @Model.BronseFinalScore of @Model.TotalBronseFinal)</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.BronseFinal]
+</div>
+</section>
+
+<section class="row">
+<div class="container">
+    <h2>Final (Score @Model.FinalScore of @Model.TotalFinal)</h2>
+</div>
+</section>
+<section class="row-alt">
+<div class="container">
+    @Partial['final.sshtml', Model.Final]
 </div>
 </section>
 @EndSection

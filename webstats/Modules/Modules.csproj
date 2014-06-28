@@ -65,6 +65,9 @@
     <None Include="Views\betters.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\final.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\frontpage.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

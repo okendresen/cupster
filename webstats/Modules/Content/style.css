@@ -135,6 +135,11 @@ header, h1 {
     color: #fff;
 }
 
+footer {
+    color: #EAEAEA;
+    font-size: 12px;
+}
+
 .row {
     background: #f0f0f0;
     padding: 15px 0 15px 0;
