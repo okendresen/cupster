@@ -10,6 +10,7 @@ using System;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
+using Sprache;
 using Toml;
 
 namespace SubmittedData.Test
@@ -157,6 +158,61 @@ winners = [ [ ""-"", ""-"",], ]
 		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(actual, actual);
 		    s.GetQualifierScore().ShouldBe(0);
+		}
+		
+		[Test]
+		public void TestGetRound16Score_ShouldReturn8PointsPerCorrectWinner()
+		{
+		    string bet = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Spania"", ""England"", ""Italia"", ""Nigeria"", ""Argentina"", ""Tyskland"", ""Portugal"",]
+";
+		    string res = @"[stage-two]
+round-of-16 = [ ""Brasil"",]
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetRound16Score().ShouldBe(8);
+
+		    res = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Spania"", ]
+";		                  
+		    actual = new Results(res.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetRound16Score().ShouldBe(16);
+
+		    res = @"[stage-two]
+round-of-16 = [ ""NotATeam"", ""Spania"", ]
+";		                  
+		    actual = new Results(res.ParseAsToml());
+		    s = new ScoringSystem(user, actual);
+		    s.GetRound16Score().ShouldBe(8);
+		}
+
+		[Test]
+		public void TestGetRound16Score_ShouldReturnPointsForWinnersInAnyPosition()
+		{
+		    string bet = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Spania"", ""England"", ""Italia"", ""Nigeria"", ""Argentina"", ""Tyskland"", ""Portugal"",]
+";
+		    string res = @"[stage-two]
+round-of-16 = [ ""Tyskland"", ""Brasil"", ]
+";		                  
+		    var user = new Results(bet.ParseAsToml());
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(user, actual);
+		    s.GetRound16Score().ShouldBe(16);
+		}
+
+		[Test]
+		public void TestGetRound16Score_ShouldNotReturnPoints_WhenActualIsDash()
+		{
+		    string res = @"[stage-two]
+round-of-16 = [ ""Tyskland"", ""-"", ]
+";		                  
+		    var actual = new Results(res.ParseAsToml());
+		    var s = new ScoringSystem(actual, actual);
+		    s.GetRound16Score().ShouldBe(8);
 		}
 	}
 }

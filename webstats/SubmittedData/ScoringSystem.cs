@@ -30,9 +30,11 @@ namespace SubmittedData
             int score = 0;
             score += GetStageOneMatchScore();
             score += GetQualifierScore();
+            score += GetRound16Score();
             return score;
         }
 
+        // 1 point per correct match outcome (win/loss/draw)
         public int GetStageOneMatchScore()
         {
             int score = 0;
@@ -48,6 +50,8 @@ namespace SubmittedData
             return score;
         }
 
+        // 2 points per correct qualifier
+        // 2 points per correct position (winner/runner-up)
 		public int GetQualifierScore()
 		{
 		    int score = 0;
@@ -65,6 +69,18 @@ namespace SubmittedData
 		                score += 2;
 		        }
 		        
+		    }
+		    return score;
+		}
+
+		// 8 points per correct winner 
+		public int GetRound16Score()
+		{
+		    int score = 0;
+		    foreach (var team in _user.GetRound16Winners())
+		    {
+		        if (team != "-" && Array.IndexOf(_actual.GetRound16Winners(), team) != -1)
+		            score += 8;
 		    }
 		    return score;
 		}
