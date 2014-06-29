@@ -150,8 +150,23 @@ namespace Modules
 			get { return _final; }
 			private set { _final = value; }
 		}
-		
-        void CreateRound16Matches()
+
+		string GetSelectedWinnerClass(string team, object[] winners)
+		{
+		    if (Array.IndexOf(winners, team) != -1)
+		        return "correct";
+		    else
+		        return "normal";
+		}
+		string GetSelectedWinnerClass(string team, string winner)
+		{
+		    if (winner.Equals(team))
+		        return "correct";
+		    else
+		        return "normal";
+		}
+
+		void CreateRound16Matches()
         {
             for (int i = 0; i < _bet.GetStageOne().winners.Length; i += 2)
             {
@@ -168,7 +183,10 @@ namespace Modules
                 k.SelectedWinner = _bet.GetRound16Winners()[i1].ToString();
             k.ActualMatch = _results.GetStageOne().winners[i1][0] + " vs. " + _results.GetStageOne().winners[i2][1];
             if (_results.HasRound16())
+            {
                 k.ActualWinner = _results.GetRound16Winners()[i1].ToString();
+                k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetRound16Winners());
+            }
             return k;
         }
 
@@ -194,7 +212,10 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetRound16Winners()[i1] + " vs. " + _results.GetRound16Winners()[i2];
                 if (_results.HasQuarterFinals())
+                {
                     k.ActualWinner = _results.GetQuarterFinalWinners()[qw].ToString();
+                    k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetQuarterFinalWinners());
+                }   
             }
             return k;
         }
@@ -220,7 +241,10 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetQuarterFinalWinners()[i1] + " vs. " + _results.GetQuarterFinalWinners()[i2];
                 if (_results.HasSemiFinals())
+                {
                     k.ActualWinner = _results.GetSemiFinalWinners()[i1].ToString();
+                    k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetSemiFinalWinners());
+                }
             }
             return k;
         }
@@ -240,7 +264,10 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetBronseFinalists()[0] + " vs. " + _results.GetBronseFinalists()[1];
                 if (_results.HasBronseFinal())
+                {
                     k.ActualWinner = _results.GetBronseFinalWinner();
+                    k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetBronseFinalWinner());
+                }
             }
             _bronseFinal.Add(k);
 		}
@@ -260,7 +287,10 @@ namespace Modules
             {
                 k.ActualMatch = _results.GetSemiFinalWinners()[0] + " vs. " + _results.GetSemiFinalWinners()[1];
                 if (_results.HasFinal())
+                {
                     k.ActualWinner = _results.GetFinalWinner();
+                    k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetFinalWinner());
+                }
             }
             _final.Add(k);
 		}
@@ -418,6 +448,7 @@ namespace Modules
             public string SelectedWinner { get; set; }
             public string ActualMatch { get; set; }
             public string ActualWinner { get; set; }
+            public string CellClass { get; set; }
         }
 
     }

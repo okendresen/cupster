@@ -4,7 +4,7 @@
     <tr>
     <td><b>Selected</b></td>
     <td>@Current.SelectedMatch</td>
-    <td>@Current.SelectedWinner</td>
+    <td class="@Current.CellClass">@Current.SelectedWinner</td>
     </tr>
     <tr>
     <td><b>Actual</b></td>
