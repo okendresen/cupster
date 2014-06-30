@@ -111,7 +111,7 @@ namespace Modules
 		{
 		    public string Name { get; set; }
 		    public int Score { get; set; }
-		    public List<string> Achievements;
+		    public List<AchievementSystem.Achievement> Achievements;
 		    public string AchievementsAsHtml 
 		    {
 		        get 
@@ -119,7 +119,7 @@ namespace Modules
 		            StringBuilder s = new StringBuilder();
 		            foreach (var ach in Achievements) 
 		            {
-		                s.AppendFormat("{0} ", ach);
+		                s.AppendFormat("<img src=\"Content/{0}.png\" title=\"{1}\">", ach.Image, ach.Title);
 		            }
 		            return s.ToString();
 		        }

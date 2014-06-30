@@ -14,13 +14,11 @@ namespace SubmittedData
     /// <summary>
     /// Description of AchievementSystem.
     /// </summary>
-    public
-        class
-        AchievementSystem
+    public class AchievementSystem
     {
         IResults _user;
         IResults _actual;
-        List<string> _achievements = new List<string>();
+        List<Achievement> _achievements = new List<Achievement>();
 		
         public AchievementSystem(dynamic user, dynamic actual)
         {
@@ -36,7 +34,8 @@ namespace SubmittedData
                 if ((_actual.GetStageOne().winners[i][0].Equals(_user.GetStageOne().winners[i][0]))
                      && (_actual.GetStageOne().winners[i][1].Equals(_user.GetStageOne().winners[i][1])))
                 {
-                    _achievements.Add("double-rainbow");
+                    _achievements.Add(new Achievement() { Image="double-rainbow", 
+                                          Title="Double rainbow: At least one group with both qualifiers correct" });
                     break;
                 }
 		                 
@@ -47,9 +46,15 @@ namespace SubmittedData
         {
         }
 
-		public List<string> GetAchievements()
+		public List<Achievement> GetAchievements()
 		{
 		    return _achievements;
+		}
+		
+		public class Achievement
+		{
+		    public string Image { get; set; }
+		    public string Title { get; set; }
 		}
     }
 }

@@ -55,6 +55,9 @@
     <Compile Include="IndexPageModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\double-rainbow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
