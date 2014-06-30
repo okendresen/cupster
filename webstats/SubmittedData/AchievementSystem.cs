@@ -20,40 +20,36 @@ namespace SubmittedData
     {
         IResults _user;
         IResults _actual;
+        List<string> _achievements = new List<string>();
 		
         public AchievementSystem(dynamic user, dynamic actual)
         {
             _user = user;
             _actual = actual;
+            CheckDoubleRainbow();
         }
 		
-        public bool HasDoubleRainbow()
+        void CheckDoubleRainbow()
         {
-            bool found = false;
             for (int i = 0; i < _user.GetStageOne().winners.Length; i++)
             {
                 if ((_actual.GetStageOne().winners[i][0].Equals(_user.GetStageOne().winners[i][0]))
                      && (_actual.GetStageOne().winners[i][1].Equals(_user.GetStageOne().winners[i][1])))
                 {
-                    found = true;
+                    _achievements.Add("double-rainbow");
                     break;
                 }
 		                 
             }
-            return found;
         }
 
-        public bool GetPerfectGroup()
+        void CheckPerfectGroup()
         {
-            return false;
         }
 
 		public List<string> GetAchievements()
 		{
-		    List<string> ach = new List<string>();
-		    if (HasDoubleRainbow())
-		        ach.Add("double-rainbow");
-		    return ach;
+		    return _achievements;
 		}
     }
 }

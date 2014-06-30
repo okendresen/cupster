@@ -33,11 +33,10 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-            bool p = a.GetPerfectGroup();
         }
         
         [Test]
-        public void TestHasDoubleRainbow_ReturnsFalse_WhenNoGroupWithBothQualifiers()
+        public void TestGetAchievements_ShouldNotContainDoubleRainbow_WhenNoGroupWithBothQualifiers()
         {
 		    string userBet = @"[stage-one]
 winners = [ [ ""Germany"", ""Algerie"",], ]
@@ -49,11 +48,11 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-            a.HasDoubleRainbow().ShouldBe(false);
+		    a.GetAchievements().ShouldNotContain("double-rainbow");
         }
 
         [Test]
-        public void TestHasDoubleRainbow_ReturnsTrue_WhenAtLeastOneGroupWithBothQualifiers()
+        public void TestGetAchievments_ShouldContainDoubleRainbow_WhenAtLeastOneGroupWithBothQualifiers()
         {
 		    string userBet = @"[stage-one]
 winners = [ [ ""Brasil"", ""Algerie"",], [ ""Spania"", ""Nederland"",], ]
@@ -65,7 +64,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-		    a.HasDoubleRainbow().ShouldBe(true);
+		    a.GetAchievements().ShouldContain("double-rainbow");
         }
     }
 }
