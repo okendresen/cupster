@@ -3,11 +3,13 @@
 <tr>
     <th>Name</th>
     <th>Score</th>
+    <th>Achievements</th>
 </tr>
 @Each.SortedBetters
 <tr>
     <td><a href="@Current.Name">@Current.Name</a></td>
     <td>@Current.Score</td>
+    <td>@Current.AchievementsAsHtml</td>
 </tr>
 @EndEach
 </table>
