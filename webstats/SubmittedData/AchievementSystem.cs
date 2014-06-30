@@ -35,7 +35,7 @@ namespace SubmittedData
                      && (_actual.GetStageOne().winners[i][1].Equals(_user.GetStageOne().winners[i][1])))
                 {
                     _achievements.Add(new Achievement() { Image="double-rainbow", 
-                                          Title="Double rainbow: At least one group with both qualifiers correct" });
+                                          Title="Double rainbow: Both qualifiers correct in at least one group" });
                     break;
                 }
 		                 
