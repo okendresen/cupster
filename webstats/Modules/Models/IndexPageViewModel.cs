@@ -119,7 +119,7 @@ namespace Modules
 		            StringBuilder s = new StringBuilder();
 		            foreach (var ach in Achievements) 
 		            {
-		                s.AppendFormat("<img src=\"Content/{0}.png\" title=\"{1}\">", ach.Image, ach.Title);
+		                s.AppendFormat("<img src=\"Content/{0}\" title=\"{1}\">", ach.Image, ach.Title);
 		            }
 		            return s.ToString();
 		        }

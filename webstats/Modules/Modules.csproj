@@ -55,7 +55,13 @@
     <Compile Include="IndexPageModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\complete-miss.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\double-rainbow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\not-even.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\style.css">

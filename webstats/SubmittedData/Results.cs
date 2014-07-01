@@ -51,6 +51,10 @@ namespace SubmittedData
             _results = text.ParseAsToml();
         }
 
+		public bool HasStageOne()
+		{
+			return ((IDictionary<String, Object>)_results).ContainsKey("stage-one");
+		}
         public dynamic GetStageOne()
         {
             return ((IDictionary<String, Object>)_results)["stage-one"];
@@ -61,6 +65,11 @@ namespace SubmittedData
             return _results.info;
         }
 
+		public bool HasStageTwo()
+		{
+			return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
+		}
+		
         public bool HasRound16()
         {
             return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");

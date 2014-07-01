@@ -18,8 +18,10 @@ namespace SubmittedData
 	{
 		void Load(string file);
 
+		bool HasStageOne();
 		dynamic GetStageOne();
 		dynamic GetInfo();
+		bool HasStageTwo();
 		bool HasRound16();
 		dynamic GetRound16Winners();
 		bool HasQuarterFinals();

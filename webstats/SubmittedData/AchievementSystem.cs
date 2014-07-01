@@ -15,6 +15,7 @@ namespace SubmittedData
     {
         DoubleRainbow,
         NotEvenClose,
+        CompleteMiss,
     }
         
     /// <summary>
@@ -31,6 +32,8 @@ namespace SubmittedData
             _actual = actual;
             CreateAchievements();
             CheckDoubleRainbow();
+            CheckNotEvenClose();
+            CheckCompleteMiss();
         }
 
         List<Achievement> _achievements = new List<Achievement>();
@@ -51,18 +54,66 @@ namespace SubmittedData
         
         void CheckDoubleRainbow()
         {
-            for (int i = 0; i < _user.GetStageOne().winners.Length; i++)
+            if (_user.HasStageOne())
             {
-                if ((_actual.GetStageOne().winners[i][0].Equals(_user.GetStageOne().winners[i][0]))
-                    && (_actual.GetStageOne().winners[i][1].Equals(_user.GetStageOne().winners[i][1])))
+                for (int i = 0; i < _user.GetStageOne().winners.Length; i++)
                 {
-                    _achievements.Add(_achievementsRepo[AchievementTypes.DoubleRainbow]);
-                    break;
-                }
+                    if ((_actual.GetStageOne().winners[i][0].Equals(_user.GetStageOne().winners[i][0]))
+                        && (_actual.GetStageOne().winners[i][1].Equals(_user.GetStageOne().winners[i][1])))
+                    {
+                        _achievements.Add(_achievementsRepo[AchievementTypes.DoubleRainbow]);
+                        break;
+                    }
 		                 
+                }
             }
         }
 
+        void CheckNotEvenClose()
+        {
+            if (_user.HasSemiFinals() && _actual.HasStageTwo())
+            {
+                bool found = false;
+                var finalists = _user.GetSemiFinalWinners();
+                foreach (var pair in _actual.GetStageOne().winners)
+                {
+                    if (Array.IndexOf(pair, finalists[0]) != -1 || Array.IndexOf(pair, finalists[1]) != -1)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    _achievements.Add(_achievementsRepo[AchievementTypes.NotEvenClose]);
+                }
+            }
+        }
+
+        void CheckCompleteMiss()
+        {
+            if (_user.HasStageOne() && _actual.HasStageOne())
+            {
+                for (int i = 0; i < _user.GetStageOne().results.Length; i++)
+                {
+                    bool found = false;
+                    for (int j = 0; j < _user.GetStageOne().results[i].Length; j++)
+                    {
+                        var actual = _actual.GetStageOne().results[i][j].ToLower();
+                        if (_user.GetStageOne().results[i][j].ToLower() == actual)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        _achievements.Add(_achievementsRepo[AchievementTypes.CompleteMiss]);
+                        break;
+                    }
+                }		        
+            }
+        }
         void CheckPerfectGroup()
         {
         }
@@ -71,10 +122,19 @@ namespace SubmittedData
         {
             _achievementsRepo.Add(AchievementTypes.DoubleRainbow, 
                 new Achievement() {
-                    Image = "double-rainbow", 
+                    Image = "double-rainbow.png", 
                     Title = "Double rainbow: Both qualifiers correct in at least one group"
                 });
-            
+            _achievementsRepo.Add(AchievementTypes.NotEvenClose,
+                new Achievement() {
+                    Image = "not-even.png",
+                    Title = "Not even close: Both finalists knocked out in the group round"
+                });
+            _achievementsRepo.Add(AchievementTypes.CompleteMiss,
+                new Achievement() {
+                    Image = "complete-miss.jpg",
+                    Title = "Complete miss: Group with no correct matches"
+                });
         }
 		
 		
