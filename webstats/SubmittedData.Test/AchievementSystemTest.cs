@@ -48,7 +48,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-		    //a.GetAchievements().ShouldNotContain("double-rainbow");
+		    a.Achievements.ShouldBeEmpty();
         }
 
         [Test]
@@ -64,7 +64,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-		    //a.GetAchievements().ShouldContain("double-rainbow");
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.DoubleRainbow]);
         }
     }
 }

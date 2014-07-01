@@ -60,7 +60,7 @@ namespace Modules
 		        var score = new ScoringSystem(sb.GetSingleBet(better), actual);
 		        var bet = new Better() { Name = better, Score = score.GetTotal() };
 		        var achievements = new AchievementSystem(sb.GetSingleBet(better), actual);
-		        bet.Achievements = achievements.GetAchievements();
+		        bet.Achievements = achievements.Achievements;
 		        Betters.Add(bet);
 		    }
 		}
