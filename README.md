@@ -12,7 +12,8 @@ Just started development. Proof-of-concept for WC 2014.
 - [x] Printable score card for each submitted bet
 - [ ] Fetch results 
     - [x] Simple daily input, or
-    - [ ] Fetch updates from web service
+    - [ ] Fetch updates from web service.  
+    REST API for results http://www.kimonolabs.com/worldcup/explorer
 - [ ] Get files and paths from app config
 - [x] Calculate individual scores
 - [x] Present sorted score list
