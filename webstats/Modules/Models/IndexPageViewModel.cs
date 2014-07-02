@@ -57,9 +57,11 @@ namespace Modules
 		{
 		    foreach (var better in betters)
 		    {
-		        var s = new ScoringSystem(sb.GetSingleBet(better), actual);
-		        var b = new Better() { Name = better, Score = s.GetTotal() };
-		        Betters.Add(b);
+		        var score = new ScoringSystem(sb.GetSingleBet(better), actual);
+		        var bet = new Better() { Name = better, Score = score.GetTotal() };
+		        var achievements = new AchievementSystem(sb.GetSingleBet(better), actual);
+		        bet.Achievements = achievements.Achievements;
+		        Betters.Add(bet);
 		    }
 		}
 		private void CreateGroups()
@@ -109,6 +111,19 @@ namespace Modules
 		{
 		    public string Name { get; set; }
 		    public int Score { get; set; }
+		    public List<AchievementSystem.Achievement> Achievements;
+		    public string AchievementsAsHtml 
+		    {
+		        get 
+		        {
+		            StringBuilder s = new StringBuilder();
+		            foreach (var ach in Achievements) 
+		            {
+		                s.AppendFormat("<img src=\"Content/{0}\" title=\"{1}\">", ach.Image, ach.Title);
+		            }
+		            return s.ToString();
+		        }
+		    }
 		}
 	}
 }

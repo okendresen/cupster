@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementSystemTest.cs" />
     <Compile Include="ResultsTest.cs" />
     <Compile Include="ScoringSystemTest.cs" />
     <Compile Include="SubmittedBetsTest.cs" />

@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementSystem.cs" />
     <Compile Include="Results.cs" />
     <Compile Include="IResults.cs" />
     <Compile Include="ISubmittedBets.cs" />
