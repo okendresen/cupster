@@ -15,31 +15,31 @@ using SubmittedData;
 
 namespace Modules
 {
-	/// <summary>
-	/// Description of Bootstrapper.
-	/// </summary>
-	public class Bootstrapper : DefaultNancyBootstrapper
-	{
-		protected override void ConfigureApplicationContainer(TinyIoCContainer container)
-		{
-		    string dataPath = ConfigurationManager.AppSettings["DataPath"].ToString();
-		    string tournamentFile = ConfigurationManager.AppSettings["TournamentFile"].ToString();
-		    string resultsFile = ConfigurationManager.AppSettings["ResultsFile"].ToString();
+    /// <summary>
+    /// Description of Bootstrapper.
+    /// </summary>
+    public class Bootstrapper : DefaultNancyBootstrapper
+    {
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        {
+            string dataPath = ConfigurationManager.AppSettings["DataPath"].ToString();
+            string tournamentFile = ConfigurationManager.AppSettings["TournamentFile"].ToString();
+            string resultsFile = ConfigurationManager.AppSettings["ResultsFile"].ToString();
 		    
-			// Register our app dependency as a normal singletons
-			var tournament = new Tournament();
-			tournament.Load(Path.Combine(dataPath, tournamentFile));
-			container.Register<ITournament, Tournament>(tournament);
+            // Register our app dependency as a normal singletons
+            var tournament = new Tournament();
+            tournament.Load(Path.Combine(dataPath, tournamentFile));
+            container.Register<ITournament, Tournament>(tournament);
 			
-			var bets = new SubmittedBets();
-			bets.TournamentFile = tournamentFile;
-			bets.ActualResultsFile = resultsFile;
-			bets.LoadAll(dataPath);
-			container.Register<ISubmittedBets, SubmittedBets>(bets);
+            var bets = new SubmittedBets();
+            bets.TournamentFile = tournamentFile;
+            bets.ActualResultsFile = resultsFile;
+            bets.LoadAll(dataPath);
+            container.Register<ISubmittedBets, SubmittedBets>(bets);
 
-			var results = new Results();
-			results.Load(Path.Combine(dataPath, resultsFile));
-			container.Register<IResults, Results>(results);
-		}
-	}
+            var results = new Results();
+            results.Load(Path.Combine(dataPath, resultsFile));
+            container.Register<IResults, Results>(results);
+        }
+    }
 }
