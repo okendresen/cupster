@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Configuration;
+using System.IO;
 using Nancy;
 using Nancy.TinyIoc;
 using SubmittedData;
@@ -20,19 +22,23 @@ namespace Modules
 	{
 		protected override void ConfigureApplicationContainer(TinyIoCContainer container)
 		{
+		    string dataPath = ConfigurationManager.AppSettings["DataPath"].ToString();
+		    string tournamentFile = ConfigurationManager.AppSettings["TournamentFile"].ToString();
+		    string resultsFile = ConfigurationManager.AppSettings["ResultsFile"].ToString();
+		    
 			// Register our app dependency as a normal singletons
 			var tournament = new Tournament();
-			tournament.Load(@"../../../../data/vm2014.toml");
+			tournament.Load(Path.Combine(dataPath, tournamentFile));
 			container.Register<ITournament, Tournament>(tournament);
 			
 			var bets = new SubmittedBets();
-			bets.TournamentFile = "vm2014.toml";
-			bets.ActualResultsFile = "vm2014-actual.toml";
-			bets.LoadAll(@"../../../../data");
+			bets.TournamentFile = tournamentFile;
+			bets.ActualResultsFile = resultsFile;
+			bets.LoadAll(dataPath);
 			container.Register<ISubmittedBets, SubmittedBets>(bets);
 
 			var results = new Results();
-			results.Load(@"../../../../data/vm2014-actual.toml");
+			results.Load(Path.Combine(dataPath, resultsFile));
 			container.Register<IResults, Results>(results);
 		}
 	}
