@@ -22,17 +22,17 @@ namespace Modules
 		{
 			// Register our app dependency as a normal singletons
 			var tournament = new Tournament();
-			tournament.Load(@"..\..\..\..\data\vm2014.toml");
+			tournament.Load(@"../../../../data/vm2014.toml");
 			container.Register<ITournament, Tournament>(tournament);
 			
 			var bets = new SubmittedBets();
 			bets.TournamentFile = "vm2014.toml";
 			bets.ActualResultsFile = "vm2014-actual.toml";
-			bets.LoadAll(@"..\..\..\..\data");
+			bets.LoadAll(@"../../../../data");
 			container.Register<ISubmittedBets, SubmittedBets>(bets);
 
 			var results = new Results();
-			results.Load(@"..\..\..\..\data\vm2014-actual.toml");
+			results.Load(@"../../../../data\vm2014-actual.toml");
 			container.Register<IResults, Results>(results);
 		}
 	}
