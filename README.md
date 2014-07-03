@@ -20,3 +20,4 @@ Just started development. Proof-of-concept for WC 2014.
 - [x] Make it look nice
 - [ ] Make it look nicer
 - [ ] Fun stats/achievments from submitted bets
+- [ ] Make it work on different screen/window sizes
