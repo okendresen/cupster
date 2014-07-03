@@ -32,7 +32,7 @@ namespace Modules
 			container.Register<ISubmittedBets, SubmittedBets>(bets);
 
 			var results = new Results();
-			results.Load(@"../../../../data\vm2014-actual.toml");
+			results.Load(@"../../../../data/vm2014-actual.toml");
 			container.Register<IResults, Results>(results);
 		}
 	}
