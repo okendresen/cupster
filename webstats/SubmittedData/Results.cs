@@ -49,8 +49,15 @@ namespace SubmittedData
         {
             string text = _fileSystem.File.ReadAllText(file);
             _results = text.ParseAsToml();
+            _timeStamp = _fileSystem.File.GetLastWriteTime(file).ToString();
         }
 
+        string _timeStamp;
+		public string GetTimeStamp()
+		{
+		    return _timeStamp;
+		}
+		
 		public bool HasStageOne()
 		{
 			return ((IDictionary<String, Object>)_results).ContainsKey("stage-one");

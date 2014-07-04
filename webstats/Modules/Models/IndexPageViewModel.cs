@@ -23,6 +23,7 @@ namespace Modules
 			_tournament = t;
 			CreateGroups();
 			CreateBetterlist(sb.GetBetters(), sb, actual);
+			TimeStamp = actual.GetTimeStamp();
 		}
 
 		public string PageTitle
@@ -52,6 +53,8 @@ namespace Modules
         {
             get { return _betters.OrderByDescending(b => b.Score).ToList(); }
         }
+        
+        public string TimeStamp { get; private set; }
 
 		void CreateBetterlist(List<string> betters, ISubmittedBets sb, IResults actual)
 		{

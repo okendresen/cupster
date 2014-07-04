@@ -18,6 +18,8 @@ namespace SubmittedData
 	{
 		void Load(string file);
 
+		string GetTimeStamp();
+		
 		bool HasStageOne();
 		dynamic GetStageOne();
 		dynamic GetInfo();
