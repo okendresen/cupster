@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Abstractions;
 using System.Linq;
 using Toml;
@@ -49,7 +50,7 @@ namespace SubmittedData
         {
             string text = _fileSystem.File.ReadAllText(file);
             _results = text.ParseAsToml();
-            _timeStamp = _fileSystem.File.GetLastWriteTime(file).ToString();
+            _timeStamp = _fileSystem.File.GetLastWriteTime(file).ToString("F", CultureInfo.InvariantCulture);
         }
 
         string _timeStamp;
