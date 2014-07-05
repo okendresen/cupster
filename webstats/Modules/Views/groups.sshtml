@@ -1,6 +1,8 @@
+<div class="row">
 @Each
-    <div class="groups">
+    <div class="col-sm-2">
         <h4>@Current.Name</h4>
         @Current.TeamsAsHtml
     </div>
 @EndEach
+</div>
