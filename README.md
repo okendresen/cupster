@@ -3,7 +3,7 @@ cupster
 
 Simple betting and score management system. 
 
-Just started development. Proof-of-concept for WC 2014.
+Proof-of-concept for WC 2014.  Test server at http://cupster.net/
 
 ###TODO
 - [x] Betting program to collect and store bets
