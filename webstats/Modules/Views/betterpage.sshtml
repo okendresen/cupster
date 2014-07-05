@@ -7,9 +7,7 @@
             <h2>Submitted bet from @Model.Better</h2>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-            <!-- <h3><span class="label label-success">-->
                 Score @Model.Score of @Model.Total
-            <!-- </span></h3>-->
                 </div>
             </div>
         </div>
@@ -21,27 +19,27 @@
         <h3>Group stage (Score @Model.GroupScore of @Model.TotalGroup)</h3>
     </div>
 </div>
-<section class="row-alt">
 <div class="container">
+    <div class="row">
     @Each.Groups
-    <div class="matches">
+    <div class="col-sm-4">
         <h4>@Current.Name</h4>
-        @Current.MatchesAsHtml
+        <table class="table table-bordered table-condensed">
+            @Current.MatchesAsHtml
+        </table>
     </div>
     @EndEach
+    </div>
 </div>
-</section>
 
 <div class="bg-info">
 <div class="container">
     <h3>Round of 16 (Score @Model.Round16Score of @Model.TotalRound16)</h3>
 </div>
 </div>
-<section class="row-alt">
 <div class="container">
     @Partial['final.sshtml', Model.Round16]
 </div>
-</section>
 
 <div class="bg-info">
 <div class="container">
