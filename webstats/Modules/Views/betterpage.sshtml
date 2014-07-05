@@ -1,12 +1,20 @@
 @Master['MasterPage']
 
 @Section['Content']
-<header  class="container">
-    <h1>Submitted bet from @Model.Better</h1>
-    <div class="score">
-        <p>Score @Model.Score of @Model.Total</p>
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <h2>Submitted bet from @Model.Better</h2>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+            <!-- <h3><span class="label label-success">-->
+                Score @Model.Score of @Model.Total
+            <!-- </span></h3>-->
+                </div>
+            </div>
+        </div>
     </div>
-</header>
+</div>
 
 <section class="row">
 <div class="container">
