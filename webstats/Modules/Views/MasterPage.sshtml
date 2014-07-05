@@ -7,17 +7,17 @@
     <title>@Model.PageTitle - cupster</title>
 
     <!-- Bootstrap -->
-    <link href="Content/bootstrap.min.css" rel="stylesheet">
-    <link href="Content/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="Content/bootstrap.spacelab.min.css" rel="stylesheet">
 </head>
 <body>
     @Section['Content']
 
-    <footer>
-    <div class="container">
-    &copy; 2014 Lars Magnus Nordeide
+    <!-- <div class="navbar navbar-default" role="navigation"> -->
+    <div class="panel panel-default">
+        <div class="panel-footer">
+        <small>&copy; 2014 Lars Magnus Nordeide</small>
+        </div>
     </div>
-    </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
