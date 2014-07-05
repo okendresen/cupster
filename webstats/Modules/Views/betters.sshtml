@@ -1,5 +1,6 @@
-<div class="betters">
-<table>
+<div class="row">
+<div class="col-md-5">
+<table class="table table-bordered table-condensed">
 <tr>
     <th>Name</th>
     <th>Score</th>
@@ -13,4 +14,5 @@
 </tr>
 @EndEach
 </table>
+</div>
 </div>

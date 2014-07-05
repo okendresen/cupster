@@ -56,6 +56,10 @@
     <Compile Include="IndexPageModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\bootstrap.spacelab.css" />
+    <None Include="Content\bootstrap.spacelab.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\complete-miss.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

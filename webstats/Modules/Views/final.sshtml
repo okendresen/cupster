@@ -1,16 +1,21 @@
+<p></p>
+<div class="row">
 @Each
-<div class="matches">
-    <table>
-    <tr>
-    <td><b>Selected</b></td>
-    <td>@Current.SelectedMatch</td>
-    <td class="@Current.CellClass">@Current.SelectedWinner</td>
-    </tr>
-    <tr>
-    <td><b>Actual</b></td>
-    <td>@Current.ActualMatch</td>
-    <td>@Current.ActualWinner</td>
-    </tr>
+<div class="col-sm-4">
+    <table class="table table-bordered table-condensed">
+    <tbody>
+        <tr>
+        <td><b>Selected</b></td>
+        <td>@Current.SelectedMatch</td>
+        <td class="@Current.CellClass">@Current.SelectedWinner</td>
+        </tr>
+        <tr>
+        <td><b>Actual</b></td>
+        <td>@Current.ActualMatch</td>
+        <td>@Current.ActualWinner</td>
+        </tr>
+    </tbody>
     </table>
 </div>
 @EndEach
+</div>

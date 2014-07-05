@@ -154,14 +154,14 @@ namespace Modules
 		string GetSelectedWinnerClass(string team, object[] winners)
 		{
 		    if (Array.IndexOf(winners, team) != -1)
-		        return "correct";
+		        return "success";
 		    else
 		        return "normal";
 		}
 		string GetSelectedWinnerClass(string team, string winner)
 		{
 		    if (winner.Equals(team))
-		        return "correct";
+		        return "success";
 		    else
 		        return "normal";
 		}
@@ -327,9 +327,9 @@ namespace Modules
             {
                 get {
                     StringBuilder s = new StringBuilder();
-                    s.Append("<table>");
+                    s.Append("<thead>\n<tr>\n<th>Match</th>\n<th>Selected</th>\n<th>Actual</th>\n</tr>\n</thead>");
                     s.AppendLine();
-                    s.Append("<tr>\n<th>Match</th>\n<th>Selected</th>\n<th>Actual</th>\n</tr>");
+                    s.Append("<tbody>");
                     s.AppendLine();
                     foreach (var match in _matches)
                     {
@@ -372,7 +372,7 @@ namespace Modules
                     s.AppendLine();
                     s.Append("</tr>");
                     s.AppendLine();
-                    s.Append("</table>");
+                    s.Append("</tbody>");
                     return s.ToString();
                 }
             }
@@ -380,11 +380,11 @@ namespace Modules
             string GetTr(string selected, string actual, List<string> qual = null)
             {
                 if (selected.Equals(actual))
-                    return "<tr class=\"correct\">";
+                    return "<tr class=\"success\">";
                 else if (qual != null && qual.Contains(selected))
-                    return "<tr class=\"close\">";
+                    return "<tr class=\"warning\">";
                 else if (actual.Length == 0)
-                    return "<tr class=\"not-played\">";
+                    return "<tr class=\"active\">";
                 else
                     return "<tr>";
             }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created by SharpDevelop.
  * User: Lars Magnus
  * Date: 12.06.2014
@@ -97,11 +97,11 @@ namespace Modules
 			{
 				get {
 					StringBuilder s = new StringBuilder();
-					s.Append("<ul>");
+					s.Append("<ul class=\"list-group\">");
 					s.AppendLine();
 					foreach (var team in Teams)
 					{
-						s.AppendFormat("		<li>{0}</li>", team);
+						s.AppendFormat("		<li class=\"list-group-item\">{0}</li>", team);
 						s.AppendLine();
 					}
 					s.Append("	</ul>");
