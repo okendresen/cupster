@@ -4,8 +4,8 @@
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <h3 class="navbar-text">Submitted bet from @Model.Better</h3>
-            <!--<h3 class="navbar-text">Score @Model.Score of @Model.Total</h3>-->
+            <a class="navbar-brand" href="/">cupster.net</a>
+            <h4 class="navbar-text">Submitted bet from @Model.Better</h4>
             <button type="button" class="btn btn-success navbar-btn">Score @Model.Score of @Model.Total</button>
         </div>
     </div>

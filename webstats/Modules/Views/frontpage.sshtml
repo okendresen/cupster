@@ -4,7 +4,8 @@
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <h2 class="navbar-text">@Model.Tournament</h2>
+            <a class="navbar-brand" href="/">cupster.net</a>
+            <h4 class="navbar-text">@Model.Tournament</h4>
         </div>
     </div>
 </div>
