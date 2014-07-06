@@ -1,20 +1,40 @@
 @Master['MasterPage']
 
 @Section['Content']
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <h2>Submitted bet from @Model.Better</h2>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                Score @Model.Score of @Model.Total
-                </div>
-            </div>
+            <a class="navbar-brand" href="/">cupster.net</a>
+            <h4 class="navbar-text">Submitted bet from @Model.Better</h4>
+            <button type="button" class="btn btn-success navbar-btn">Score @Model.Score of @Model.Total</button>
         </div>
     </div>
 </div>
 
+<!-- Page jump list -->
+<div class="container">
+    <p><strong>Jump to:</strong></p>
+    <div class="hidden-xs btn-group">
+      <a href="#group-stage" class="btn btn-primary">Group stage</a>
+      <a href="#round16" class="btn btn-primary">Round of 16</a>
+      <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
+      <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
+      <a href="#bronse-final" class="btn btn-primary">Bronse final</a>
+      <a href="#final" class="btn btn-primary">Final</a>
+    </div>
+    <div class="visible-xs btn-group-vertical btn-group-lg">
+      <a href="#group-stage" class="btn btn-primary">Group stage</a>
+      <a href="#round16" class="btn btn-primary">Round of 16</a>
+      <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
+      <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
+      <a href="#bronse-final" class="btn btn-primary">Bronse final</a>
+      <a href="#final" class="btn btn-primary">Final</a>
+    </div>
+    <p></p>
+</div>
+
 <div class="bg-info">
+    <a id="group-stage"></a>
     <div class="container">
         <h3>Group stage (Score @Model.GroupScore of @Model.TotalGroup)</h3>
     </div>
@@ -33,6 +53,7 @@
 </div>
 
 <div class="bg-info">
+<a id="round16"></a>
 <div class="container">
     <h3>Round of 16 (Score @Model.Round16Score of @Model.TotalRound16)</h3>
 </div>
@@ -42,6 +63,7 @@
 </div>
 
 <div class="bg-info">
+<a id="quarter-finals"></a>
 <div class="container">
     <h3>Quarter-finals (Score @Model.QuarterFinalScore of @Model.TotalQuarterFinal)</h3>
 </div>
@@ -53,6 +75,7 @@
 </section>
 
 <div class="bg-info">
+<a id="semi-finals"></a>
 <div class="container">
     <h3>Semi-finals (Score @Model.SemiFinalScore of @Model.TotalSemiFinal)</h3>
 </div>
@@ -64,6 +87,7 @@
 </section>
 
 <div class="bg-info">
+<a id="bronse-final"></a>
 <div class="container">
     <h3>Bronse final (Score @Model.BronseFinalScore of @Model.TotalBronseFinal)</h3>
 </div>
@@ -75,6 +99,7 @@
 </section>
 
 <div class="bg-info">
+<a id="final"></a>
 <div class="container">
     <h3>Final (Score @Model.FinalScore of @Model.TotalFinal)</h3>
 </div>
