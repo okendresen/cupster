@@ -22,7 +22,7 @@
       <a href="#bronse-final" class="btn btn-default">Bronse final</a>
       <a href="#final" class="btn btn-default">Final</a>
     </div>
-    <div class="visible-xs btn-group-vertical">
+    <div class="visible-xs btn-group-vertical btn-group-lg">
       <a href="#group-stage" class="btn btn-default">Group stage</a>
       <a href="#round16" class="btn btn-default">Round of 16</a>
       <a href="#quarter-finals" class="btn btn-default">Quarter finals</a>
