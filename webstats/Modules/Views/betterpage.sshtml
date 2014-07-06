@@ -15,20 +15,20 @@
 <div class="container">
     <p><strong>Jump to:</strong></p>
     <div class="hidden-xs btn-group">
-      <a href="#group-stage" class="btn btn-default">Group stage</a>
-      <a href="#round16" class="btn btn-default">Round of 16</a>
-      <a href="#quarter-finals" class="btn btn-default">Quarter finals</a>
-      <a href="#semi-finals" class="btn btn-default">Semi finals</a>
-      <a href="#bronse-final" class="btn btn-default">Bronse final</a>
-      <a href="#final" class="btn btn-default">Final</a>
+      <a href="#group-stage" class="btn btn-primary">Group stage</a>
+      <a href="#round16" class="btn btn-primary">Round of 16</a>
+      <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
+      <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
+      <a href="#bronse-final" class="btn btn-primary">Bronse final</a>
+      <a href="#final" class="btn btn-primary">Final</a>
     </div>
     <div class="visible-xs btn-group-vertical btn-group-lg">
-      <a href="#group-stage" class="btn btn-default">Group stage</a>
-      <a href="#round16" class="btn btn-default">Round of 16</a>
-      <a href="#quarter-finals" class="btn btn-default">Quarter finals</a>
-      <a href="#semi-finals" class="btn btn-default">Semi finals</a>
-      <a href="#bronse-final" class="btn btn-default">Bronse final</a>
-      <a href="#final" class="btn btn-default">Final</a>
+      <a href="#group-stage" class="btn btn-primary">Group stage</a>
+      <a href="#round16" class="btn btn-primary">Round of 16</a>
+      <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
+      <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
+      <a href="#bronse-final" class="btn btn-primary">Bronse final</a>
+      <a href="#final" class="btn btn-primary">Final</a>
     </div>
     <p></p>
 </div>
