@@ -34,8 +34,8 @@
 </div>
 
 <div class="bg-info">
+    <a id="group-stage"></a>
     <div class="container">
-        <a id="group-stage"></a>
         <h3>Group stage (Score @Model.GroupScore of @Model.TotalGroup)</h3>
     </div>
 </div>
@@ -53,8 +53,8 @@
 </div>
 
 <div class="bg-info">
+<a id="round16"></a>
 <div class="container">
-    <a id="round16"></a>
     <h3>Round of 16 (Score @Model.Round16Score of @Model.TotalRound16)</h3>
 </div>
 </div>
@@ -63,8 +63,8 @@
 </div>
 
 <div class="bg-info">
+<a id="quarter-finals"></a>
 <div class="container">
-    <a id="quarter-finals"></a>
     <h3>Quarter-finals (Score @Model.QuarterFinalScore of @Model.TotalQuarterFinal)</h3>
 </div>
 </div>
@@ -75,8 +75,8 @@
 </section>
 
 <div class="bg-info">
+<a id="semi-finals"></a>
 <div class="container">
-    <a id="semi-finals"></a>
     <h3>Semi-finals (Score @Model.SemiFinalScore of @Model.TotalSemiFinal)</h3>
 </div>
 </div>
@@ -87,8 +87,8 @@
 </section>
 
 <div class="bg-info">
+<a id="bronse-final"></a>
 <div class="container">
-    <a id="bronse-final"></a>
     <h3>Bronse final (Score @Model.BronseFinalScore of @Model.TotalBronseFinal)</h3>
 </div>
 </div>
@@ -99,8 +99,8 @@
 </section>
 
 <div class="bg-info">
+<a id="final"></a>
 <div class="container">
-    <a id="final"></a>
     <h3>Final (Score @Model.FinalScore of @Model.TotalFinal)</h3>
 </div>
 </div>
