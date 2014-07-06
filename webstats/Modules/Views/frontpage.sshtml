@@ -12,7 +12,7 @@
 <div class="container">
     <p>Welcome to @Model.Tournament betting scores</p>
     <h3>Betters</h3>
-    <p><i>Results last updated @Model.TimeStamp</i></p>
+    <p><em>Results last updated @Model.TimeStamp</em></p>
     @Partial['betters.sshtml']
 </div>
 
