@@ -1,15 +1,12 @@
 @Master['MasterPage']
 
 @Section['Content']
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <h2>Submitted bet from @Model.Better</h2>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                Score @Model.Score of @Model.Total
-                </div>
-            </div>
+            <h3 class="navbar-text">Submitted bet from @Model.Better</h3>
+            <!--<h3 class="navbar-text">Score @Model.Score of @Model.Total</h3>-->
+            <button type="button" class="btn btn-success navbar-btn">Score @Model.Score of @Model.Total</button>
         </div>
     </div>
 </div>

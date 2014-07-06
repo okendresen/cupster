@@ -1,18 +1,18 @@
 @Master['MasterPage']
 
 @Section['Content']
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <h1>@Model.Tournament</h1>
-            <p>Welcome to @Model.Tournament betting scores</p>
+            <h2 class="navbar-text">@Model.Tournament</h2>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <p><i>Results last updated @Model.TimeStamp</i></p>
+    <p>Welcome to @Model.Tournament betting scores</p>
     <h3>Betters</h3>
+    <p><i>Results last updated @Model.TimeStamp</i></p>
     @Partial['betters.sshtml']
 </div>
 
