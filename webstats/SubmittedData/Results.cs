@@ -80,7 +80,15 @@ namespace SubmittedData
 		
         public bool HasRound16()
         {
-            return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
+            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
+            {
+                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
+                return ((IDictionary<String, Object>)st).ContainsKey("round-of-16");
+		        
+            } else
+            {
+                return false;
+            }
         }
         public dynamic GetRound16Winners()
         {
