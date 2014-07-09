@@ -16,6 +16,7 @@ namespace SubmittedData
         DoubleRainbow,
         NotEvenClose,
         CompleteMiss,
+        Sweet16,
     }
         
     /// <summary>
@@ -34,6 +35,7 @@ namespace SubmittedData
             CheckDoubleRainbow();
             CheckNotEvenClose();
             CheckCompleteMiss();
+            CheckSweet16();
         }
 
         List<Achievement> _achievements = new List<Achievement>();
@@ -114,6 +116,27 @@ namespace SubmittedData
                 }		        
             }
         }
+
+        void CheckSweet16()
+        {
+            if (_user.HasRound16() && _actual.HasRound16())
+            {
+                bool found = true;
+                for (int i = 0; i < _user.GetRound16Winners().Length; i++)
+                {
+                    if (_user.GetRound16Winners()[i] != _actual.GetRound16Winners()[i])
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    _achievements.Add(_achievementsRepo[AchievementTypes.Sweet16]);
+                }
+            }
+        }
+
         void CheckPerfectGroup()
         {
         }
@@ -134,6 +157,11 @@ namespace SubmittedData
                 new Achievement() {
                     Image = "complete-miss.jpg",
                     Title = "Complete miss: Group with no correct matches"
+                });
+            _achievementsRepo.Add(AchievementTypes.Sweet16,
+                new Achievement() {
+                    Image = "sweet16.jpg",
+                    Title = "Sweet 16: Every winner of round of 16 matches"
                 });
         }
 		

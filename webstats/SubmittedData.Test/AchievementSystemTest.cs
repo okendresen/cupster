@@ -40,15 +40,17 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
         {
 		    string userBet = @"[stage-one]
 winners = [ [ ""Germany"", ""Algerie"",], ]
+results = [ [ ] ]
 ";
 		    string actualResults = @"[stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], ]
+results = [ [ ] ]
 ";
 		    var user = new Results(userBet.ParseAsToml());
 		    var actual = new Results(actualResults.ParseAsToml());
 
 		    var a = new AchievementSystem(user, actual);
-		    a.Achievements.ShouldBeEmpty();
+		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.DoubleRainbow]);
         }
 
         [Test]
@@ -56,9 +58,11 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
         {
 		    string userBet = @"[stage-one]
 winners = [ [ ""Brasil"", ""Algerie"",], [ ""Spania"", ""Nederland"",], ]
+results = [ [ ] ]
 ";
 		    string actualResults = @"[stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+results = [ [ ] ]
 ";
 		    var user = new Results(userBet.ParseAsToml());
 		    var actual = new Results(actualResults.ParseAsToml());
@@ -104,6 +108,43 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 
 		    var a = new AchievementSystem(user, actual);
 		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.CompleteMiss]);
+        }
+        
+        [Test]
+        public void TestAchievements_ShouldContainSweet16_WhenEveryRound16WinnerIsCorrect()
+        {
+		    string userBet = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Nederland"", ""Colombia"", ]
+";
+		    string actualResults = @"[stage-two]
+round-of-16 = [ ""Brasil"", ""Nederland"", ""Colombia"", ]
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.Sweet16]);
+        }
+
+        [Test]
+        public void TestAchievements_ShouldNotContainSweet16_WhenAtLeastOneRound16WinnerIsWrong()
+        {
+		    string userBet = @"[info]
+user = ""user1""
+[stage-two]
+round-of-16 = [ ""Brasil"", ""Tyskland"", ""Colombia"", ]
+";
+		    string actualResults = @"[info]
+user = ""user1""
+[stage-one]
+[stage-two]
+round-of-16 = [ ""Brasil"", ""Nederland"", ""Colombia"", ]
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.Sweet16]);
         }
     }
 }
