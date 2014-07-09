@@ -178,5 +178,57 @@ quarter-final = [ ""Brasil"", ""Nederland"", ""Tyskland"", ""Argentina"",]
 		    var a = new AchievementSystem(user, actual);
 		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.Quarterback]);
         }
+
+        [Test]
+        public void TestAchievements_ShouldContainBronse_WhenBronseFinalWinnerIsCorrect()
+        {
+		    string userBet = @"[finals]
+bronse-final = ""Brasil""
+";
+		    string actualResults = @"[finals]
+bronse-final = ""Brasil""
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.Bronze]);
+        }
+
+        [Test]
+        public void TestAchievements_ShouldContainSilver_WhenFinalLoserIsCorrect()
+        {
+		    string userBet = @"[stage-two]
+semi-final = [ ""Tyskland"", ""Argentina"",]
+[finals]
+final = ""Tyskland""
+";
+		    string actualResults = @"[stage-two]
+semi-final = [ ""Tyskland"", ""Argentina"",]
+[finals]
+final = ""Tyskland""
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.Silver]);
+        }
+
+        [Test]
+        public void TestAchievements_ShouldContainGold_WhenFinalWinnerIsCorrect()
+        {
+		    string userBet = @"[finals]
+final = ""Tyskland""
+";
+		    string actualResults = @"[finals]
+final = ""Tyskland""
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.Gold]);
+        }
     }
 }

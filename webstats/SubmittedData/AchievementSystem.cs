@@ -18,6 +18,9 @@ namespace SubmittedData
         CompleteMiss,
         Sweet16,
         Quarterback,
+        Bronze,
+        Silver,
+        Gold,
     }
         
     /// <summary>
@@ -38,6 +41,9 @@ namespace SubmittedData
             CheckCompleteMiss();
             CheckSweet16();
             CheckQuarterback();
+            CheckBronzeMedal();
+            CheckSilverMedal();
+            CheckGoldMedal();
         }
 
         List<Achievement> _achievements = new List<Achievement>();
@@ -75,7 +81,7 @@ namespace SubmittedData
 
         void CheckNotEvenClose()
         {
-            if (_user.HasSemiFinals() && _actual.HasStageTwo())
+            if (_user.HasSemiFinals() && _actual.HasStageOne())
             {
                 bool found = false;
                 var finalists = _user.GetSemiFinalWinners();
@@ -158,6 +164,39 @@ namespace SubmittedData
                 }
             }
         }
+
+        void CheckBronzeMedal()
+        {
+            if (_user.HasBronseFinal() && _actual.HasBronseFinal())
+            {
+                if (_user.GetBronseFinalWinner() == _actual.GetBronseFinalWinner())
+                    _achievements.Add(_achievementsRepo[AchievementTypes.Bronze]);
+            }
+        }
+
+        void CheckSilverMedal()
+        {
+            if (_user.HasSemiFinals() && _actual.HasSemiFinals() && _actual.HasFinal())
+            {
+                for (int i = 0; i < _actual.GetSemiFinalWinners().Length; i++)
+                {
+                    if (_user.GetSemiFinalWinners()[i] == _actual.GetSemiFinalWinners()[i]
+                        && _user.GetSemiFinalWinners()[i] != _actual.GetFinalWinner())
+                    {
+                        _achievements.Add(_achievementsRepo[AchievementTypes.Silver]);
+                    }
+                }        
+            }
+        }
+
+        void CheckGoldMedal()
+        {
+            if (_user.HasFinal() && _actual.HasFinal())
+            {
+                if (_user.GetFinalWinner() == _actual.GetFinalWinner())
+                    _achievements.Add(_achievementsRepo[AchievementTypes.Gold]);
+            }
+        }
 		
         void CheckPerfectGroup()
         {
@@ -189,6 +228,21 @@ namespace SubmittedData
                 new Achievement() {
                     Image = "quarterback.png",
                     Title = "Quarterback: Correct winner of every quarter-final match"
+                });
+            _achievementsRepo.Add(AchievementTypes.Bronze,
+                new Achievement() {
+                    Image = "bronze.png",
+                    Title = "Bronze medal: Correct winner of  bronze final match"
+                });
+            _achievementsRepo.Add(AchievementTypes.Silver,
+                new Achievement() {
+                    Image = "silver.png",
+                    Title = "Silver medal: Correct loser of final match"
+                });
+            _achievementsRepo.Add(AchievementTypes.Gold,
+                new Achievement() {
+                    Image = "gold.png",
+                    Title = "Gold medal: Correct winner of tournament"
                 });
         }
 		
