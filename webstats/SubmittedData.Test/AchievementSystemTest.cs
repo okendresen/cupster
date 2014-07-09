@@ -146,5 +146,37 @@ round-of-16 = [ ""Brasil"", ""Nederland"", ""Colombia"", ]
 		    var a = new AchievementSystem(user, actual);
 		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.Sweet16]);
         }
+
+        [Test]
+        public void TestAchievements_ShouldContainQuarterback_WhenEveryQuarterFinalWinnerIsCorrect()
+        {
+		    string userBet = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Nederland"", ""Tyskland"", ""Argentina"",]
+";
+		    string actualResults = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Nederland"", ""Tyskland"", ""Argentina"",]
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.Quarterback]);
+        }
+
+        [Test]
+        public void TestAchievements_ShouldNotContainQuarterback_WhenAtLeastOneQuarterFinalWinnerIsWrong()
+        {
+		    string userBet = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Nederland"", ""Tyskland"", ""Frankrike"",]
+";
+		    string actualResults = @"[stage-two]
+quarter-final = [ ""Brasil"", ""Nederland"", ""Tyskland"", ""Argentina"",]
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.Quarterback]);
+        }
     }
 }

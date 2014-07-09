@@ -17,6 +17,7 @@ namespace SubmittedData
         NotEvenClose,
         CompleteMiss,
         Sweet16,
+        Quarterback,
     }
         
     /// <summary>
@@ -36,6 +37,7 @@ namespace SubmittedData
             CheckNotEvenClose();
             CheckCompleteMiss();
             CheckSweet16();
+            CheckQuarterback();
         }
 
         List<Achievement> _achievements = new List<Achievement>();
@@ -137,6 +139,26 @@ namespace SubmittedData
             }
         }
 
+        void CheckQuarterback()
+        {
+            if (_user.HasQuarterFinals() && _actual.HasQuarterFinals())
+            {
+                bool found = true;
+                for (int i = 0; i < _user.GetQuarterFinalWinners().Length; i++)
+                {
+                    if (_user.GetQuarterFinalWinners()[i] != _actual.GetQuarterFinalWinners()[i])
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    _achievements.Add(_achievementsRepo[AchievementTypes.Quarterback]);
+                }
+            }
+        }
+		
         void CheckPerfectGroup()
         {
         }
@@ -161,7 +183,12 @@ namespace SubmittedData
             _achievementsRepo.Add(AchievementTypes.Sweet16,
                 new Achievement() {
                     Image = "sweet16.jpg",
-                    Title = "Sweet 16: Every winner of round of 16 matches"
+                    Title = "Sweet 16: Correct winner of every round of 16 match"
+                });
+            _achievementsRepo.Add(AchievementTypes.Quarterback,
+                new Achievement() {
+                    Image = "quarterback.png",
+                    Title = "Quarterback: Correct winner of every quarter-final match"
                 });
         }
 		
