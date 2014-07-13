@@ -1,12 +1,12 @@
-[info]
-user = "actual"
+[stage-two]
+round-of-16 = [ "Brasil", "Nederland", "Colombia", "Costa Rica", "Frankrike", "Argentina", "Tyskland", "Belgia",]
+quarter-final = [ "Brasil", "Nederland", "Tyskland", "Argentina",]
+semi-final = [ "Tyskland", "Argentina",]
 [finals]
 bronse-final = "Nederland"
-final = "-"
+final = "Tyskland"
 [stage-one]
 winners = [ [ "Brasil", "Mexico",], [ "Nederland", "Chile",], [ "Colombia", "Hellas",], [ "Costa Rica", "Uruguay",], [ "Frankrike", "Sveits",], [ "Argentina", "Nigeria",], [ "Tyskland", "USA",], [ "Belgia", "Algerie",],]
 results = [ [ "h", "h", "u", "b", "b", "b",], [ "b", "h", "b", "b", "b", "h",], [ "h", "h", "h", "u", "b", "h",], [ "b", "b", "h", "b", "b", "u",], [ "h", "h", "b", "b", "b", "u",], [ "h", "u", "h", "h", "b", "h",], [ "h", "b", "u", "u", "b", "h",], [ "h", "u", "h", "b", "b", "u",],]
-[stage-two]
-semi-final = [ "Tyskland", "Argentina",]
-quarter-final = [ "Brasil", "Nederland", "Tyskland", "Argentina",]
-round-of-16 = [ "Brasil", "Nederland", "Colombia", "Costa Rica", "Frankrike", "Argentina", "Tyskland", "Belgia",]
+[info]
+user = "actual"
