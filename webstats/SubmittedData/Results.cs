@@ -169,7 +169,8 @@ namespace SubmittedData
         {
             if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
             {
-                return ((IDictionary<String, Object>)_results.finals).ContainsKey("final");
+                return ((IDictionary<String, Object>)_results.finals).ContainsKey("final")
+                    && !String.Equals(GetFinalWinner(), "-");
 		        
             } else
             {

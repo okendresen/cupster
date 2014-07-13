@@ -237,7 +237,7 @@ namespace SubmittedData
             _achievementsRepo.Add(AchievementTypes.Silver,
                 new Achievement() {
                     Image = "silver.png",
-                    Title = "Silver medal: Correct loser of final match"
+                    Title = "Silver medal: Correct runner-up of tournament"
                 });
             _achievementsRepo.Add(AchievementTypes.Gold,
                 new Achievement() {
