@@ -181,7 +181,8 @@ namespace SubmittedData
                 for (int i = 0; i < _actual.GetSemiFinalWinners().Length; i++)
                 {
                     if (_user.GetSemiFinalWinners()[i] == _actual.GetSemiFinalWinners()[i]
-                        && _user.GetSemiFinalWinners()[i] != _actual.GetFinalWinner())
+                        && _user.GetSemiFinalWinners()[i] != _actual.GetFinalWinner()
+                        && _user.GetSemiFinalWinners()[i] != _user.GetFinalWinner())
                     {
                         _achievements.Add(_achievementsRepo[AchievementTypes.Silver]);
                     }

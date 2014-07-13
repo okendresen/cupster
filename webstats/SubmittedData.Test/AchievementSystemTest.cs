@@ -196,7 +196,7 @@ bronse-final = ""Brasil""
         }
 
         [Test]
-        public void TestAchievements_ShouldContainSilver_WhenFinalLoserIsCorrect()
+        public void TestAchievements_ShouldContainSilver_WhenRunnerUpIsCorrect()
         {
 		    string userBet = @"[stage-two]
 semi-final = [ ""Tyskland"", ""Argentina"",]
@@ -227,6 +227,26 @@ final = ""Tyskland""
 semi-final = [ ""Tyskland"", ""Argentina"",]
 [finals]
 final = ""-""
+";
+		    var user = new Results(userBet.ParseAsToml());
+		    var actual = new Results(actualResults.ParseAsToml());
+
+		    var a = new AchievementSystem(user, actual);
+		    a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.Silver]);
+        }
+
+        [Test]
+        public void TestAchievements_ShouldNotContainSilver_WhenRunnerUpIsSelectedAsWinner()
+        {
+		    string userBet = @"[stage-two]
+semi-final = [ ""Tyskland"", ""Argentina"",]
+[finals]
+final = ""Argentina""
+";
+		    string actualResults = @"[stage-two]
+semi-final = [ ""Tyskland"", ""Argentina"",]
+[finals]
+final = ""Tyskland""
 ";
 		    var user = new Results(userBet.ParseAsToml());
 		    var actual = new Results(actualResults.ParseAsToml());
