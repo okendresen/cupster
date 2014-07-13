@@ -23,6 +23,7 @@ namespace Modules
 			_tournament = t;
 			CreateGroups();
 			CreateBetterlist(sb.GetBetters(), sb, actual);
+			MarkWinnerIfFinished(actual);
 			TimeStamp = actual.GetTimeStamp();
 		}
 
@@ -64,9 +65,18 @@ namespace Modules
 		        var bet = new Better() { Name = better, Score = score.GetTotal() };
 		        var achievements = new AchievementSystem(sb.GetSingleBet(better), actual);
 		        bet.Achievements = achievements.Achievements;
+		        bet.RowClass = "normal";
 		        Betters.Add(bet);
 		    }
 		}
+
+		void MarkWinnerIfFinished(IResults actual)
+		{
+		    Better leader = _betters.OrderByDescending(b => b.Score).ToList()[0];
+		    if (actual.HasFinal())
+		        leader.RowClass = "success";
+		}
+
 		private void CreateGroups()
 		{
 			char gn = 'A';
@@ -114,6 +124,7 @@ namespace Modules
 		{
 		    public string Name { get; set; }
 		    public int Score { get; set; }
+		    public string RowClass { get; set; }
 		    public List<AchievementSystem.Achievement> Achievements;
 		    public string AchievementsAsHtml 
 		    {
