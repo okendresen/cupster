@@ -19,5 +19,5 @@ Proof-of-concept for WC 2014.  Test server at http://cupster.net/
 - [x] Present sorted score list
 - [x] Make it look nice
 - [x] Make it look nicer
-- [ ] Fun stats/achievments from submitted bets
+- [x] Fun stats/achievments from submitted bets
 - [x] Make it work on different screen/window sizes
