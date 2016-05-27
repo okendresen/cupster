@@ -1,0 +1,9 @@
+name = "UEFA Euro 2016 France"
+groups = [
+    ["Albania",     "France",           "Romania",  "Switzerland"],
+    ["England",     "Russia",           "Slovakia", "Wales"],
+    ["Germany",     "Northern Ireland", "Poland",   "Ukraine"],
+    ["Croatia",     "Czech Republic",   "Spain",    "Turkey"],
+    ["Belgium",     "Italy",            "Ireland",  "Sweden"],
+    ["Austria",     "Hungary",          "Iceland",  "Portugal"],
+]
