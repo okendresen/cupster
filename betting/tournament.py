@@ -16,7 +16,8 @@ class Tournament(object):
         self.stageOne = []
         self.stageResults = []
         self.tally = []
-        self.stage_two_names = {8: 'round-of-16', 4: 'quarter-final', 2: 'semi-final'}
+        self.stage_two_names = {8: 'round-of-16',
+                                4: 'quarter-final', 2: 'semi-final'}
         self.isResults = isResults
 
     def load(self, toml_config):
@@ -37,7 +38,8 @@ class Tournament(object):
     def get_info(self):
         lines = []
         lines.append('Tournament: {}'.format(self.get_name()))
-        lines.append('Number of groups: {}'.format(self.get_number_of_groups()))
+        lines.append('Number of groups: {}'.format(
+            self.get_number_of_groups()))
         return '\n'.join(lines)
 
     def get_groups_as_text(self):
@@ -76,7 +78,8 @@ class Tournament(object):
                     result = self.results.get_stage_results(gn, mn)
                 else:
                     result = ''
-                lines.append('  {0} vs {1} . Selected {2}'.format(match[0], match[1], result))
+                lines.append('  {0} vs {1} . Selected {2}'.format(
+                    match[0], match[1], result))
                 mn += 1
             gn += 1
         return '\n'.join(lines)
@@ -95,7 +98,8 @@ class Tournament(object):
                     default = self.results.get_stage_results(gn, mn)
                 else:
                     default = ''
-                result = self.get_user_input(self.format_match_text(match[0], match[1], default), default)
+                result = self.get_user_input(self.format_match_text(
+                    match[0], match[1], default), default)
                 if result == '-':
                     complete = False
                 results.append(result)
@@ -218,7 +222,7 @@ class Tournament(object):
                     continue
 
         if ch in [1, 2]:
-            return teams[ch-1]
+            return teams[ch - 1]
         else:
             return '-'
 
@@ -257,9 +261,11 @@ class Tournament(object):
     def user_stage_two_eval(self):
         qualifiers = self.results.get_winners()
         print(qualifiers)
-        qualifiers = self.evalute_matches(qualifiers, len(qualifiers), self.get_stage_two_matches)
-        while int(len(qualifiers)/2) > 1:
-            qualifiers = self.evalute_matches(qualifiers, int(len(qualifiers)/2), self.get_final_matches)
+        qualifiers = self.evalute_matches(
+            qualifiers, len(qualifiers), self.get_stage_two_matches)
+        while int(len(qualifiers) / 2) > 1:
+            qualifiers = self.evalute_matches(qualifiers, int(
+                len(qualifiers) / 2), self.get_final_matches)
 
     def evalute_matches(self, qualifiers, num, generate_matches_func):
         roundName = self.stage_two_names[num]
@@ -282,8 +288,8 @@ class Tournament(object):
     def get_final_matches(self, qualifiers):
         matches = []
         for i in range(0, int(len(qualifiers)), 4):
-            matches.append([qualifiers[i], qualifiers[i+2]])
-            matches.append([qualifiers[i+1], qualifiers[i+3]])
+            matches.append([qualifiers[i], qualifiers[i + 2]])
+            matches.append([qualifiers[i + 1], qualifiers[i + 3]])
         return matches
 
     def user_final_eval(self):
