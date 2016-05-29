@@ -103,7 +103,7 @@ class Tournament(object):
                 if result == '-':
                     complete = False
                 results.append(result)
-                winners.extend(self.match_winner(match, result))
+                winners.extend(self.match_score(match, result))
                 mn += 1
             self.stageOne.append(winners)
             winner, runnerUp, third = self.tally_group_results(winners)
@@ -132,7 +132,7 @@ class Tournament(object):
                 break
         return result if result else default
 
-    def match_winner(self, match, result):
+    def match_score(self, match, result):
         win = []
         if result.lower() == 'h':
             for i in range(0, 3):

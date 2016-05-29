@@ -34,12 +34,12 @@ class TestTournament(unittest.TestCase):
         self.init(toml)
         assert_that(self.cup.get_number_of_groups(), is_(equal_to(2)))
 
-    def test_match_winner(self):
+    def test_match_score(self):
         match = ['brasil', 'kroatia']
         self.init('')
-        assert_that(self.cup.match_score(match, 'h'), is_(equal_to('brasil')))
-        assert_that(self.cup.match_winner(match, 'b'), is_(equal_to('kroatia')))
-        assert_that(self.cup.match_winner(match, 'u'), is_(equal_to('')))
+        assert_that(self.cup.match_score(match, 'h'), is_(equal_to(['brasil', 'brasil', 'brasil'])))
+        assert_that(self.cup.match_score(match, 'b'), is_(equal_to(['kroatia', 'kroatia', 'kroatia'])))
+        assert_that(self.cup.match_score(match, 'u'), is_(equal_to(['brasil','kroatia'])))
 
 if __name__ == '__main__':
     unittest.main()
