@@ -13,12 +13,11 @@ class Tournament(object):
     def __init__(self, results=None, isResults=False):
         self.groupStage = []
         self.results = results
-        self.stageOne = []
         self.stageResults = []
-        self.tally = []
         self.stage_two_names = {8: 'round-of-16',
                                 4: 'quarter-final', 2: 'semi-final'}
         self.isResults = isResults
+        self.thirds = []
 
     def load(self, toml_config):
         self.config = toml.loads(toml_config)
@@ -89,7 +88,7 @@ class Tournament(object):
         gn = 0
         for id, matches in self.groupStage:
             print('\nGroup {} matches. Enter H, U or B'.format(id))
-            winners = []
+            points = []
             results = []
             mn = 0
             complete = True
@@ -103,10 +102,9 @@ class Tournament(object):
                 if result == '-':
                     complete = False
                 results.append(result)
-                winners.extend(self.match_score(match, result))
+                points.extend(self.match_score(match, result))
                 mn += 1
-            self.stageOne.append(winners)
-            winner, runnerUp, third = self.tally_group_results(winners)
+            winner, runnerUp, third = self.tally_group_results(points)
             if complete:
                 realWinner = self.resolve_winner(winner)
             else:
@@ -117,7 +115,7 @@ class Tournament(object):
             else:
                 realRunnerUp = '-'
             print('Runner-up: {}'.format(realRunnerUp))
-            self.tally.append([realWinner, realRunnerUp])
+            self.thirds.append(self.remove_qualifiers(points, realWinner, realRunnerUp))
             self.results.append_results(results)
             self.results.append_winners([realWinner, realRunnerUp])
             self.results.save()
@@ -145,12 +143,6 @@ class Tournament(object):
             win.append(match[1])
         return win
 
-    def tally_stage_results(self):
-        for groupScore in self.stageOne:
-            winner, runnerUp = self.tally_group_results(groupScore)
-            self.tally.append([winner, runnerUp])
-            self.results['stage-winners'].append([winner, runnerUp])
-
     def tally_group_results(self, score):
         top = Counter(score).most_common(3)
         self.stageResults.append(top)
@@ -177,31 +169,10 @@ class Tournament(object):
 
         return winner, runnerUp, third
 
-    def tally_group_results_with_score(self, score):
-        top = Counter(score).most_common(3)
-        self.stageResults.append(top)
-
-        # Winner
-        if top[0][1] > top[1][1]:
-            winner = top[0]
-        else:
-            winner = (top[0], top[1])
-
-        # Runner-up
-        if isinstance(winner, tuple):
-            runnerUp = winner
-        elif top[1][1] > top[2][1]:
-            runnerUp = top[1]
-        else:
-            runnerUp = (top[1], top[2])
-
-        # Third place
-        if top[1][1] > top[2][1]:
-            third = top[2]
-        else:
-            third = runnerUp
-
-        return winner, runnerUp, third
+    def remove_qualifiers(self, points, winner, runnerUp):
+        rem = [t for t in points if t != winner]
+        rem = [t for t in rem if t != runnerUp]
+        return rem
 
     def select_team(self, teams):
         cnt = 1

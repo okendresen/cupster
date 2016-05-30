@@ -39,7 +39,42 @@ class TestTournament(unittest.TestCase):
         self.init('')
         assert_that(self.cup.match_score(match, 'h'), is_(equal_to(['brasil', 'brasil', 'brasil'])))
         assert_that(self.cup.match_score(match, 'b'), is_(equal_to(['kroatia', 'kroatia', 'kroatia'])))
-        assert_that(self.cup.match_score(match, 'u'), is_(equal_to(['brasil','kroatia'])))
+        assert_that(self.cup.match_score(match, 'u'), is_(equal_to(['brasil', 'kroatia'])))
+
+    def test_tally_group_results(self):
+        self.init('')
+        winners = ['brasil', 'brasil', 'brasil', 'brasil', 'england', 'england',
+                   'england', 'sweden', 'sweden', 'cuba']
+        first, second, third = self.cup.tally_group_results(winners)
+        assert_that(first, is_(equal_to('brasil')))
+        assert_that(second, is_(equal_to('england')))
+        assert_that(third, is_(equal_to('sweden')))
+
+    def test_tally_group_results_when_draw(self):
+        self.init('')
+        winners = ['brasil', 'brasil', 'brasil', 'england', 'england',
+                   'england', 'sweden', 'sweden', 'cuba']
+        first, second, third = self.cup.tally_group_results(winners)
+        assert_that(first, is_(tuple), 'first')
+        assert_that(second, is_(tuple), 'second')
+        assert_that(third, is_(equal_to('sweden')), 'third')
+
+        winners = ['brasil', 'brasil', 'brasil', 'brasil', 'england', 'england',
+                   'sweden', 'sweden', 'cuba']
+        first, second, third = self.cup.tally_group_results(winners)
+        assert_that(first, is_(equal_to('brasil')))
+        assert_that(second, is_(tuple))
+        assert_that(third, is_(tuple), 'third')
+
+    def test_remove_qualifiers(self):
+        self.init('')
+        points = ['brasil', 'brasil', 'brasil', 'england', 'england',
+                   'england', 'sweden', 'sweden', 'cuba']
+        winner = 'brasil'
+        runnerUp = 'england'
+        remaining =['sweden', 'sweden', 'cuba']
+        actual = self.cup.remove_qualifiers(points, winner, runnerUp)
+        assert_that(actual, is_(equal_to(remaining)))
 
 if __name__ == '__main__':
     unittest.main()
