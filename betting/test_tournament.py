@@ -66,15 +66,23 @@ class TestTournament(unittest.TestCase):
         assert_that(second, is_(tuple))
         assert_that(third, is_(tuple), 'third')
 
-    def test_remove_qualifiers(self):
+    def test_get_non_qualifiers(self):
         self.init('')
         points = ['brasil', 'brasil', 'brasil', 'england', 'england',
                    'england', 'sweden', 'sweden', 'cuba']
         winner = 'brasil'
         runnerUp = 'england'
         remaining =['sweden', 'sweden', 'cuba']
-        actual = self.cup.remove_qualifiers(points, winner, runnerUp)
+        actual = self.cup.get_non_qualifiers(points, winner, runnerUp)
         assert_that(actual, is_(equal_to(remaining)))
+
+    def test_get_top_four(self):
+        self.init('')
+        points = ['brasil', 'brasil', 'brasil', 'england', 'england',
+                   'england', 'sweden', 'sweden', 'cuba', 'lithuania',
+                   'italy', 'italy', 'italy', 'italy']
+        actual = self.cup.get_top_four(points)
+        assert_that(actual, has_items('italy', 'brasil', 'england', 'sweden'))
 
 if __name__ == '__main__':
     unittest.main()

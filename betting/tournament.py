@@ -104,7 +104,7 @@ class Tournament(object):
                 results.append(result)
                 points.extend(self.match_score(match, result))
                 mn += 1
-            winner, runnerUp, third = self.tally_group_results(points)
+            winner, runnerUp = self.tally_group_results(points)
             if complete:
                 realWinner = self.resolve_winner(winner)
             else:
@@ -115,7 +115,7 @@ class Tournament(object):
             else:
                 realRunnerUp = '-'
             print('Runner-up: {}'.format(realRunnerUp))
-            self.thirds.append(self.remove_qualifiers(points, realWinner, realRunnerUp))
+            self.thirds.append(self.get_non_qualifiers(points, realWinner, realRunnerUp))
             self.results.append_results(results)
             self.results.append_winners([realWinner, realRunnerUp])
             self.results.save()
@@ -161,15 +161,9 @@ class Tournament(object):
         else:
             runnerUp = (top[1][0], top[2][0])
 
-        # Third place
-        if top[1][1] > top[2][1]:
-            third = top[2][0]
-        else:
-            third = runnerUp
+        return winner, runnerUp
 
-        return winner, runnerUp, third
-
-    def remove_qualifiers(self, points, winner, runnerUp):
+    def get_non_qualifiers(self, points, winner, runnerUp):
         rem = [t for t in points if t != winner]
         rem = [t for t in rem if t != runnerUp]
         return rem
@@ -272,3 +266,8 @@ class Tournament(object):
         final = self.results.get_finalists()
         self.results.set_final_winner(self.select_team(final))
         self.results.save()
+
+    def get_top_four(self, points):
+        top = Counter(points).most_common(4)
+        res = [t[0] for t in top]
+        return res
