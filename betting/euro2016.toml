@@ -1,4 +1,5 @@
 name = "UEFA Euro 2016 France"
+type = "uefa-euro"
 groups = [
     ["Albania",     "France",           "Romania",  "Switzerland"],
     ["England",     "Russia",           "Slovakia", "Wales"],

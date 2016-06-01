@@ -7,6 +7,16 @@ def pairwise(iterable):
     a = iter(iterable)
     return zip(a, a)
 
+def tournament_factory(configFile, userData, enterResults):
+    with open(configFile) as f:
+        config = toml.loads(f.read())
+    if config['type'] == 'uefa-euro':
+        tr = EuroTournament(userData, enterResults)
+    else:
+        tr = Tournament(userData, enterResults)
+    tr.set_config(config)
+    return tr
+
 
 class Tournament(object):
 
@@ -27,6 +37,9 @@ class Tournament(object):
 
     def get_config(self):
         return self.config
+
+    def set_config(self, config):
+        self.config = config
 
     def get_name(self):
         return self.config['name']
@@ -271,3 +284,17 @@ class Tournament(object):
         top = Counter(points).most_common(4)
         res = [t[0] for t in top]
         return res
+
+
+class EuroTournament(Tournament):
+    """Specialization for UEFA Euro cup"""
+    def __init__(self, results=None, isResults=False):
+        super().__init__(results, isResults)
+        
+    def user_group_stage_one_eval(self):
+        super().user_group_stage_one_eval()
+        top4 = self.get_top_four(self.thirds)
+        self.results.append_winners([top4[0], top4[3]])
+        self.results.append_winners([top4[1], top4[2]])
+        self.results.save()
+

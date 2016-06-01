@@ -33,9 +33,7 @@ def main():
         results.load()
 
     # Load tournament config
-    tr = Tournament(results, args.results)
-    with open(args.tournament_file) as f:
-        tr.load(f.read())
+    tr = tournament_factory(args.tournament_file, results, args.results)
 
     print(tr.get_info())
     if args.print_groups:
