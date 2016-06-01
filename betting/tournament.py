@@ -128,7 +128,7 @@ class Tournament(object):
             else:
                 realRunnerUp = '-'
             print('Runner-up: {}'.format(realRunnerUp))
-            self.thirds.append(self.get_non_qualifiers(points, realWinner, realRunnerUp))
+            self.thirds.extend(self.get_non_qualifiers(points, realWinner, realRunnerUp))
             self.results.append_results(results)
             self.results.append_winners([realWinner, realRunnerUp])
             self.results.save()
@@ -290,11 +290,10 @@ class EuroTournament(Tournament):
     """Specialization for UEFA Euro cup"""
     def __init__(self, results=None, isResults=False):
         super().__init__(results, isResults)
-        
+
     def user_group_stage_one_eval(self):
         super().user_group_stage_one_eval()
         top4 = self.get_top_four(self.thirds)
         self.results.append_winners([top4[0], top4[3]])
         self.results.append_winners([top4[1], top4[2]])
         self.results.save()
-
