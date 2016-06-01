@@ -36,6 +36,12 @@ class TournamentResults(object):
     def append_winners(self, winners):
         self.results['stage-one']['winners'].append(winners)
 
+    def add_third_places(self, thirds):
+        self.results['stage-one']['third-places'] = thirds
+
+    def get_third_places(self):
+        return self.results['stage-one']['third-places']
+
     def append_stage_two_winners(self, finalName, winners):
         if 'stage-two' in self.results:
             self.results['stage-two'][finalName] = winners

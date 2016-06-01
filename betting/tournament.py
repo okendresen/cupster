@@ -7,6 +7,7 @@ def pairwise(iterable):
     a = iter(iterable)
     return zip(a, a)
 
+
 def tournament_factory(configFile, userData, enterResults):
     with open(configFile) as f:
         config = toml.loads(f.read())
@@ -238,7 +239,6 @@ class Tournament(object):
 
     def user_stage_two_eval(self):
         qualifiers = self.results.get_winners()
-        print(qualifiers)
         qualifiers = self.evalute_matches(
             qualifiers, len(qualifiers), self.get_stage_two_matches)
         while int(len(qualifiers) / 2) > 1:
@@ -294,6 +294,8 @@ class EuroTournament(Tournament):
     def user_group_stage_one_eval(self):
         super().user_group_stage_one_eval()
         top4 = self.get_top_four(self.thirds)
-        self.results.append_winners([top4[0], top4[3]])
-        self.results.append_winners([top4[1], top4[2]])
+        self.results.add_third_places(top4)
         self.results.save()
+
+    def get_stage_two_matches(self):
+        thirds = self.results.get_third_places()

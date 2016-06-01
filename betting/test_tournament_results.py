@@ -10,3 +10,12 @@ class TestTournamentResults(unittest.TestCase):
         testfile = 'no file'
         result = TournamentResults(testfile, user)
         assert_that(result, instance_of(TournamentResults))
+
+    def test_add_get_third_places(self):
+        user = 'user'
+        testfile = 'no file'
+        result = TournamentResults(testfile, user)
+        thirds = ['italy', 'brasil', 'england', 'sweden']
+        result.add_third_places(thirds)
+        actual = result.get_third_places()
+        assert_that(actual, is_(equal_to(thirds)))
