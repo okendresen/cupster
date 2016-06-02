@@ -280,16 +280,16 @@ class Tournament(object):
         self.results.set_final_winner(self.select_team(final))
         self.results.save()
 
-    def get_top_four(self, points):
-        top = Counter(points).most_common(4)
-        res = [t[0] for t in top]
-        return res
-
 
 class EuroTournament(Tournament):
     """Specialization for UEFA Euro cup"""
     def __init__(self, results=None, isResults=False):
         super().__init__(results, isResults)
+
+    def get_top_four(self, points):
+        top = Counter(points).most_common(4)
+        res = [t[0] for t in top]
+        return res
 
     def user_group_stage_one_eval(self):
         super().user_group_stage_one_eval()
@@ -297,5 +297,5 @@ class EuroTournament(Tournament):
         self.results.add_third_places(top4)
         self.results.save()
 
-    def get_stage_two_matches(self):
-        thirds = self.results.get_third_places()
+    def get_stage_two_matches(self, qualifiers):
+        return self.results.get_third_places()

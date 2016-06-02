@@ -15,7 +15,7 @@ class TestTournamentResults(unittest.TestCase):
         user = 'user'
         testfile = 'no file'
         result = TournamentResults(testfile, user)
-        thirds = ['italy', 'brasil', 'england', 'sweden']
+        thirds = [['italy', 'A'], ['brasil', 'B'], ['england', 'C'], ['sweden', 'D']]
         result.add_third_places(thirds)
         actual = result.get_third_places()
         assert_that(actual, is_(equal_to(thirds)))

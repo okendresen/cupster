@@ -1,5 +1,6 @@
+[stage-one]
+results = [ [ "b", "u", "b", "b", "h", "u",], [ "h", "u", "h", "b", "u", "h",], [ "h", "u", "h", "u", "b", "b",], [ "h", "h", "b", "u", "h", "b",], [ "u", "b", "h", "u", "b", "h",], [ "b", "b", "u", "h", "h", "b",],]
+third-places = [ "Sweden", "Switzerland", "Croatia", "Hungary",]
+winners = [ [ "France", "Romania",], [ "England", "Russia",], [ "Germany", "Poland",], [ "Spain", "Turkey",], [ "Belgium", "Italy",], [ "Portugal", "Iceland",],]
 [info]
 user = "larsm"
-[stage-one]
-winners = [ [ "France", "Romania",], [ "England", "Russia",], [ "Germany", "Poland",], [ "Spain", "Turkey",], [ "Belgium", "Italy",], [ "Portugal", "Iceland",],]
-results = [ [ "b", "u", "b", "b", "h", "u",], [ "h", "u", "h", "b", "u", "h",], [ "h", "u", "h", "u", "b", "b",], [ "h", "h", "b", "u", "h", "b",], [ "u", "b", "h", "u", "b", "h",], [ "b", "b", "u", "h", "h", "b",],]
