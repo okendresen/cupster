@@ -353,6 +353,13 @@ class EuroTournament(Tournament):
 
         return combinations[''.join(sorted(groups))]
 
+    def get_final_matches(self, qualifiers):
+        matches = []
+        for i in range(0, int(len(qualifiers)), 4):
+            matches.append([qualifiers[i], qualifiers[i + 1]])
+            matches.append([qualifiers[i + 2], qualifiers[i + 3]])
+        return matches
+
     def user_final_eval(self):
         print('\nSelect winner of final')
         final = self.results.get_finalists()

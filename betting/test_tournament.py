@@ -154,5 +154,25 @@ class TestEuroTournament(unittest.TestCase):
         actual = self.cup.get_stage_two_matches(qualifiers)
         assert_that(actual, is_(equal_to(expected)))
 
+    def test_get_final_matches(self):
+        self.init('')
+        qualifiers = ['Winner Match 1', 'Winner Match 2',
+                      'Winner Match 3', 'Winner Match 4',
+                      'Winner Match 5', 'Winner Match 6',
+                      'Winner Match 7', 'Winner Match 8']
+        expected  = [['Winner Match 1', 'Winner Match 2'],
+                     ['Winner Match 3', 'Winner Match 4'],
+                     ['Winner Match 5', 'Winner Match 6'],
+                     ['Winner Match 7', 'Winner Match 8']]
+        actual = self.cup.get_final_matches(qualifiers)
+        assert_that(actual, is_(equal_to(expected)))
+
+        qualifiers = ['Winner Quarter-final 1', 'Winner Quarter-final 2',
+                      'Winner Quarter-final 3', 'Winner Quarter-final 4']
+        expected  = [['Winner Quarter-final 1', 'Winner Quarter-final 2'],
+                     ['Winner Quarter-final 3', 'Winner Quarter-final 4']]
+        actual = self.cup.get_final_matches(qualifiers)
+        assert_that(actual, is_(equal_to(expected)))
+
 if __name__ == '__main__':
     unittest.main()
