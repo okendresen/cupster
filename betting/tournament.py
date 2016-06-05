@@ -299,3 +299,8 @@ class EuroTournament(Tournament):
 
     def get_stage_two_matches(self, qualifiers):
         return self.results.get_third_places()
+
+    def find_group(self, team):
+        gid = next((i for i, group in enumerate(self.config['groups']) if team in group), None)
+        gid = chr(ord('A') + gid) if gid is not None else None
+        return gid

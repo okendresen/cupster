@@ -89,6 +89,14 @@ class TestEuroTournament(unittest.TestCase):
         actual = self.cup.get_top_four(points)
         assert_that(actual, has_items('italy', 'brasil', 'england', 'sweden'))
 
+    def test_find_group_name(self):
+        toml = 'name = "foo"\ngroups = [ ["op", "oop"], ["opo", "ioi"] ]'
+        self.init(toml)
+        assert_that(self.cup.find_group('oop'), is_('A'))
+        assert_that(self.cup.find_group('opo'), is_('B'))
+        assert_that(self.cup.find_group('op'), is_('A'))
+        assert_that(self.cup.find_group('not_there'), is_(None))
+
     def test_get_stage_two_matches(self):
         self.init('')
         qualifiers = [
