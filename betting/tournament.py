@@ -352,3 +352,9 @@ class EuroTournament(Tournament):
         combinations['CDEF'] = ['C', 'D', 'F', 'E']
 
         return combinations[''.join(sorted(groups))]
+
+    def user_final_eval(self):
+        print('\nSelect winner of final')
+        final = self.results.get_finalists()
+        self.results.set_final_winner(self.select_team(final))
+        self.results.save()
