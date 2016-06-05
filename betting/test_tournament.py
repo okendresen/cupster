@@ -97,6 +97,23 @@ class TestEuroTournament(unittest.TestCase):
         assert_that(self.cup.find_group('op'), is_('A'))
         assert_that(self.cup.find_group('not_there'), is_(None))
 
+    def test_get_match_ups(self):
+        self.init('')
+        assert_that(self.cup.get_match_ups(['A', 'B', 'C', 'D']),
+                    is_(equal_to(['C', 'D', 'A', 'B'])))
+        assert_that(self.cup.get_match_ups(['A', 'B', 'C', 'E']),
+                    is_(equal_to(['C', 'A', 'B', 'E'])))
+        assert_that(self.cup.get_match_ups(['A', 'B', 'C', 'F']),
+                    is_(equal_to(['C', 'A', 'B', 'F'])))
+        assert_that(self.cup.get_match_ups(['A', 'B', 'D', 'E']),
+                    is_(equal_to(['D', 'A', 'B', 'E'])))
+        assert_that(self.cup.get_match_ups(['A', 'B', 'D', 'F']),
+                    is_(equal_to(['D', 'A', 'B', 'F'])))
+        assert_that(self.cup.get_match_ups(['A', 'B', 'E', 'F']),
+                    is_(equal_to(['E', 'A', 'B', 'F'])))
+        assert_that(self.cup.get_match_ups(['F', 'B', 'E', 'A']),
+                    is_(equal_to(['E', 'A', 'B', 'F'])))
+
     def test_get_stage_two_matches(self):
         self.init('')
         qualifiers = [
@@ -109,13 +126,33 @@ class TestEuroTournament(unittest.TestCase):
         ]
         self.cup.results = Mock()
         self.cup.results.get_third_places = Mock()
+        self.cup.find_group = Mock()
 
         # Thirds from A, B, C, D
+        self.cup.find_group.side_effect = ['A', 'B', 'C', 'D']
         thirds = ['3A', '3B', '3C', '3D']
         self.cup.results.get_third_places.return_value = thirds
+        expected = [
+            ['Runner-up A', 'Runner-up C'], ['Winner D', '3B'],
+            ['Winner B', '3D'], ['Winner F', 'Runner-up E'],
+            ['Winner C', '3A'], ['Winner E', 'Runner-up D'],
+            ['Winner A', '3C'], ['Runner-up B', 'Runner-up F']
+        ]
         actual = self.cup.get_stage_two_matches(qualifiers)
-        assert_that(actual, is_(thirds))
+        assert_that(actual, is_(equal_to(expected)))
 
+        # Thirds from B, C, E, F
+        self.cup.find_group.side_effect = ['F', 'B', 'E', 'C']
+        thirds = ['3F', '3B', '3E', '3C']
+        self.cup.results.get_third_places.return_value = thirds
+        expected = [
+            ['Runner-up A', 'Runner-up C'], ['Winner D', '3F'],
+            ['Winner B', '3C'], ['Winner F', 'Runner-up E'],
+            ['Winner C', '3B'], ['Winner E', 'Runner-up D'],
+            ['Winner A', '3E'], ['Runner-up B', 'Runner-up F']
+        ]
+        actual = self.cup.get_stage_two_matches(qualifiers)
+        assert_that(actual, is_(equal_to(expected)))
 
 if __name__ == '__main__':
     unittest.main()

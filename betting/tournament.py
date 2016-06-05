@@ -1,5 +1,5 @@
 import toml
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 def pairwise(iterable):
@@ -282,7 +282,8 @@ class Tournament(object):
 
 
 class EuroTournament(Tournament):
-    """Specialization for UEFA Euro cup"""
+    """Specialization for UEFA Euro cup.
+        Match setup from https://en.wikipedia.org/wiki/UEFA_Euro_2016#Knockout_phase"""
     def __init__(self, results=None, isResults=False):
         super().__init__(results, isResults)
 
@@ -298,9 +299,56 @@ class EuroTournament(Tournament):
         self.results.save()
 
     def get_stage_two_matches(self, qualifiers):
-        return self.results.get_third_places()
+        thirds = self.results.get_third_places()
+        groups = []
+        lookup = {}
+        for team in thirds:
+            group = self.find_group(team)
+            groups.append(group)
+            lookup[group] = team
+        matchUp = self.get_match_ups(groups)
+
+        matches = []
+        # Match 1: Runner-up Group A v Runner-up Group C
+        matches.append([qualifiers[0][1], qualifiers[2][1]])
+        # Match 2: Winner Group D v 3rd Place Group B/E/F
+        matches.append([qualifiers[3][0], lookup[matchUp[3]]])
+        # Match 3: Winner Group B v 3rd Place Group A/C/D
+        matches.append([qualifiers[1][0], lookup[matchUp[1]]])
+        # Match 4: Winner Group F v Runner-up Group E
+        matches.append([qualifiers[5][0], qualifiers[4][1]])
+        # Match 5: Winner Group C v 3rd Place Group A/B/F
+        matches.append([qualifiers[2][0], lookup[matchUp[2]]])
+        # Match 6: Winner Group E v Runner-up Group D
+        matches.append([qualifiers[4][0], qualifiers[3][1]])
+        # Match 7: Winner Group A v 3rd Place Group C/D/E
+        matches.append([qualifiers[0][0], lookup[matchUp[0]]])
+        # Match 8: Runner-up Group B v Runner-up Group F
+        matches.append([qualifiers[1][1], qualifiers[5][1]])
+
+        return matches
 
     def find_group(self, team):
         gid = next((i for i, group in enumerate(self.config['groups']) if team in group), None)
         gid = chr(ord('A') + gid) if gid is not None else None
         return gid
+
+    def get_match_ups(self, groups):
+        combinations = defaultdict(list)
+        combinations['ABCD'] = ['C', 'D', 'A', 'B']
+        combinations['ABCE'] = ['C', 'A', 'B', 'E']
+        combinations['ABCF'] = ['C', 'A', 'B', 'F']
+        combinations['ABDE'] = ['D', 'A', 'B', 'E']
+        combinations['ABDF'] = ['D', 'A', 'B', 'F']
+        combinations['ABEF'] = ['E', 'A', 'B', 'F']
+        combinations['ACDE'] = ['C', 'D', 'A', 'E']
+        combinations['ACDF'] = ['C', 'D', 'A', 'F']
+        combinations['ACEF'] = ['C', 'A', 'F', 'E']
+        combinations['ADEF'] = ['D', 'A', 'F', 'E']
+        combinations['BCDE'] = ['C', 'D', 'B', 'E']
+        combinations['BCDF'] = ['C', 'D', 'B', 'F']
+        combinations['BCEF'] = ['E', 'C', 'B', 'F']
+        combinations['BDEF'] = ['E', 'D', 'B', 'F']
+        combinations['CDEF'] = ['C', 'D', 'F', 'E']
+
+        return combinations[''.join(sorted(groups))]
