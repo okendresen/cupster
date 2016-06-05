@@ -286,6 +286,8 @@ class EuroTournament(Tournament):
         Match setup from https://en.wikipedia.org/wiki/UEFA_Euro_2016#Knockout_phase"""
     def __init__(self, results=None, isResults=False):
         super().__init__(results, isResults)
+        self.stage_two_names = {6: 'round-of-16',
+                                4: 'quarter-final', 2: 'semi-final'}
 
     def get_top_four(self, points):
         top = Counter(points).most_common(4)
@@ -297,6 +299,7 @@ class EuroTournament(Tournament):
         top4 = self.get_top_four(self.thirds)
         self.results.add_third_places(top4)
         self.results.save()
+        print('\nThird places: {}'.format(top4))
 
     def get_stage_two_matches(self, qualifiers):
         thirds = self.results.get_third_places()
