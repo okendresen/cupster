@@ -85,9 +85,12 @@ class TestEuroTournament(unittest.TestCase):
         self.init('')
         points = ['brasil', 'brasil', 'brasil', 'england', 'england',
                   'england', 'sweden', 'sweden', 'cuba', 'lithuania',
-                  'italy', 'italy', 'italy', 'italy']
+                  'italy', 'italy', 'italy', 'italy', 'cuba', 'sweden']
+
+        self.cup.find_group = Mock()
+        self.cup.find_group.side_effect = ['F', 'B', 'E', 'E', 'D']
         actual = self.cup.get_top_four(points)
-        assert_that(actual, has_items('italy', 'brasil', 'england', 'sweden'))
+        assert_that(actual, has_items('italy', 'brasil', 'england', 'cuba'))
 
     def test_find_group_name(self):
         toml = 'name = "foo"\ngroups = [ ["op", "oop"], ["opo", "ioi"] ]'

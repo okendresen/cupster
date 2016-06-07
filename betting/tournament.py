@@ -284,15 +284,22 @@ class Tournament(object):
 class EuroTournament(Tournament):
     """Specialization for UEFA Euro cup.
         Match setup from https://en.wikipedia.org/wiki/UEFA_Euro_2016#Knockout_phase"""
+
     def __init__(self, results=None, isResults=False):
         super().__init__(results, isResults)
         self.stage_two_names = {6: 'round-of-16',
                                 4: 'quarter-final', 2: 'semi-final'}
 
     def get_top_four(self, points):
-        top = Counter(points).most_common(4)
-        res = [t[0] for t in top]
-        return res
+        top = Counter(points).most_common(5)
+        res = []
+        groupList = []
+        for team in top:
+            group = self.find_group(team[0])
+            if group not in groupList:
+                res.append(team[0])
+                groupList.append(group)
+        return res[:4]  # return first four items
 
     def user_group_stage_one_eval(self):
         super().user_group_stage_one_eval()
@@ -310,6 +317,7 @@ class EuroTournament(Tournament):
             groups.append(group)
             lookup[group] = team
         matchUp = self.get_match_ups(groups)
+        print(matchUp)
 
         matches = []
         # Match 1: Runner-up Group A v Runner-up Group C
