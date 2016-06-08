@@ -72,9 +72,9 @@ namespace Modules
 
 		void MarkWinnerIfFinished(IResults actual)
 		{
-		    Better leader = _betters.OrderByDescending(b => b.Score).ToList()[0];
-		    if (actual.HasFinal())
-		        leader.RowClass = "success";
+		    List<Better> betters = _betters.OrderByDescending(b => b.Score).ToList();
+		    if (actual.HasFinal() && betters.Count > 0)
+		        betters[0].RowClass = "success";
 		}
 
 		private void CreateGroups()
