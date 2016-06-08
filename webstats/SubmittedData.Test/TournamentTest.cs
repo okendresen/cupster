@@ -95,5 +95,57 @@ groups = [
 			groups.Length.ShouldBe(2);
 		}
 		
+	   [Test]
+	   public void TestGetTheType_WhenGiven_ShouldReturnCorrectTournamentType()
+	   {
+            string file = @"data\euro2016.toml";
+            string cup = @"name = ""Euro 2016 France""
+type = ""uefa-euro""";
+            var t = CreateTournament(file, cup);
+            t.Load(file);
+            TournamentType type = t.GetTheType();
+            type.ShouldBe(TournamentType.UEFA_Euro);
+
+            cup = @"name = ""World Cup 2016""
+type = ""fifa-wouldcup""";
+            t = CreateTournament(file, cup);
+            t.Load(file);
+            type = t.GetTheType();
+            type.ShouldBe(TournamentType.FIFA_WordCup);
+	   }
+
+       [Test]
+       public void TestGetTheType_Default_ShouldReturnFifa()
+       {
+            string file = @"data\euro2016.toml";
+            string cup = @"name = ""World Cup 2016""
+type = ""fifa-wouldcup""";
+            var t = CreateTournament(file, cup);
+            t.Load(file);
+            TournamentType type = t.GetTheType();
+            type.ShouldBe(TournamentType.FIFA_WordCup);
+       }
+       
+       [Test]
+       public void TestIsFifaWorldCup_ShouldReturnFalse_WhenTypeIsUefa()
+       {
+            string file = @"data\euro2016.toml";
+            string cup = @"name = ""Euro 2016 France""
+type = ""uefa-euro""";
+            var t = CreateTournament(file, cup);
+            t.Load(file);
+            t.IsFifaWorldCup().ShouldBe(false);
+       }
+
+       [Test]
+       public void TestIsUefaEuro_ShouldReturnTrue_WhenTypeIsFifa()
+       {
+            string file = @"data\euro2016.toml";
+            string cup = @"name = ""World Cup 2016""
+type = ""fifa-wouldcup""";
+            var t = CreateTournament(file, cup);
+            t.Load(file);
+            t.IsFifaWorldCup().ShouldBe(true);
+       }
 	}
 }

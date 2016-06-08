@@ -52,6 +52,25 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		}
 		
 		[Test]
+		public void TestWorldCupRules_ShouldReturnTrue_WhenTournamentTypeIsFifa()
+		{
+		    var tm = new Tournament(@"name = ""VM 2014 Brasil""
+type = ""fifa-worldcup""
+groups = [
+    [""Brasil"",        ""Kroatia"",         ""Mexico"",             ""Kamerun""],
+    [""Spania"",        ""Nederland"",     ""Chile"",             ""Australia""],
+]".ParseAsToml());
+            var r = new Results(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+            var better = new BetterPageViewModel(tm, r, r);
+            better.WorldCupRules.ShouldBe(true);
+		}
+		
+		[Test]
 		public void TestGroupMatches_GetResult_ShouldReturnTeam1_WhenResultIsWin()
 		{
 			var gm = new BetterPageViewModel.GroupMatches();

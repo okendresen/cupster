@@ -25,7 +25,8 @@ namespace Modules
             CreateRound16Matches();
             CreateQuarterFinalMatches();
             CreateSemiFinalMatches();
-            CreateBronseFinalMatch();
+            if (WorldCupRules)
+                CreateBronseFinalMatch();
             CreateFinalMatch();
         }
 
@@ -39,6 +40,11 @@ namespace Modules
             get { return _bet.GetInfo().user; }
         }
 
+        public bool WorldCupRules
+        {
+            get { return _tournament.IsFifaWorldCup(); }
+        }
+        
         List<GroupMatches> _groups = new List<GroupMatches>();
         public List<GroupMatches> Groups
         {
@@ -48,7 +54,17 @@ namespace Modules
 		
         public int Score
         {
-            get { return _userScore.GetTotal(); }
+            get 
+            {
+                if (WorldCupRules)
+                {
+                    return _userScore.GetTotal();
+                }
+                else
+                {
+                    return _userScore.GetTotalWithoutBronse();
+                }
+            }
         }
 
         public int GroupScore

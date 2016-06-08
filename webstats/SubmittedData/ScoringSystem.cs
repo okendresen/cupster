@@ -38,6 +38,18 @@ namespace SubmittedData
             return score;
         }
 
+        public int GetTotalWithoutBronse()
+        {
+            int score = 0;
+            score += GetStageOneMatchScore();
+            score += GetQualifierScore();
+            score += GetRound16Score();
+            score += GetQuarterFinalScore();
+            score += GetSemiFinalScore();
+            score += GetFinalScore();
+            return score;
+        }
+
         // 1 point per correct match outcome (win/loss/draw)
         public int GetStageOneMatchScore()
         {
