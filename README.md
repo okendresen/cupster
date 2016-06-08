@@ -1,9 +1,9 @@
 cupster
 =======
 
-Simple betting and score management system. 
+Simple football tournament betting and score management system. 
 
-Proof-of-concept for WC 2014.  Test server at http://cupster.net/
+Test server at http://cupster.net/
 
 ###TODO
 - [ ] Remove achivement assognment before results are entered
