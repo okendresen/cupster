@@ -18,9 +18,7 @@ namespace SubmittedData
 	/// </summary>
 	public class Tournament : ITournament
 	{
-		readonly IFileSystem _fileSystem;
-		dynamic _config;
-		
+		readonly IFileSystem _fileSystem;		
 		public Tournament(IFileSystem fileSystem)
 		{
 			_fileSystem = fileSystem;
@@ -31,6 +29,15 @@ namespace SubmittedData
 		)
 		{
 		}
+
+        dynamic _config;
+        public Tournament(dynamic config)
+            : this(
+                fileSystem: new FileSystem()
+            )
+        {
+            _config = config;
+        }
 			
 		public void Load(string file)
 		{
@@ -43,6 +50,23 @@ namespace SubmittedData
 			return _config.name;
 		}
 
+        public TournamentType GetTheType()
+        {
+            if (_config.type == "uefa-euro")
+            {
+                return TournamentType.UEFA_Euro;
+            }
+            else
+            {
+                return TournamentType.FIFA_WordCup;
+            }
+        }
+        
+        public bool IsFifaWorldCup()
+        {
+            return GetTheType() == TournamentType.FIFA_WordCup;
+        }
+        
 		public object[] GetGroups()
 		{
 			return _config.groups;

@@ -13,10 +13,15 @@ namespace SubmittedData
 	/// <summary>
 	/// Description of ITournament.
 	/// </summary>
+	
+	public enum TournamentType { FIFA_WordCup, UEFA_Euro }
+	
 	public interface ITournament
 	{
 		void Load(string file);
 		string GetName();
+		TournamentType GetTheType();
+		bool IsFifaWorldCup();
 		object[] GetGroups();		
 	}
 }

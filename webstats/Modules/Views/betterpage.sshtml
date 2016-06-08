@@ -21,7 +21,9 @@
       <a href="#round16" class="btn btn-primary">Round of 16</a>
       <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
       <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
-      <a href="#bronse-final" class="btn btn-primary">Bronze final</a>
+      @If.WorldCupRules
+        <a href="#bronse-final" class="btn btn-primary">Bronze final</a>
+      @EndIf
       <a href="#final" class="btn btn-primary">Final</a>
     </div>
     <div class="visible-xs btn-group-vertical btn-group-lg">
@@ -29,7 +31,9 @@
       <a href="#round16" class="btn btn-primary">Round of 16</a>
       <a href="#quarter-finals" class="btn btn-primary">Quarter finals</a>
       <a href="#semi-finals" class="btn btn-primary">Semi finals</a>
-      <a href="#bronse-final" class="btn btn-primary">Bronze final</a>
+      @If.WorldCupRules
+        <a href="#bronse-final" class="btn btn-primary">Bronze final</a>
+      @EndIf
       <a href="#final" class="btn btn-primary">Final</a>
     </div>
     <p></p>
@@ -88,6 +92,7 @@
 </div>
 </section>
 
+@If.WorldCupRules
 <div class="bg-info">
 <a id="bronse-final"></a>
 <div class="container">
@@ -99,6 +104,7 @@
     @Partial['final.sshtml', Model.BronseFinal]
 </div>
 </section>
+@EndIf
 
 <div class="bg-info">
 <a id="final"></a>
