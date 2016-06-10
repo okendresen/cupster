@@ -1,0 +1,12 @@
+[stage-two]
+semi-final = [ "Portugal", "France",]
+round-of-16 = [ "Albania", "Spain", "England", "Portugal", "Germany", "Italy", "France", "Slovakia",]
+quarter-final = [ "Spain", "Portugal", "Germany", "France",]
+[info]
+user = "IMosti"
+[finals]
+final = "France"
+[stage-one]
+third-places = [ "Belgium", "Wales", "Hungary", "Switzerland",]
+results = [ [ "b", "b", "h", "b", "b", "h",], [ "u", "u", "h", "u", "u", "b",], [ "h", "u", "h", "b", "b", "u",], [ "u", "h", "b", "h", "u", "u",], [ "u", "b", "h", "b", "h", "h",], [ "b", "u", "b", "h", "h", "b",],]
+winners = [ [ "France", "Albania",], [ "England", "Slovakia",], [ "Germany", "Northern Ireland",], [ "Spain", "Turkey",], [ "Italy", "Sweden",], [ "Portugal", "Iceland",],]

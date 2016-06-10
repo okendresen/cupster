@@ -1,0 +1,12 @@
+[info]
+user = "BAnfinsen"
+[finals]
+final = "England"
+[stage-one]
+winners = [ [ "France", "Switzerland",], [ "England", "Russia",], [ "Germany", "Northern Ireland",], [ "Spain", "Croatia",], [ "Italy", "Belgium",], [ "Portugal", "Austria",],]
+results = [ [ "B", "B", "u", "u", "h", "h",], [ "h", "u", "h", "b", "u", "h",], [ "h", "u", "h", "b", "b", "u",], [ "h", "h", "b", "h", "u", "b",], [ "u", "b", "h", "b", "b", "h",], [ "h", "b", "h", "h", "u", "b",],]
+third-places = [ "Turkey", "Iceland", "Sweden", "Wales",]
+[stage-two]
+semi-final = [ "England", "Germany",]
+round-of-16 = [ "Switzerland", "Spain", "England", "Portugal", "Germany", "Croatia", "France", "Austria",]
+quarter-final = [ "Spain", "England", "Germany", "France",]

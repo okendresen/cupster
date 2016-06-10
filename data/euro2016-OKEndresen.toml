@@ -1,0 +1,12 @@
+[stage-two]
+semi-final = [ "England", "Germany",]
+quarter-final = [ "Switzerland", "England", "Germany", "France",]
+round-of-16 = [ "Switzerland", "Spain", "England", "Austria", "Germany", "Belgium", "France", "Portugal",]
+[stage-one]
+results = [ [ "b", "b", "u", "u", "h", "h",], [ "h", "b", "h", "u", "b", "h",], [ "h", "h", "h", "u", "b", "b",], [ "h", "h", "u", "b", "b", "b",], [ "h", "b", "h", "u", "b", "u",], [ "h", "b", "h", "h", "b", "b",],]
+third-places = [ "Russia", "Iceland", "Czech Republic", "Italy",]
+winners = [ [ "France", "Switzerland",], [ "England", "Wales",], [ "Germany", "Poland",], [ "Spain", "Croatia",], [ "Belgium", "Sweden",], [ "Austria", "Portugal",],]
+[finals]
+final = "Germany"
+[info]
+user = "OKEndresen"
