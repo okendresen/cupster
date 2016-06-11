@@ -1,0 +1,28 @@
+﻿<Properties StartupItem="webstats/webstats.csproj">
+  <MonoDevelop.Ide.ItemProperties.webstats PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SubmittedData.Test/ResultsTest.cs">
+    <Files>
+      <File FileName="SubmittedData.Test/ResultsTest.cs" Line="42" Column="9" />
+      <File FileName="SubmittedData.Test/SubmittedBetsTest.cs" Line="95" Column="1" />
+      <File FileName="SubmittedData.Test/TournamentTest.cs" Line="14" Column="16" />
+      <File FileName="Modules/Bootstrapper.cs" Line="25" Column="1" />
+      <File FileName="Modules.Test/RootMenuModuleTest.cs" Line="28" Column="1" />
+      <File FileName="webstats/app.config" Line="1" Column="1" />
+      <File FileName="SubmittedData.Test/packages.config" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="webstats" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/larsm/src/github/cupster/webstats/Modules/Bootstrapper.cs" line="25" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

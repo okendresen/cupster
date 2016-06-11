@@ -19,6 +19,7 @@ namespace Modules.Test
 	/// Description of MyClass.
 	/// </summary>
 	[TestFixture]
+	[Ignore]
 	public class RootMenuModelsTest
 	{
 		[Test]
