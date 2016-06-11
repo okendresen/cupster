@@ -177,7 +177,23 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], [ ""Hella
 			bets.LoadAll("data");
 			bets.Count.ShouldBe(4);
 		}
-		
+
+		[Test]
+		public void Test_LoadAll_ShouldSkipFile_IfNotToml()
+		{
+			var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
+												{
+													{ XFS.Path(@"data\vm2014-person1.toml"), new MockFileData("[info]\nuser=\"foo1\"") },
+													{ XFS.Path(@"data\vm2014-person2.toml"), new MockFileData("[info]\nuser=\"foo2\"") },
+													{ XFS.Path(@"data\vm2014-person3.toml"), new MockFileData("[info]\nuser=\"foo3\"") },
+													{ XFS.Path(@"data\.DS_store"), new MockFileData("garbage and not\nnot toml format") },
+													{ XFS.Path(@"data\vm2014-person5.toml"), new MockFileData("[info]\nuser=\"foo5\"") }
+												});
+			var bets = new SubmittedBets(fileSystem);
+			bets.LoadAll("data");
+			bets.Count.ShouldBe(4);
+		}
+
 		[Test]
 		public void TestGetBetters_ShouldReturnNamesOfAllBetters()
 		{

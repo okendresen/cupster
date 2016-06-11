@@ -43,7 +43,7 @@ namespace SubmittedData
 		{
 			if (_fileSystem.Directory.Exists(folder))
 			{
-				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder));
+				_fileNames = new List<string>(_fileSystem.Directory.GetFiles(folder, "*.toml"));
 				foreach (var file in _fileNames)
 				{
 					if ((TournamentFile == null || (!file.Contains(TournamentFile))) &&
