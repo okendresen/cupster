@@ -7,7 +7,7 @@ Test server at http://cupster.net/
 
 ###TODO
 - [x] Build on OS X and Linux
-- [ ] Remove achivement assignment before results are entered
+- [x] Remove achivement assignment before results are entered
 - [ ] Fix backend stage two match distribution. Include third-places.
 - [ ] Fetch results 
     - [x] Simple daily input, or
