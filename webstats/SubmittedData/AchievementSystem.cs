@@ -83,7 +83,9 @@ namespace SubmittedData
         {
             if (_user.HasSemiFinals() && _actual.HasStageOne())
             {
-                bool found = false;
+				if (!_actual.IsStageOneComplete())
+					return;
+				bool found = false;
                 var finalists = _user.GetSemiFinalWinners();
                 foreach (var pair in _actual.GetStageOne().winners)
                 {
@@ -104,6 +106,8 @@ namespace SubmittedData
         {
             if (_user.HasStageOne() && _actual.HasStageOne())
             {
+				if (!_actual.IsStageOneComplete())
+					return;
                 for (int i = 0; i < _user.GetStageOne().results.Length; i++)
                 {
                     bool found = false;
