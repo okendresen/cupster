@@ -78,6 +78,7 @@ results = [ [ ] ]
 semi-final = [ ""Spania"", ""Italia"",]
 ";
 		    string actualResults = @"[stage-one]
+results = [ [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",], [ ""b"", ""h"", ""b"", ""b"", ""b"", ""h"",], [ ""h"", ""h"", ""h"", ""u"", ""b"", ""h"",], [ ""b"", ""b"", ""h"", ""b"", ""b"", ""u"",], [ ""h"", ""h"", ""b"", ""b"", ""b"", ""u"",], [ ""h"", ""u"", ""h"", ""h"", ""b"", ""h"",], [ ""h"", ""b"", ""u"", ""u"", ""b"", ""h"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""u"",],]
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Nederland"", ""Chile"",], [ ""Colombia"", ""Hellas"",], ]
 [stage-two]
 ";
@@ -88,7 +89,25 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Nederland"", ""Chile"",], [ ""Colomb
 		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.NotEvenClose]);
         }
 
-        [Test]
+		[Test]
+		public void TestAchievements_ShouldNotContainNotEvenClose_WhenStageOneIsNotComplete()
+		{
+			string userBet = @"[stage-two]
+semi-final = [ ""Spania"", ""Italia"",]
+";
+			string actualResults = @"[stage-one]
+results = [ [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",], [ ""b"", ""h"", ""b"", ""b"", ""b"", ""h"",], [ ""h"", ""h"", ""h"", ""u"", ""-"", ""-"",], [ ""b"", ""b"", ""h"", ""b"", ""b"", ""u"",], [ ""h"", ""h"", ""b"", ""b"", ""b"", ""u"",], [ ""h"", ""u"", ""h"", ""h"", ""b"", ""h"",], [ ""h"", ""b"", ""u"", ""u"", ""b"", ""h"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""u"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Nederland"", ""Chile"",], [ ""Colombia"", ""Hellas"",], ]
+[stage-two]
+";
+			var user = new Results(userBet.ParseAsToml());
+			var actual = new Results(actualResults.ParseAsToml());
+
+			var a = new AchievementSystem(user, actual);
+			a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.NotEvenClose]);
+		}
+
+		[Test]
         public void TestAchievements_ShouldContainCompleteMiss_WhenGroupwithNoCorrectMatches()
         {
 		    string userBet = @"[info]
@@ -109,8 +128,30 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var a = new AchievementSystem(user, actual);
 		    a.Achievements.ShouldContain(a.AchievementRepo[AchievementTypes.CompleteMiss]);
         }
-        
-        [Test]
+
+		[Test]
+		public void TestAchievements_ShouldNotContainCompleteMiss_WhenStageOneIsNotComplete()
+		{
+			string userBet = @"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""H"", ""B"", ""H"", ""H"", ""B"", ""H"",], [ ""B"", ""B"", ""H"", ""B"", ""B"", ""H"",], [ ""U"", ""B"", ""U"", ""H"", ""H"", ""U"",], [ ""B"", ""B"", ""B"", ""H"", ""H"", ""B"",], [ ""B"", ""H"", ""B"", ""B"", ""U"", ""B"",], [ ""H"", ""U"", ""H"", ""U"", ""B"", ""H"",], [ ""H"", ""B"", ""H"", ""B"", ""b"", ""h"",], [ ""b"", ""h"", ""b"", ""u"", ""u"", ""u"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+";
+			string actualResults = @"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",], [ ""b"", ""h"", ""b"", ""b"", ""b"", ""h"",], [ ""h"", ""h"", ""h"", ""u"", ""-"", ""-"",], [ ""b"", ""b"", ""h"", ""b"", ""b"", ""u"",], [ ""h"", ""h"", ""b"", ""b"", ""b"", ""u"",], [ ""h"", ""u"", ""h"", ""h"", ""b"", ""h"",], [ ""h"", ""b"", ""u"", ""u"", ""b"", ""h"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""u"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+";
+			var user = new Results(userBet.ParseAsToml());
+			var actual = new Results(actualResults.ParseAsToml());
+
+			var a = new AchievementSystem(user, actual);
+			a.Achievements.ShouldNotContain(a.AchievementRepo[AchievementTypes.CompleteMiss]);
+		}
+
+		[Test]
         public void TestAchievements_ShouldContainSweet16_WhenEveryRound16WinnerIsCorrect()
         {
 		    string userBet = @"[stage-two]

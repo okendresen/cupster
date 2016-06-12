@@ -68,7 +68,24 @@ namespace SubmittedData
             return ((IDictionary<String, Object>)_results)["stage-one"];
         }
 
-        public dynamic GetInfo()
+		public bool IsStageOneComplete()
+		{
+			bool foundDash = false;
+			for (int i = 0; i < GetStageOne().results.Length; i++)
+			{
+				for (int j = 0; j < GetStageOne().results[i].Length; j++)
+				{
+					if (GetStageOne().results[i][j] == "-")
+					{
+						foundDash = true;
+						break;
+					}
+				}
+			}
+			return !foundDash;
+		}
+
+		public dynamic GetInfo()
         {
             return _results.info;
         }
@@ -90,7 +107,8 @@ namespace SubmittedData
                 return false;
             }
         }
-        public dynamic GetRound16Winners()
+
+		public dynamic GetRound16Winners()
         {
             var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
             return ((IDictionary<String, Object>)st)["round-of-16"];

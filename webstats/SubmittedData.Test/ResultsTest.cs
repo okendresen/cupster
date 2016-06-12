@@ -12,6 +12,7 @@ using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using NUnit.Framework;
 using Shouldly;
+using Toml;
 
 namespace SubmittedData.Test
 {
@@ -46,6 +47,27 @@ namespace SubmittedData.Test
 			var t = CreateTournament(@"data\vm2014-actual.toml", wc2014);
 			Should.Throw<FileNotFoundException>(() => t.Load(@"configs\vm2014-actual.toml"));
 		}
-		
+
+		[Test]
+		public void TestIsStageOneComplete()
+		{
+			string complete = @"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",], [ ""b"", ""h"", ""b"", ""b"", ""b"", ""h"",], [ ""h"", ""h"", ""h"", ""u"", ""b"", ""h"",], [ ""b"", ""b"", ""h"", ""b"", ""b"", ""u"",], [ ""h"", ""h"", ""b"", ""b"", ""b"", ""u"",], [ ""h"", ""u"", ""h"", ""h"", ""b"", ""h"",], [ ""h"", ""b"", ""u"", ""u"", ""b"", ""h"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""u"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+";
+			var res = new Results(complete.ParseAsToml());
+			res.IsStageOneComplete().ShouldBe(true);
+
+			string incomplete = @"[info]
+user = ""user1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""u"", ""b"", ""b"", ""b"",], [ ""b"", ""h"", ""b"", ""b"", ""b"", ""h"",], [ ""h"", ""h"", ""h"", ""u"", ""b"", ""h"",], [ ""b"", ""b"", ""h"", ""b"", ""b"", ""u"",], [ ""h"", ""h"", ""b"", ""b"", ""-"", ""-"",], [ ""h"", ""u"", ""h"", ""h"", ""b"", ""h"",], [ ""h"", ""b"", ""u"", ""u"", ""b"", ""h"",], [ ""h"", ""u"", ""h"", ""b"", ""b"", ""u"",],]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+";
+			res = new Results(incomplete.ParseAsToml());
+			res.IsStageOneComplete().ShouldBe(false);
+		}
 	}
 }
