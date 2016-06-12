@@ -18,6 +18,18 @@ namespace SubmittedData
     {
         IResults _user;
         IResults _actual;
+
+		public static class Points
+		{
+			public const int StageOneMatchOutcome = 1;
+			public const int QualifyingTeam = 2;
+			public const int QualifyingPosition = 2;
+			public const int Round16Winner = 4;
+			public const int QuarterFinalWinner = 8;
+			public const int SemiFinalWinner = 16;
+			public const int BronseFinalWinner = 16;
+			public const int FinalWinner = 32;
+		}
 		
         public ScoringSystem(IResults user, IResults actual)
         {
@@ -60,7 +72,7 @@ namespace SubmittedData
                 {
                     var actual = _actual.GetStageOne().results[i][j].ToLower();
                     if (actual != "-" && _user.GetStageOne().results[i][j].ToLower() == actual)
-                        score++;
+						score += Points.StageOneMatchOutcome;
                 }
             }
             return score;
@@ -79,10 +91,10 @@ namespace SubmittedData
                     if (_actual.GetStageOne().winners[i][j] == "-")
                         continue;
                     if (Array.IndexOf(_actual.GetStageOne().winners[i], team) != -1)
-                        score += 2;
+						score += Points.QualifyingTeam;
 		            
                     if (team.Equals(_actual.GetStageOne().winners[i][j]))
-                        score += 2;
+						score += Points.QualifyingPosition;
                 }
 		        
             }
@@ -96,7 +108,7 @@ namespace SubmittedData
             foreach (var team in _user.GetRound16Winners())
             {
                 if (team != "-" && Array.IndexOf(_actual.GetRound16Winners(), team) != -1)
-                    score += 8;
+					score += Points.Round16Winner;
             }
             return score;
         }
@@ -110,7 +122,7 @@ namespace SubmittedData
                 foreach (var team in _user.GetQuarterFinalWinners())
                 {
                     if (team != "-" && Array.IndexOf(_actual.GetQuarterFinalWinners(), team) != -1)
-                        score += 16;
+						score += ScoringSystem.Points.QuarterFinalWinner;
                 }
             }
             return score;
@@ -125,7 +137,7 @@ namespace SubmittedData
                 foreach (var team in _user.GetSemiFinalWinners())
                 {
                     if (team != "-" && Array.IndexOf(_actual.GetSemiFinalWinners(), team) != -1)
-                        score += 32;
+						score += ScoringSystem.Points.SemiFinalWinner;
                 }
             }
             return score;
@@ -137,7 +149,7 @@ namespace SubmittedData
             int score = 0;
             if (_actual.HasBronseFinal() && _actual.GetBronseFinalWinner() != "-"
                 && (_user.GetBronseFinalWinner() == _actual.GetBronseFinalWinner()))
-                score += 16;
+				score += ScoringSystem.Points.BronseFinalWinner;
             return score;
         }
 
@@ -147,7 +159,7 @@ namespace SubmittedData
             int score = 0;
             if (_actual.HasFinal() &&_actual.GetFinalWinner() != "-"
                 && (_user.GetFinalWinner() == _actual.GetFinalWinner()))
-                score += 32;
+				score += ScoringSystem.Points.FinalWinner;
             return score;
         }
     }
