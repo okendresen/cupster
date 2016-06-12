@@ -139,7 +139,10 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			var better = new BetterPageViewModel(tmock.Object, ar, ar);
-			better.TotalGroup.ShouldBe(5+4+4+4+4+4);
+			better.TotalGroup.ShouldBe(5 * ScoringSystem.Points.StageOneMatchOutcome +
+			                           4 * ScoringSystem.Points.StageOneMatchOutcome + 
+			                           4 * ScoringSystem.Points.QualifyingTeam +
+			                           4 * ScoringSystem.Points.QualifyingPosition);
 		    
 			ar = new Results(@"[info]
 user = ""user1""
@@ -148,7 +151,9 @@ results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""b"",], [ ""h"", ""u"", ""h"",
 winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			better = new BetterPageViewModel(tmock.Object, ar, ar);
-			better.TotalGroup.ShouldBe(2*6+4+4+4+4);
+			better.TotalGroup.ShouldBe(2 * 6 * ScoringSystem.Points.StageOneMatchOutcome + 
+									   4 * ScoringSystem.Points.QualifyingTeam +
+									   4 * ScoringSystem.Points.QualifyingPosition);
 		}
 		
 		[Test]

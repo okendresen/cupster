@@ -33,7 +33,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var user = new Results(full.ParseAsToml());
 		    var actual = new Results(full.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetStageOneMatchScore().ShouldBe(2*6);
+			s.GetStageOneMatchScore().ShouldBe(2*6*ScoringSystem.Points.StageOneMatchOutcome);
 		}
 
 		[Test]
@@ -58,7 +58,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		}
 
 		[Test]
-		public void TestGetStageOneMatchScore_ShoulNotCountScore_WhenResultIsDash()
+		public void TestGetStageOneMatchScore_ShouldNotCountScore_WhenResultIsDash()
 		{
 		    string full = @"[info]
 user = ""user1""
@@ -69,7 +69,8 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 		    var user = new Results(full.ParseAsToml());
 		    var actual = new Results(full.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetStageOneMatchScore().ShouldBe(5+4);
+			s.GetStageOneMatchScore().ShouldBe(5 * ScoringSystem.Points.StageOneMatchOutcome + 
+			                                   4 * ScoringSystem.Points.StageOneMatchOutcome);
 		}
 
 		[Test]
@@ -88,7 +89,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
 		    var user = new Results(oneCorrect.ParseAsToml());
 		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetQualifierScore().ShouldBe(2);
+			s.GetQualifierScore().ShouldBe(ScoringSystem.Points.QualifyingTeam);
 
 		    string twoCorrect = @"[info]
 user = ""user1""
@@ -97,7 +98,7 @@ winners = [ [ ""Mexico"", ""Brasil"",], ]
 ";
 		    user = new Results(twoCorrect.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetQualifierScore().ShouldBe(4);		    
+			s.GetQualifierScore().ShouldBe(2 * ScoringSystem.Points.QualifyingTeam);		    
 		}
 		
 		[Test]
@@ -113,10 +114,11 @@ user = ""user1""
 [stage-one]
 winners = [ [ ""Brasil"", ""Mexico"",], ]
 ";
+			var oneCorrectScore = ScoringSystem.Points.QualifyingTeam + ScoringSystem.Points.QualifyingPosition;
 		    var user = new Results(oneCorrect.ParseAsToml());
 		    var actual = new Results(actualbet.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetQualifierScore().ShouldBe(4);
+			s.GetQualifierScore().ShouldBe(oneCorrectScore);
 
 		    string twoCorrect = @"[info]
 user = ""user1""
@@ -125,7 +127,7 @@ winners = [ [ ""Brasil"", ""Mexico"",], ]
 ";
 		    user = new Results(twoCorrect.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetQualifierScore().ShouldBe(8);
+			s.GetQualifierScore().ShouldBe(2*oneCorrectScore);
 		}
 
 		[Test]
@@ -148,7 +150,7 @@ winners = [ [ ""-"", ""-"",], ]
 		}
 
 		[Test]
-		public void TestGetQualifierScore_ShoulNotdReturnPoints_WhenActualResultsIsDash()
+		public void TestGetQualifierScore_ShouldNotReturnPoints_WhenActualResultsIsDash()
 		{
 		    string actualbet = @"[info]
 user = ""user1""
@@ -161,7 +163,7 @@ winners = [ [ ""-"", ""-"",], ]
 		}
 		
 		[Test]
-		public void TestGetRound16Score_ShouldReturn8PointsPerCorrectWinner()
+		public void TestGetRound16Score_ShouldReturnPointsPerCorrectWinner()
 		{
 		    string bet = @"[stage-two]
 round-of-16 = [ ""Brasil"", ""Spania"", ""England"", ""Italia"", ""Nigeria"", ""Argentina"", ""Tyskland"", ""Portugal"",]
@@ -172,21 +174,21 @@ round-of-16 = [ ""Brasil"",]
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetRound16Score().ShouldBe(8);
+			s.GetRound16Score().ShouldBe(ScoringSystem.Points.Round16Winner);
 
 		    res = @"[stage-two]
 round-of-16 = [ ""Brasil"", ""Spania"", ]
 ";		                  
 		    actual = new Results(res.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetRound16Score().ShouldBe(16);
+			s.GetRound16Score().ShouldBe(2 * ScoringSystem.Points.Round16Winner);
 
 		    res = @"[stage-two]
 round-of-16 = [ ""NotATeam"", ""Spania"", ]
 ";		                  
 		    actual = new Results(res.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetRound16Score().ShouldBe(8);
+			s.GetRound16Score().ShouldBe(ScoringSystem.Points.Round16Winner);
 		}
 
 		[Test]
@@ -201,7 +203,7 @@ round-of-16 = [ ""Tyskland"", ""Brasil"", ]
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetRound16Score().ShouldBe(16);
+			s.GetRound16Score().ShouldBe(2 * ScoringSystem.Points.Round16Winner);
 		}
 
 		[Test]
@@ -212,12 +214,13 @@ round-of-16 = [ ""Tyskland"", ""-"", ]
 ";		                  
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(actual, actual);
-		    s.GetRound16Score().ShouldBe(8);
+			s.GetRound16Score().ShouldBe(ScoringSystem.Points.Round16Winner);
 		}
 		
 		[Test]
-		public void TestGetQuarterFinalScore_ShouldReturn16PointsPerCorrectWinner()
+		public void TestGetQuarterFinalScore_ShouldReturnPointsPerCorrectWinner()
 		{
+			int points = ScoringSystem.Points.QuarterFinalWinner;
 		    string bet = @"[stage-two]
 quarter-final = [ ""Brasil"", ""Spania"", ""Tyskland"", ""Argentina"",]
 ";
@@ -227,21 +230,21 @@ quarter-final = [ ""Brasil"",]
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetQuarterFinalScore().ShouldBe(16);
+		    s.GetQuarterFinalScore().ShouldBe(points);
 
 		    res = @"[stage-two]
 quarter-final = [ ""Brasil"", ""Spania"", ]
 ";		                  
 		    actual = new Results(res.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetQuarterFinalScore().ShouldBe(16+16);
+		    s.GetQuarterFinalScore().ShouldBe(points + points);
 
 		    res = @"[stage-two]
 quarter-final = [ ""NotATeam"", ""Spania"", ]
 ";		                  
 		    actual = new Results(res.ParseAsToml());
 		    s = new ScoringSystem(user, actual);
-		    s.GetQuarterFinalScore().ShouldBe(16);
+		    s.GetQuarterFinalScore().ShouldBe(points);
 		}
 
 		[Test]
@@ -256,7 +259,7 @@ quarter-final = [ ""Tyskland"", ""Brasil"", ]
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetQuarterFinalScore().ShouldBe(16+16);
+			s.GetQuarterFinalScore().ShouldBe(2 * ScoringSystem.Points.QuarterFinalWinner);
 		}
 
 		[Test]
@@ -267,11 +270,11 @@ quarter-final = [ ""Tyskland"", ""-"", ]
 ";		                  
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(actual, actual);
-		    s.GetQuarterFinalScore().ShouldBe(16);
+			s.GetQuarterFinalScore().ShouldBe(ScoringSystem.Points.QuarterFinalWinner);
 		}
 		
 		[Test]
-		public void TestGetSemiFinalScore_ShouldReturn32PointsPerCorrectWinner()
+		public void TestGetSemiFinalScore_ShouldReturnPointsPerCorrectWinner()
 		{
 		    string bet = @"[stage-two]
 semi-final = [ ""Tyskland"", ""Argentina"",]
@@ -282,11 +285,11 @@ semi-final = [ ""Argentina"", ""Tyskland"",]
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetSemiFinalScore().ShouldBe(32+32);
+			s.GetSemiFinalScore().ShouldBe(2 * ScoringSystem.Points.SemiFinalWinner);
 		}
 
 		[Test]
-		public void TestGetBronseFinalScore_ShouldReturn16PointsForCorrectWinner()
+		public void TestGetBronseFinalScore_ShouldReturnPointsForCorrectWinner()
 		{
 		    string bet = @"[finals]
 bronse-final = ""Brasil""
@@ -297,11 +300,11 @@ bronse-final = ""Brasil""
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetBronseFinalScore().ShouldBe(16);
+			s.GetBronseFinalScore().ShouldBe(ScoringSystem.Points.BronseFinalWinner);
 		}
 
 		[Test]
-		public void TestGetFinalScore_ShouldReturn32PointsForCorrectWinner()
+		public void TestGetFinalScore_ShouldReturnPointsForCorrectWinner()
 		{
 		    string bet = @"[finals]
 final = ""Tyskland""
@@ -312,7 +315,7 @@ final = ""Tyskland""
 		    var user = new Results(bet.ParseAsToml());
 		    var actual = new Results(res.ParseAsToml());
 		    var s = new ScoringSystem(user, actual);
-		    s.GetFinalScore().ShouldBe(32);
+			s.GetFinalScore().ShouldBe(ScoringSystem.Points.FinalWinner);
 		}
 	}
 }
