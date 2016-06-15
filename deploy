@@ -1,0 +1,6 @@
+#!/bin/sh
+supervisorctl stop cupster
+cp -r webstats/webstats/bin/Release/.  /usr/share/nginx/html/cupster
+cp -r data  /usr/share/nginx/html/cupster
+cp webstats.exe.config.server  /usr/share/nginx/html/cupster/webstats.exe.config
+supervisorctl start cupster
