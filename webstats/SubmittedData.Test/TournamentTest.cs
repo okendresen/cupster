@@ -147,5 +147,20 @@ type = ""fifa-wouldcup""";
             t.Load(file);
             t.IsFifaWorldCup().ShouldBe(true);
        }
+
+		[Test]
+		public void TestFindGroup_ShouldReturnGroupOfTeam()
+		{
+			string file = @"data\euro2016.toml";
+			string toml = @"name = ""foo""
+groups = [ [""op"", ""oop""], [""opo"", ""ioi""] ]";
+			var t = CreateTournament(file, toml);
+			t.Load(file);
+
+			t.FindGroup("oop").ShouldBe('A');
+			t.FindGroup("opo").ShouldBe('B');
+			t.FindGroup("op").ShouldBe('A');
+			t.FindGroup("not_there").ShouldBe('\0');
+		}
 	}
 }

@@ -71,5 +71,21 @@ namespace SubmittedData
 		{
 			return _config.groups;
 		}
+
+		public char FindGroup(string team)
+		{
+			char gn = 'A';
+			char ret = '\0';
+			foreach (object[] group in GetGroups())
+			{
+				if (Array.IndexOf(group, team) >= 0)
+				{
+					ret = gn;
+					break;
+				}
+				gn++;
+			}
+			return ret;
+		}
 	}
 }
