@@ -58,15 +58,46 @@ namespace SubmittedData
 		{
 		    return _timeStamp;
 		}
+
+		dynamic GetSection(string section)
+		{
+			return ((IDictionary<String, Object>)_results)[section];
+		}
+
+		bool HasSection(string section)
+		{
+			return ((IDictionary<String, Object>)_results).ContainsKey(section);
+		}
+
+		dynamic GetKey(string section, string key)
+		{
+			var sec = GetSection(section);
+			return ((IDictionary<String, Object>)sec)[key];
+		}
+
+		bool HasKey(string section, string key)
+		{
+			if (HasSection(section))
+			{
+				var sec = GetSection(section);
+				return ((IDictionary<String, Object>)sec).ContainsKey(key);
+
+			}
+			else
+			{
+				return false;
+			}
+		}
 		
 		public bool HasStageOne()
 		{
-			return ((IDictionary<String, Object>)_results).ContainsKey("stage-one");
+			return HasSection("stage-one");
 		}
-        public dynamic GetStageOne()
-        {
-            return ((IDictionary<String, Object>)_results)["stage-one"];
-        }
+
+		public dynamic GetStageOne()
+		{
+			return GetSection("stage-one");
+		}
 
 		public bool IsStageOneComplete()
 		{
@@ -87,22 +118,12 @@ namespace SubmittedData
 
 		public dynamic GetThirdPlaces()
 		{
-			var st = ((IDictionary<String, Object>)_results)["stage-one"];
-			return ((IDictionary<String, Object>)st)["third-places"];
+			return GetKey("stage-one", "third-places");
 		}
 
 		public bool HasThirdPlaces()
 		{
-			if (((IDictionary<String, Object>)_results).ContainsKey("stage-one"))
-			{
-				var st = ((IDictionary<String, Object>)_results)["stage-one"];
-				return ((IDictionary<String, Object>)st).ContainsKey("third-places");
-
-			}
-			else
-			{
-				return false;
-			}
+			return HasKey("stage-one", "third-places");
 		}
 
 		public dynamic GetInfo()
@@ -112,63 +133,36 @@ namespace SubmittedData
 
 		public bool HasStageTwo()
 		{
-			return ((IDictionary<String, Object>)_results).ContainsKey("stage-two");
+			return HasSection("stage-two");
 		}
 		
         public bool HasRound16()
         {
-            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
-            {
-                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-                return ((IDictionary<String, Object>)st).ContainsKey("round-of-16");
-		        
-            } else
-            {
-                return false;
-            }
+			return HasKey("stage-two", "round-of-16");
         }
 
 		public dynamic GetRound16Winners()
         {
-            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-            return ((IDictionary<String, Object>)st)["round-of-16"];
+			return GetKey("stage-two", "round-of-16");
         }
 
         public bool HasQuarterFinals()
         {
-            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
-            {
-                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-                return ((IDictionary<String, Object>)st).ContainsKey("quarter-final");
-		        
-            } else
-            {
-                return false;
-            }
+			return HasKey("stage-two", "quarter-final");
         }
 
 		public dynamic GetQuarterFinalWinners()
         {
-            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-            return ((IDictionary<String, Object>)st)["quarter-final"];
+			return GetKey("stage-two", "quarter-final");
         }
 
 		public bool HasSemiFinals()
         {
-            if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
-            {
-                var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-                return ((IDictionary<String, Object>)st).ContainsKey("semi-final");
-		        
-            } else
-            {
-                return false;
-            }
+			return HasKey("stage-two", "semi-final");
         }
         public dynamic GetSemiFinalWinners()
         {
-            var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
-            return ((IDictionary<String, Object>)st)["semi-final"];
+			return GetKey("stage-two", "semi-final");
         }
     	
         public List<string> GetBronseFinalists()
@@ -187,32 +181,17 @@ namespace SubmittedData
 
         public bool HasBronseFinal()
         {
-            if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
-            {
-                return ((IDictionary<String, Object>)_results.finals).ContainsKey("bronse-final");
-		        
-            } else
-            {
-                return false;
-            }
+			return HasKey("finals", "bronse-final");
         }
 
         public string GetBronseFinalWinner()
         {
-            return ((IDictionary<String, Object>)_results.finals)["bronse-final"].ToString();
+			return GetKey("finals", "bronse-final").ToString();
         }
         
         public bool HasFinal()
         {
-            if (((IDictionary<String, Object>)_results).ContainsKey("finals"))
-            {
-                return ((IDictionary<String, Object>)_results.finals).ContainsKey("final")
-                    && !String.Equals(GetFinalWinner(), "-");
-		        
-            } else
-            {
-                return false;
-            }
+			return HasKey("finals", "final") && !String.Equals(GetFinalWinner(), "-");
         }
         
         public string GetFinalWinner()

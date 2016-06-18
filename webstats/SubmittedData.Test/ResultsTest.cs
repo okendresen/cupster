@@ -103,5 +103,31 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ".ParseAsToml());
 			r.HasThirdPlaces().ShouldBe(false);
 		}
+
+		[Test]
+		public void TestHasBronseFinal_ShouldReflectContent()
+		{
+			var r = new Results(@"[finals]
+bronse-final = ""Brasil""
+".ParseAsToml());
+			r.HasBronseFinal().ShouldBe(true);
+
+			r = new Results(@"[finals]
+".ParseAsToml());
+			r.HasBronseFinal().ShouldBe(false);
+		}
+
+		[Test]
+		public void TestHasFinal_ShouldReflectContent()
+		{
+			var r = new Results(@"[finals]
+final = ""Brasil""
+".ParseAsToml());
+			r.HasFinal().ShouldBe(true);
+
+			r = new Results(@"[finals]
+".ParseAsToml());
+			r.HasFinal().ShouldBe(false);
+		}
 	}
 }
