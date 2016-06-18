@@ -85,6 +85,26 @@ namespace SubmittedData
 			return !foundDash;
 		}
 
+		public dynamic GetThirdPlaces()
+		{
+			var st = ((IDictionary<String, Object>)_results)["stage-one"];
+			return ((IDictionary<String, Object>)st)["third-places"];
+		}
+
+		public bool HasThirdPlaces()
+		{
+			if (((IDictionary<String, Object>)_results).ContainsKey("stage-one"))
+			{
+				var st = ((IDictionary<String, Object>)_results)["stage-one"];
+				return ((IDictionary<String, Object>)st).ContainsKey("third-places");
+
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public dynamic GetInfo()
         {
             return _results.info;
@@ -127,14 +147,13 @@ namespace SubmittedData
             }
         }
 
-        public dynamic GetQuarterFinalWinners()
+		public dynamic GetQuarterFinalWinners()
         {
             var st = ((IDictionary<String, Object>)_results)["stage-two"]; 
             return ((IDictionary<String, Object>)st)["quarter-final"];
         }
 
-
-        public bool HasSemiFinals()
+		public bool HasSemiFinals()
         {
             if (((IDictionary<String, Object>)_results).ContainsKey("stage-two"))
             {

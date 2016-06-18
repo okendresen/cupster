@@ -6,7 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
@@ -68,6 +67,41 @@ winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
 ";
 			res = new Results(incomplete.ParseAsToml());
 			res.IsStageOneComplete().ShouldBe(false);
+		}
+
+		[Test]
+		public void TestGetThirdPlaces_ShouldReturnList()
+		{
+			var r = new Results(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+third-places = [ ""Turkey"", ""Switzerland"", ""Italy"", ""Ukraine"",]
+".ParseAsToml());
+			Assert.That(r.GetThirdPlaces().Length, Is.EqualTo(4));
+		}
+
+		[Test]
+		public void TestHasThirdPlaces_ShouldReflectContent()
+		{
+			var r = new Results(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+third-places = [ ""Turkey"", ""Switzerland"", ""Italy"", ""Ukraine"",]
+".ParseAsToml());
+
+			r.HasThirdPlaces().ShouldBe(true);
+
+			r = new Results(@"[info]
+user=""foo1""
+[stage-one]
+results = [ [ ""h"", ""h"", ""h"", ""u"", ""b"", ""-"",], [ ""h"", ""u"", ""h"", ""b"", ""-"", ""-"",], ]
+winners = [ [ ""Brasil"", ""Mexico"",], [ ""Spania"", ""Nederland"",], ]
+".ParseAsToml());
+			r.HasThirdPlaces().ShouldBe(false);
 		}
 	}
 }
