@@ -22,6 +22,7 @@ namespace SubmittedData
 		string GetName();
 		TournamentType GetTheType();
 		bool IsFifaWorldCup();
-		object[] GetGroups();		
+		object[] GetGroups();
+		char FindGroup(string team);
 	}
 }

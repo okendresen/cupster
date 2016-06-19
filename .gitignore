@@ -272,3 +272,5 @@ betting/vm2014.toml
 betting/vm2014-actual.toml
 *.sublime-project
 *.sublime-workspace
+
+webstats/webstats.userprefs
