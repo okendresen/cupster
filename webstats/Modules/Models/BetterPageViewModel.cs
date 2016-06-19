@@ -230,7 +230,7 @@ namespace Modules
 
 			}
 
-			for (int i = 0; i < _bet.GetStageOne().winners.Length; i++)
+			for (int i = 0; i < userMatches.Count; i++)
 			{
 				var k = new KnockoutMatch();
 				if (_bet.HasThirdPlaces())
