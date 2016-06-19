@@ -8,8 +8,11 @@
  */
 using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using Nancy;
+using Nancy.Bootstrapper;
+using Nancy.Diagnostics;
 using Nancy.TinyIoc;
 using SubmittedData;
 
@@ -41,5 +44,17 @@ namespace Modules
             results.Load(Path.Combine(dataPath, resultsFile));
             container.Register<IResults, Results>(results);
         }
+
+		protected override DiagnosticsConfiguration DiagnosticsConfiguration
+		{
+			get { return new DiagnosticsConfiguration { Password = @"kokko-bada-futu" }; }
+		}
+
+		#if DEBUG
+		protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+		{
+			StaticConfiguration.DisableErrorTraces = false;
+		}
+		#endif
     }
 }
