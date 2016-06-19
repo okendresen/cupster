@@ -317,7 +317,6 @@ class EuroTournament(Tournament):
             groups.append(group)
             lookup[group] = team
         matchUp = self.get_match_ups(groups)
-        print(matchUp)
 
         matches = []
         # Match 1: Runner-up Group A v Runner-up Group C

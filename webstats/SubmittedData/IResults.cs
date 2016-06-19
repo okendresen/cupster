@@ -23,6 +23,8 @@ namespace SubmittedData
 		bool HasStageOne();
 		dynamic GetStageOne();
 		bool IsStageOneComplete();
+		dynamic GetThirdPlaces();
+		bool HasThirdPlaces();
 		dynamic GetInfo();
 		bool HasStageTwo();
 		bool HasRound16();
