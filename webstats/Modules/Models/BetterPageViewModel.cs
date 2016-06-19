@@ -310,9 +310,16 @@ namespace Modules
 			combo["BDEF"] = new List<char>() { 'E', 'D', 'B', 'F' };
 			combo["CDEF"] = new List<char>() { 'C', 'D', 'F', 'E' };
 
-			groups.Sort();
-			string joined = new String(groups.ToArray());
-			return combo[joined];
+			if (groups[0] != '\0')
+			{
+				groups.Sort();
+				string joined = new String(groups.ToArray());
+				return combo[joined];
+			}
+			else
+			{
+				return new List<char>() { '\0', '\0', '\0', '\0' };
+			}
 		}
 
 		void CreateQuarterFinalMatches()
