@@ -129,7 +129,10 @@ class Tournament(object):
             else:
                 realRunnerUp = '-'
             print('Runner-up: {}'.format(realRunnerUp))
-            self.thirds.extend(self.get_non_qualifiers(points, realWinner, realRunnerUp))
+            if complete:
+                self.thirds.extend(self.get_non_qualifiers(points, realWinner, realRunnerUp))
+            else:
+                self.thirds.extend(['-','-'])
             self.results.append_results(results)
             self.results.append_winners([realWinner, realRunnerUp])
             self.results.save()
@@ -361,7 +364,10 @@ class EuroTournament(Tournament):
         combinations['BDEF'] = ['E', 'D', 'B', 'F']
         combinations['CDEF'] = ['C', 'D', 'F', 'E']
 
-        return combinations[''.join(sorted(groups))]
+        if groups[0] != None:
+            return combinations[''.join(sorted(groups))]
+        else:
+            return [None, None, None, None]
 
     def get_final_matches(self, qualifiers):
         matches = []
