@@ -23,13 +23,18 @@ namespace Modules
             _totalScore = new ScoringSystem(actual, actual);
             CreateGroupMatches();
 			if (WorldCupRules)
+			{
 				CreateRound16Matches();
+				CreateQuarterFinalMatches();
+				CreateSemiFinalMatches();
+				CreateBronseFinalMatch();
+			}
 			else
+			{
 				CreateEuroRound16Matches();
-            CreateQuarterFinalMatches();
-            CreateSemiFinalMatches();
-            if (WorldCupRules)
-                CreateBronseFinalMatch();
+				CreateEuroQuarterFinalMatches();
+				CreateEuroSemiFinalMatches();
+			}
             CreateFinalMatch();
         }
 
@@ -312,17 +317,27 @@ namespace Modules
 
 		void CreateQuarterFinalMatches()
         {
+			int qw = 0;
             for (int i = 0; _bet.HasRound16() && i < _bet.GetRound16Winners().Length; i += 4)
             {
-                _quarterFinals.Add(AddQuarterFinalMatch(i, i + 2));
-                _quarterFinals.Add(AddQuarterFinalMatch(i + 1, i + 3));
+				_quarterFinals.Add(AddQuarterFinalMatch(i, i + 2, qw++));
+                _quarterFinals.Add(AddQuarterFinalMatch(i + 1, i + 3, qw++));
             }
         }
 
-        KnockoutMatch AddQuarterFinalMatch(int i1, int i2)
+		void CreateEuroQuarterFinalMatches()
+		{
+			int qw = 0;
+			for (int i = 0; _bet.HasRound16() && i < _bet.GetRound16Winners().Length; i += 4)
+			{
+				_quarterFinals.Add(AddQuarterFinalMatch(i, i + 1, qw++));
+				_quarterFinals.Add(AddQuarterFinalMatch(i + 2, i + 3, qw++));
+			}
+		}
+
+        KnockoutMatch AddQuarterFinalMatch(int i1, int i2, int qw)
         {
             var k = new KnockoutMatch();
-            int qw = (i1 >= 4) ? i1 - 2 : i1;
             k.SelectedMatch = _bet.GetRound16Winners()[i1] + " vs. " + _bet.GetRound16Winners()[i2];
             if (_bet.HasQuarterFinals())
             {
@@ -349,20 +364,30 @@ namespace Modules
             }
         }
 
+		void CreateEuroSemiFinalMatches()
+		{
+			if (_bet.HasQuarterFinals())
+			{
+				_semiFinals.Add(AddSemiFinalMatch(0, 1));
+				_semiFinals.Add(AddSemiFinalMatch(2, 3));
+			}
+		}
+
         KnockoutMatch AddSemiFinalMatch(int i1, int i2)
         {
+			int sw = (i1 < 2) ? i1 : i1 - 1;
             var k = new KnockoutMatch();
             k.SelectedMatch = _bet.GetQuarterFinalWinners()[i1] + " vs. " + _bet.GetQuarterFinalWinners()[i2];
             if (_bet.HasSemiFinals())
             {
-                k.SelectedWinner = _bet.GetSemiFinalWinners()[i1].ToString();
+                k.SelectedWinner = _bet.GetSemiFinalWinners()[sw].ToString();
             }
             if (_results.HasQuarterFinals())
             {
                 k.ActualMatch = _results.GetQuarterFinalWinners()[i1] + " vs. " + _results.GetQuarterFinalWinners()[i2];
                 if (_results.HasSemiFinals())
                 {
-                    k.ActualWinner = _results.GetSemiFinalWinners()[i1].ToString();
+                    k.ActualWinner = _results.GetSemiFinalWinners()[sw].ToString();
                     k.CellClass = GetSelectedWinnerClass(k.SelectedWinner, _results.GetSemiFinalWinners());
                 }
             }
