@@ -1,0 +1,9 @@
+language: csharp
+solution: ./webstats/webstats.sln
+install:
+  - nuget restore ./webstats/webstats.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release webstats/webstats.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./webstats/SubmittedData.Test/bin/Release/SubmittedData.Test.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./webstats/Modules.Test/bin/Release/Modules.Test.dll
