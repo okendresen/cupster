@@ -1,0 +1,32 @@
+@Master['MasterPage']
+
+@Section['Content']
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">cupster.net</a>
+            <h4 class="navbar-text">@Model.PageTitle</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+	<div class="row">
+	<div class="col-md-6">
+	<table class="table table-bordered table-condensed">
+	<tr>
+	    <th>Achievements</th>
+	    <th>Description</th>
+	</tr>
+	@Each.Model.AchievementLegend
+	<tr class="normal">
+	    <td class="achievement"><img src="Content/@Current.Image"></td>
+	    <td class="achievement">@Current.Title</td>
+	</tr>
+	@EndEach
+	</table>
+	</div>
+	</div>
+</div>
+
+@EndSection

@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.23.0\lib\net40\Nancy.dll</HintPath>
@@ -40,11 +39,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +51,8 @@
     <Compile Include="Models\IndexPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IndexPageModule.cs" />
+    <Compile Include="LegendPageModule.cs" />
+    <Compile Include="Models\LegendPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\bootstrap.spacelab.css" />
@@ -104,6 +103,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\MasterPage.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\legend.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
