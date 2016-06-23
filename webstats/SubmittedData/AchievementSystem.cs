@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SubmittedData
 {
@@ -61,6 +62,16 @@ namespace SubmittedData
                 _achievementsRepo = value;
             }
         }
+
+		List<Achievement> _achievementList = new List<Achievement>();
+		public List<Achievement> AchievementList
+		{
+			get
+			{
+				return _achievementsRepo.Values.ToList();
+			}
+				
+		}
         
         void CheckDoubleRainbow()
         {

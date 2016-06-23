@@ -4,7 +4,7 @@
 <tr>
     <th>Name</th>
     <th>Score</th>
-    <th>Achievements</th>
+    <th><a href="legend">Achievements</a></th>
 </tr>
 @Each.SortedBetters
 <tr class="@Current.RowClass">
