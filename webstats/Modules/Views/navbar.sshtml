@@ -11,5 +11,10 @@
       		</ul>
       	</div>
     </div>
+    @If.HasRound16
+  	<div class="container">
+    	<button type="button" class="btn btn-success navbar-btn">Score @Model.Score of @Model.Total</button>
+	</div>
+	@EndIf
 </div>
 
