@@ -1,14 +1,7 @@
 @Master['MasterPage']
 
 @Section['Content']
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">cupster.net</a>
-            <h4 class="navbar-text">@Model.PageTitle</h4>
-        </div>
-    </div>
-</div>
+@Partial['navbar.sshtml']
 
 <div class="container">
 	<div class="row">

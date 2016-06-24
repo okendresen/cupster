@@ -108,6 +108,9 @@
     <None Include="Views\legend.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\navbar.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SubmittedData\SubmittedData.csproj">
