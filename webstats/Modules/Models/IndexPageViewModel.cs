@@ -22,7 +22,8 @@ namespace Modules
 		{
 			_tournament = t;
 			CreateGroups();
-			CreateBetterlist(sb.GetBetters(), sb, rc.Current);
+			CreateBetterlist(sb.GetBetters(), sb, rc);
+			EvaluateTrends();
 			MarkWinnerIfFinished(rc.Current);
 			TimeStamp = rc.Current.GetTimeStamp();
 		}
@@ -57,17 +58,35 @@ namespace Modules
         
         public string TimeStamp { get; private set; }
 
-		void CreateBetterlist(List<string> betters, ISubmittedBets sb, IResults actual)
+		void CreateBetterlist(List<string> betters, ISubmittedBets sb, IResultCollection rc)
 		{
 		    foreach (var better in betters)
 		    {
-		        var score = new ScoringSystem(sb.GetSingleBet(better), actual);
-		        var bet = new Better() { Name = better, Score = score.GetTotal() };
-		        var achievements = new AchievementSystem(sb.GetSingleBet(better), actual);
+				var score = new ScoringSystem(sb.GetSingleBet(better), rc.Current);
+				var oldscore = new ScoringSystem(sb.GetSingleBet(better), rc.Previous);
+				var bet = new Better() { Name = better, Score = score.GetTotal(), OldScore = oldscore.GetTotal() };
+				var achievements = new AchievementSystem(sb.GetSingleBet(better), rc.Current);
 		        bet.Achievements = achievements.Achievements;
 		        bet.RowClass = "normal";
 		        Betters.Add(bet);
 		    }
+		}
+
+		void EvaluateTrends()
+		{
+			List<Better> current = _betters.OrderByDescending(b => b.Score).ToList();
+			List<Better> previous = _betters.OrderByDescending(b => b.OldScore).ToList();
+			foreach (var better in current)
+			{
+				int cix = current.IndexOf(better);
+				int pix = previous.IndexOf(better);
+				if (cix > pix)
+					better.Trend = "down";
+				else if (pix > cix)
+					better.Trend = "up";
+				else
+					better.Trend = "same";
+			}
 		}
 
 		void MarkWinnerIfFinished(IResults actual)

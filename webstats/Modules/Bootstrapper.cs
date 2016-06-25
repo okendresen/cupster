@@ -44,7 +44,7 @@ namespace Modules
 			resultCollection.Current = new Results();
 			resultCollection.Current.Load(Path.Combine(dataPath, resultsFile));
 			resultCollection.Previous = new Results();
-			resultCollection.Current.Load(Path.Combine(dataPath, resultsFile + ".bak"));
+			resultCollection.Previous.Load(Path.Combine(dataPath, resultsFile + ".bak"));
 			container.Register<IResultCollection, ResultCollection>(resultCollection);
 
 		}

@@ -11,7 +11,7 @@
 <tr class="@Current.RowClass">
     <td><a href="@Current.Name">@Current.Name</a></td>
     <td>@Current.Score</td>
-    <td></td>
+    <td>@Current.Trend</td>
     <td class="achievement">@Current.AchievementsAsHtml</td>
 </tr>
 @EndEach
