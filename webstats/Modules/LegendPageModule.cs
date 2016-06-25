@@ -18,11 +18,11 @@ namespace Modules
 	/// </summary>
 	public class LegendPageModule : NancyModule
 	{
-		public LegendPageModule(IResults actual)
+		public LegendPageModule(IResultCollection rc)
 		{
 			Get["/legend"] = _ => 
             {
-				return View["legend.sshtml", new LegendPageViewModel(actual)];
+				return View["legend.sshtml", new LegendPageViewModel(rc.Current)];
 			};
 		}
 	}

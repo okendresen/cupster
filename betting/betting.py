@@ -1,6 +1,7 @@
 import argparse
 import os
 import getpass
+import shutil
 from tournament import *
 from tournamentresults import *
 
@@ -26,6 +27,11 @@ def main():
     else:
         user = getpass.getuser()
     outfile = '{0}-{1}.toml'.format(root, user)
+    bakfile = '{0}-{1}.toml.bak'.format(root, user)
+
+    # Backup results file it it exists
+    if args.results and os.path.isfile(outfile):
+        shutil.copyfile(outfile, bakfile)
 
     # Load results if they exists
     results = TournamentResults(outfile, user)
