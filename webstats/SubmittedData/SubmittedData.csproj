@@ -59,6 +59,8 @@
     <Compile Include="SubmittedBets.cs" />
     <Compile Include="Tournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IResultCollection.cs" />
+    <Compile Include="ResultCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

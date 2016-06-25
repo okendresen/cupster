@@ -18,11 +18,11 @@ namespace Modules
 	/// </summary>
 	public class IndexPageModule : NancyModule
 	{
-		public IndexPageModule(ITournament tournament, ISubmittedBets bets, IResults actual)
+		public IndexPageModule(ITournament tournament, ISubmittedBets bets, IResultCollection rc)
 		{
 			Get["/"] = _ => 
             {
-				return View["frontpage.sshtml", new IndexPageViewModel(tournament, bets, actual)];
+				return View["frontpage.sshtml", new IndexPageViewModel(tournament, bets, rc)];
 			};
 		}
 	}

@@ -40,10 +40,14 @@ namespace Modules
             bets.LoadAll(dataPath);
             container.Register<ISubmittedBets, SubmittedBets>(bets);
 
-            var results = new Results();
-            results.Load(Path.Combine(dataPath, resultsFile));
-            container.Register<IResults, Results>(results);
-        }
+			var resultCollection = new ResultCollection();
+			resultCollection.Current = new Results();
+			resultCollection.Current.Load(Path.Combine(dataPath, resultsFile));
+			resultCollection.Previous = new Results();
+			resultCollection.Previous.Load(Path.Combine(dataPath, resultsFile + ".bak"));
+			container.Register<IResultCollection, ResultCollection>(resultCollection);
+
+		}
 
 		protected override DiagnosticsConfiguration DiagnosticsConfiguration
 		{
