@@ -17,7 +17,14 @@ namespace Modules
 	public class IndexPageViewModel
 	{
 		ITournament _tournament;
-		
+
+		public enum Trends
+		{
+			Up,
+			Down,
+			Same
+		}
+
 		public IndexPageViewModel(ITournament t, ISubmittedBets sb, IResultCollection rc)
 		{
 			_tournament = t;
@@ -81,11 +88,11 @@ namespace Modules
 				int cix = current.IndexOf(better);
 				int pix = previous.IndexOf(better);
 				if (cix > pix)
-					better.Trend = "down";
+					better.Trend = Trends.Down;
 				else if (pix > cix)
-					better.Trend = "up";
+					better.Trend = Trends.Up;
 				else
-					better.Trend = "same";
+					better.Trend = Trends.Same;
 			}
 		}
 
@@ -144,8 +151,15 @@ namespace Modules
 		    public string Name { get; set; }
 			public int Score { get; set; }
 			public int OldScore { get; set; }
-			public string Trend { get; set; }
-		    public string RowClass { get; set; }
+			public Trends Trend { get; set; }
+			public string TrendAsHtml
+			{
+				get
+				{
+					return String.Format("<img src=\"Content/{0}\">", _trend[Trend]);
+				}
+			}
+			public string RowClass { get; set; }
 		    public List<AchievementSystem.Achievement> Achievements;
 		    public string AchievementsAsHtml 
 		    {
@@ -159,6 +173,11 @@ namespace Modules
 		            return s.ToString();
 		        }
 		    }
+			Dictionary<Trends, string> _trend = new Dictionary<Trends, string> {
+				{ Trends.Up,   "up16.png" },
+				{ Trends.Down, "down16.png" },
+				{ Trends.Same, "same16.png" },
+			};
 		}
 	}
 }
