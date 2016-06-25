@@ -18,13 +18,13 @@ namespace Modules
 	{
 		ITournament _tournament;
 		
-		public IndexPageViewModel(ITournament t, ISubmittedBets sb, IResults actual)
+		public IndexPageViewModel(ITournament t, ISubmittedBets sb, IResultCollection rc)
 		{
 			_tournament = t;
 			CreateGroups();
-			CreateBetterlist(sb.GetBetters(), sb, actual);
-			MarkWinnerIfFinished(actual);
-			TimeStamp = actual.GetTimeStamp();
+			CreateBetterlist(sb.GetBetters(), sb, rc.Current);
+			MarkWinnerIfFinished(rc.Current);
+			TimeStamp = rc.Current.GetTimeStamp();
 		}
 
 		public string PageTitle
@@ -123,7 +123,9 @@ namespace Modules
 		public class Better
 		{
 		    public string Name { get; set; }
-		    public int Score { get; set; }
+			public int Score { get; set; }
+			public int OldScore { get; set; }
+			public string Trend { get; set; }
 		    public string RowClass { get; set; }
 		    public List<AchievementSystem.Achievement> Achievements;
 		    public string AchievementsAsHtml 

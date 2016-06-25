@@ -22,7 +22,7 @@ namespace Modules
 		{
 			Get["/"] = _ => 
             {
-				return View["frontpage.sshtml", new IndexPageViewModel(tournament, bets, rc.Current)];
+				return View["frontpage.sshtml", new IndexPageViewModel(tournament, bets, rc)];
 			};
 		}
 	}
