@@ -1,12 +1,12 @@
 [info]
 user = "actual"
 [stage-one]
+third-places = [ "Ireland", "Slovakia", "Northern Ireland", "Portugal",]
 results = [ [ "b", "u", "h", "u", "h", "h",], [ "u", "b", "u", "h", "b", "b",], [ "h", "h", "u", "b", "b", "b",], [ "u", "h", "h", "h", "b", "b",], [ "b", "u", "h", "b", "b", "b",], [ "b", "u", "b", "u", "u", "u",],]
 winners = [ [ "France", "Switzerland",], [ "Wales", "England",], [ "Germany", "Poland",], [ "Croatia", "Spain",], [ "Italy", "Belgium",], [ "Hungary", "Iceland",],]
-third-places = [ "Ireland", "Slovakia", "Northern Ireland", "Portugal",]
 [stage-two]
-quarter-final = [ "-", "-", "-", "-",]
 semi-final = [ "-", "-",]
-round-of-16 = [ "Poland", "Portugal", "Wales", "-", "-", "-", "-", "-",]
+quarter-final = [ "-", "-", "-", "-",]
+round-of-16 = [ "Poland", "Portugal", "Wales", "Belgium", "Germany", "-", "France", "-",]
 [finals]
 final = "-"
