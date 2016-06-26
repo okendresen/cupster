@@ -22,7 +22,7 @@ namespace Modules.Test
 	[TestFixture]
 	public class IndexPageViewModelTests
 	{
-		[Ignore]
+	    [Ignore("Don't know how to mock the results collection")]
 		[Test]
 		public void TestPageTitle_ShouldReturnTournamentName()
 		{
@@ -38,7 +38,7 @@ namespace Modules.Test
 			groups.PageTitle.ShouldBe("VM 2014 Brasil");
 		}
 
-		[Ignore]
+        [Ignore("Don't know how to mock the results collection")]
 		[Test]
 		public void TestTournament_ShouldReturnTournamentName()
 		{
