@@ -274,3 +274,7 @@ betting/vm2014-actual.toml
 *.sublime-workspace
 
 webstats/webstats.userprefs
+
+testrunner/
+
+nuget.exe
