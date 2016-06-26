@@ -6,4 +6,4 @@ install:
 script:
   - xbuild /p:Configuration=Release webstats/webstats.sln
   - mono ./testrunner/NUnit.ConsoleRunner.3.4.0/tools/nunit3-console.exe ./webstats/SubmittedData.Test/bin/Release/SubmittedData.Test.dll
-  - mono ./testrunner/NUnit.ConsoleRunner.3.4.0/toolsnunit3-console.exe ./webstats/Modules.Test/bin/Release/Modules.Test.dll
+  - mono ./testrunner/NUnit.ConsoleRunner.3.4.0/tools/nunit3-console.exe ./webstats/Modules.Test/bin/Release/Modules.Test.dll
