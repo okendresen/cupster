@@ -20,7 +20,7 @@ namespace SubmittedData.Test
     public class AchievementSystemTest
     {
         [Test]
-        [Ignore]
+        [Ignore("Not implemented feature")]
         public void TestPerfectGroup_ReturnsTrue_WhenAllGroupMatchesAndBothQualifiersAreCorrect()
         {
 		    string userBet = @"[stage-one]

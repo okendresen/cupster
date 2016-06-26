@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using Nancy;
 using Nancy.Bootstrapper;
+using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.TinyIoc;
 using SubmittedData;
@@ -48,6 +49,15 @@ namespace Modules
 			container.Register<IResultCollection, ResultCollection>(resultCollection);
 
 		}
+        
+        protected override void ConfigureConventions(NancyConventions conventions)
+        {
+            base.ConfigureConventions(conventions);
+    
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("Scripts")
+            );
+        }
 
 		protected override DiagnosticsConfiguration DiagnosticsConfiguration
 		{
