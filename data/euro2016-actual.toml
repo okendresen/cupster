@@ -5,7 +5,7 @@ winners = [ [ "France", "Switzerland",], [ "Wales", "England",], [ "Germany", "P
 [finals]
 final = "-"
 [stage-two]
-quarter-final = [ "-", "-", "-", "-",]
+quarter-final = [ "Portugal", "-", "-", "-",]
 semi-final = [ "-", "-",]
 round-of-16 = [ "Poland", "Portugal", "Wales", "Belgium", "Germany", "Italy", "France", "Iceland",]
 [info]
