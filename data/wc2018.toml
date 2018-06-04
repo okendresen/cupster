@@ -1,0 +1,12 @@
+name = "VM 2014 Brasil"
+type = "fifa-wc"
+groups = [
+	["Russia",		"Saudia Arabia", 	"Egypt", 	"Uruguay"],	# Group A
+	["Portugal",	"Spain", 		"Morocco", 		"Iran"],	# Group B
+	["France",		"Australia", 	"Peru", 		"Denmark"],	# Group C
+	["Argentina",	"Iceland",		"Croatia", 		"Nigeria"],	# Group D
+	["Brazil",		"Switzerland",	"Costa Rica",	"Serbia"],	# Group E
+	["Germany",		"Mexico", 		"Sweden",		"South Korea"],	# Group F
+	["Belgium",		"Panama", 		"Tunisia", 		"England"], 	# Group G
+	["Poland",		"Senegal", 		"Colombia",		"Japan"],	# Group H
+]
