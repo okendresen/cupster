@@ -4,8 +4,8 @@
 @Partial['navbar.sshtml']
 
 <div class="container">
-    <p>@Model.Tournament betting scores</p>
-    <h3>Betters</h3>
+    <p>@Model.Tournament scores</p>
+    <h3>Participants</h3>
     <p><em>Results last updated @Model.TimeStamp</em></p>
     @Partial['betters.sshtml']
 </div>
