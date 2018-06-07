@@ -105,11 +105,15 @@ namespace SubmittedData
         public int GetRound16Score()
         {
             int score = 0;
-            foreach (var team in _user.GetRound16Winners())
+            if (_actual.HasRound16())
             {
-                if (team != "-" && Array.IndexOf(_actual.GetRound16Winners(), team) != -1)
-					score += Points.Round16Winner;
-            }
+                foreach (var team in _user.GetRound16Winners())
+                {
+                    if (team != "-" && Array.IndexOf(_actual.GetRound16Winners(), team) != -1)
+    					score += Points.Round16Winner;
+                }
+    
+            }            
             return score;
         }
 
