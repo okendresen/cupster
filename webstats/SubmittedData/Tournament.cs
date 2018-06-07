@@ -41,8 +41,18 @@ namespace SubmittedData
 			
 		public void Load(string file)
 		{
-			string text = _fileSystem.File.ReadAllText(file);
-			_config = text.ParseAsToml();
+		    if (_fileSystem.File.Exists(file))
+		    {
+    			string text = _fileSystem.File.ReadAllText(file);
+    			_config = text.ParseAsToml();
+		    }
+		    else
+		    {
+		        string text = @"name = ""No tournament file found""
+type = ""fifa-wc""
+groups = []";
+                _config = text.ParseAsToml();
+		    }
 		}
 		
 		public string GetName()
