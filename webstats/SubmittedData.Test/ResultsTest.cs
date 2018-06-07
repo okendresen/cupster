@@ -40,11 +40,11 @@ namespace SubmittedData.Test
 		}
 		
 		[Test]
-		public void TestLoad_ShouldFail_IfFileDoesNotExists()
+		public void TestLoad_ShouldNotFail_IfFileDoesNotExists()
 		{
 			string wc2014 = @"name = ""VM 2014 Brasil""";
 			var t = CreateTournament(@"data\vm2014-actual.toml", wc2014);
-			Should.Throw<FileNotFoundException>(() => t.Load(@"configs\vm2014-actual.toml"));
+			Should.NotThrow(() => t.Load(@"data\euro2016-actual.toml"));
 		}
 
 		[Test]

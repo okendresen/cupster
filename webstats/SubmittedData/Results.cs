@@ -48,9 +48,20 @@ namespace SubmittedData
 
         public void Load(string file)
         {
-            string text = _fileSystem.File.ReadAllText(file);
-            _results = text.ParseAsToml();
-            _timeStamp = _fileSystem.File.GetLastWriteTime(file).ToString("F", CultureInfo.InvariantCulture);
+            if (_fileSystem.File.Exists(file))
+            {
+                string text = _fileSystem.File.ReadAllText(file);
+                _results = text.ParseAsToml();
+                _timeStamp = _fileSystem.File.GetLastWriteTime(file).ToString("F", CultureInfo.InvariantCulture);
+                
+            }        
+            else
+            {
+                string text = @"[info]
+user = ""actual""
+";
+                _results = text.ParseAsToml();
+            }
         }
 
         string _timeStamp;

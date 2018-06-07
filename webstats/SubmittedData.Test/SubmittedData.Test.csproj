@@ -69,7 +69,9 @@
     <Compile Include="ResultsTest.cs" />
     <Compile Include="ScoringSystemTest.cs" />
     <Compile Include="SubmittedBetsTest.cs" />
-    <Compile Include="TournamentTest.cs" />
+    <Compile Include="TournamentTest.cs">
+      <DependentUpon>SubmittedBetsTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
